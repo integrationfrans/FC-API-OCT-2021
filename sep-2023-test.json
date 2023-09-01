@@ -5132,7 +5132,7 @@
                 }
             }
         },
-        "/company-management/v2/companies/": {
+        "/company-management/v2/companies": {
             "post": {
                 "tags": [
                     "Company v2"
@@ -5417,7 +5417,7 @@
                 {
                     "in": "query",
                     "name": "status",
-                    "description": "Retrieve active or terminated type companies",
+                    "description": "Retrieve active or terminated type companies. eg. apiURL//company-management/v2/companies?status=active",
                     "schema": {
                         "type": "string",
                         "enum": [
