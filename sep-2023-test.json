@@ -5284,7 +5284,7 @@
             },
             "responses": {
                 "200": {
-                    "$ref": "#/components/responses/CreateCompanyResp"
+                    "$ref": ""
                 },
                 "401": {
                     "description": "Unauthorized"
