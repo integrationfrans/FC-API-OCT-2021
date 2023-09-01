@@ -79,6 +79,10 @@
             "description": "These API endpoints support operations associated with Companies."
         },
         {
+            "name": "Company v2",
+            "description": "These v2 API endpoints provide functionality for managing company-related operations, offering enhanced features and capabilities."
+        },
+        {
             "name": "Regional",
             "description": "<p>Using the FranConnect API, you can manage information for different tabs corresponding to any Area-region present in your system. Using Create, Retrieve, Update and Delete API operations, you can manage information corresponding to different Area-regions present in your Regional module."
         },
@@ -222,7 +226,7 @@
                 "Info Manager",
                 "Franchisee",
                 "Company",
-                "Company Version v2",
+                "Company v2",
                 "Regional",
                 "Area Info",
                 "CRM",
@@ -5131,7 +5135,7 @@
         "/v2/companies/": {
             "post": {
                 "tags": [
-                    "Company"
+                    "Company v2"
                 ],
                 "summary": "Create Company",
                 "description": "xyz",
