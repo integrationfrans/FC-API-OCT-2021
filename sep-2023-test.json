@@ -5296,8 +5296,8 @@
                     "description": "Not Found"
                 }
             }
-
-        },
+        }
+    },
         "company-management/v1/companies/{companyId}": {
             "get": {
                 "tags": [
