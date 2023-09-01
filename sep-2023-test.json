@@ -5131,7 +5131,7 @@
         "/v2/companies/": {
             "post": {
                 "tags": [
-                    "Company Version v2"
+                    "Company"
                 ],
                 "summary": "Create Company",
                 "description": "xyz",
