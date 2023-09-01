@@ -5288,12 +5288,9 @@
                                 },
                                 "data": [
                                     {
-                                        "id": "1919272303",
-                                        "name": "Bakers LLC",
                                         "customId": "B-LLC",
-                                        "status": "Active",
+                                        "name": "Bakers LLC",
                                         "type": "Limited Liability Company",
-                                        "createdOn": "2022-08-30T13:27:08Z",
                                         "taxpayerId": "12-3456789",
                                         "areas": [
                                             {
@@ -5320,36 +5317,6 @@
                                             "country": "USA",
                                             "date": "2023-08-08"
                                         },
-                                        "relations": [
-                                            {
-                                                "id": "334321851",
-                                                "name": "Sample Entity 0",
-                                                "associationId": "3",
-                                                "associationLabel": "Related",
-                                                "status": "Active",
-                                                "links": [
-                                                    {
-                                                        "rel": "self",
-                                                        "action": "get",
-                                                        "href": "https://localhost/company-management/v2/companies/334321851"
-                                                    }
-                                                ]
-                                            }
-                                        ],
-                                        "owners": [
-                                            "John Smith"
-                                        ],
-                                        "employees": [
-                                           "Pip sample Employee"
-                                        ],
-                                        "associatedUnits": [
-                                            {
-                                                "unitId": "1267257523",
-                                                "unitName": "B-1011",
-                                                "centerName": "Columbus Fairfield 01"
-                                            }
-                                        ],
-                                        "segments": [],
                                         "customFields": [
                                             {
                                                 "fieldDisplayName": "Custom Field String Type",
@@ -5373,13 +5340,6 @@
                                             }
                                         ],
                                         "customSections": [
-                                        ],
-                                        "links": [
-                                            {
-                                                "rel": "self",
-                                                "action": "get",
-                                                "href": "https://qamsa.franconnect.net/company-management/v2/companies/1919272303"
-                                            }
                                         ]
                                     }
                                 ]
@@ -5417,7 +5377,7 @@
                 {
                     "in": "query",
                     "name": "status",
-                    "description": "Retrieve active or terminated type companies. eg. apiURL//company-management/v2/companies?status=active",
+                    "description": "Retrieve active or terminated type companies. Example: apiURL/company-management/v2/companies?status=active",
                     "schema": {
                         "type": "string",
                         "enum": [
@@ -5443,6 +5403,187 @@
         }
         },
         "/company-management/v2/companies/{companyId}": {
+            "put": {
+                "tags": [
+                    "Company v2"
+                ],
+                "summary": "Update Company",
+                "description": "xyz",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "companyId",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                  "customId": {
+                                    "type": "string"
+                                  },
+                                  "name": {
+                                    "type": "string"
+                                  },
+                                  "areas": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "address": {
+                                    "type": "object",
+                                    "properties": {
+                                      "streetAddress": {
+                                        "type": "string"
+                                      },
+                                      "zipCode": {
+                                        "type": "string"
+                                      },
+                                      "country": {
+                                        "type": "string"
+                                      },
+                                      "state": {
+                                        "type": "string"
+                                      },
+                                      "city": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "contacts": {
+                                    "type": "object",
+                                    "properties": {
+                                      "phoneNo": {
+                                        "type": "string"
+                                      },
+                                      "mobileNo": {
+                                        "type": "string"
+                                      },
+                                      "faxNo": {
+                                        "type": "string"
+                                      },
+                                      "emailId": {
+                                        "type": "string"
+                                      },
+                                      "includeInEmailList": {
+                                        "type": "boolean"
+                                      },
+                                      "phoneExtension": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "formations": {
+                                    "type": "object",
+                                    "properties": {
+                                      "country": {
+                                        "type": "string"
+                                      },
+                                      "state": {
+                                        "type": "string"
+                                      },
+                                      "date": {
+                                        "type": "string",
+                                        "description": "Date in the format 'YYYY-MM-DD'"
+                                      }
+                                    }
+                                  },
+                                  "taxPayerId": {
+                                    "type": "string"
+                                  },
+                                  "roles": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "customFields": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "description": "List of custom fields will be build specific",
+                                      "properties": {
+                                        "fieldDisplayName": {
+                                          "type": "string"
+                                        },
+                                        "fieldName": {
+                                          "type": "string"
+                                        },
+                                        "fieldValue": {
+                                            "type": "string"
+                                          }
+                                      }
+                                    }
+                                  },
+                                  "customSections": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "object",
+                                      "properties": {
+                                        "name": {
+                                          "type": "string"
+                                        },
+                                        "customFields": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "fieldDisplayName": {
+                                                "type": "string"
+                                              },
+                                              "fieldName": {
+                                                "type": "string"
+                                            },
+                                            "fieldValue": {
+                                                "type": "string"
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              
+                            },
+                            "example": {
+                                "tenantContext": {
+                                    "tenantId": "qamsa",
+                                    "userId": "adm"
+                                },
+                                "data": [
+                                    {
+                                        "name": "Bakers Corporation (name modified)",
+                                        "links": [
+                                            {
+                                                "rel": "self",
+                                                "action": "get",
+                                                "href": "https://qamsa.franconnect.net/company-management/v2/companies/1919272303"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                            
+                        }
+                    }
+                }
+            }
+
+
+            },
             "get": {
                 "tags": [
                     "Company v2"
