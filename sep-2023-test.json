@@ -222,7 +222,6 @@
                 "Info Manager",
                 "Franchisee",
                 "Company",
-                "Company Version v2",
                 "Regional",
                 "Area Info",
                 "CRM",
@@ -5128,7 +5127,6 @@
                 }
             }
         },
-
         "company-management/v1/companies/{companyId}": {
             "get": {
                 "tags": [
