@@ -5283,57 +5283,102 @@
                             },
                             "example": {
                                 "tenantContext": {
-                                    "tenantId": "qamsa6.franconnectqa.net",
+                                    "tenantId": "qamsa",
                                     "userId": "adm"
                                 },
                                 "data": [
                                     {
-                                        "companyId": "1066711118",
-                                        "companyName": "XYZ Enterprises",
+                                        "id": "1919272303",
+                                        "name": "Bakers LLC",
+                                        "customId": "B-LLC",
+                                        "status": "Active",
+                                        "type": "Limited Liability Company",
+                                        "createdOn": "2022-08-30T13:27:08Z",
+                                        "taxpayerId": "12-3456789",
                                         "areas": [
                                             {
-                                                "id": "1940365061",
-                                                "name": "South Region"
-                                            },
-                                            {
-                                                "id": "388037787",
-                                                "name": "FC Region"
+                                                "name": "Midwest",
+                                                "owners": [
+                                                    "Sam Grasso"
+                                                ]
                                             }
                                         ],
+                                        "roles": [],
                                         "address": {
-                                            "streetAddress": "46-B Clinton Street, Iowa City",
-                                            "city": "Iowa City",
-                                            "country": {
-                                                "id": "1",
-                                                "name": "USA"
-                                            },
-                                            "zipcode": ""
+                                            "streetAddress": "123 Elm Street, Suite 200",
+                                            "city": "Columbus",
+                                            "zipCode": "43201"
                                         },
-                                        "formationDetails": {
-                                            "country": {
-                                                "id": "1",
-                                                "name": "USA"
-                                            },
-                                            "date": "0000-00-00"
+                                        "contacts": {
+                                            "phoneNo": "",
+                                            "mobileNo": "5551234567",
+                                            "faxNo": "",
+                                            "emailId": "abc@franconnect.com",
+                                            "phoneExtension": "1"
                                         },
-                                        "createdOn": "2022-10-17 05:23:32",
+                                        "formations": {
+                                            "country": "USA",
+                                            "date": "2023-08-08"
+                                        },
+                                        "relations": [
+                                            {
+                                                "id": "334321851",
+                                                "name": "Sample Entity 0",
+                                                "associationId": "3",
+                                                "associationLabel": "Related",
+                                                "status": "Active",
+                                                "links": [
+                                                    {
+                                                        "rel": "self",
+                                                        "action": "get",
+                                                        "href": "https://localhost/company-management/v2/companies/334321851"
+                                                    }
+                                                ]
+                                            }
+                                        ],
+                                        "owners": [
+                                            "John Smith"
+                                        ],
+                                        "employees": [
+                                           "Pip sample Employee"
+                                        ],
+                                        "associatedUnits": [
+                                            {
+                                                "unitId": "1267257523",
+                                                "unitName": "B-1011",
+                                                "centerName": "Columbus Fairfield 01"
+                                            }
+                                        ],
+                                        "segments": [],
                                         "customFields": [
                                             {
-                                                "fieldDisplayName": "Franchise No (Custom Field)",
-                                                "fieldName": "_FRANCHISE_NO_CUSTOM_FIELD_1054513536",
-                                                "fieldValue": "44567"
+                                                "fieldDisplayName": "Custom Field String Type",
+                                                "fieldName": "_custField11774591786",
+                                                "fieldValue": "22-HBX"
                                             },
                                             {
-                                                "fieldDisplayName": "ABN (Custom Field 2)",
-                                                "fieldName": "_ABN_CUSTOM_FIELD_2_427667771",
-                                                "fieldValue": "1234567-B07A"
+                                                "fieldDisplayName": "Custom Field Radio Type",
+                                                "fieldName": "_custField4Radio21667836",
+                                                "fieldValue": "Option 2"
+                                            },
+                                            {
+                                                "fieldDisplayName": "Custom Field DropDown Type",
+                                                "fieldName": "_custField5Dropdown743463252",
+                                                "fieldValue": "BrixHold"
+                                            },       
+                                            {
+                                                "fieldDisplayName": "Custom Field Checkbox Type",
+                                                "fieldName": "_custField7Checkboxes698972829",
+                                                "fieldValue": "Value1,Value2,Value3,Value4"
                                             }
+                                        ],
+                                        "customSections": [
                                         ],
                                         "links": [
                                             {
                                                 "rel": "self",
                                                 "action": "get",
-                                                "href": "https://api.franconnectqa.net/company-management/v1/companies/1066711118"
+                                                "href": "https://qamsa.franconnect.net/company-management/v2/companies/1919272303"
                                             }
                                         ]
                                     }
@@ -5346,6 +5391,7 @@
             },
             "responses": {
                 "200": {
+                    "$ref": "#/components/responses/CreateCompanyResp"
                 },
                 "401": {
                     "description": "Unauthorized"
@@ -12645,12 +12691,12 @@
                     "application/json": {
                         "example": {
                             "tenantContext": {
-                                "tenantId": "qamsa10.franconnectqa.net",
+                                "tenantId": "qamsa6.franconnectqa.net",
                                 "userId": "adm"
                             },
                             "data": [
                                 {
-                                    "id": "1656636522",
+                                    "id": "1066711118",
                                     "name": "Entity with only name",
                                     "links": [
                                         {
