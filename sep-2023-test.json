@@ -5405,6 +5405,42 @@
             }
         }
         },
+        "/company-management/v2/companies/{companyId}": {
+            "get": {
+                "tags": [
+                    "Company v2"
+                ],
+                "summary": "Retrieve Company By Id",
+                "description": "xyz",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "companyId",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RetrieveCompanyByIdv2Resp"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "company-management/v1/companies/{companyId}": {
             "get": {
                 "tags": [
@@ -12708,6 +12744,119 @@
                                 }
                             ]
                         }
+                    }
+                }
+            },
+            "RetrieveCompanyByIdv2Resp": {
+                "content": {
+                    "application/json": {
+                        "example": {
+                            "tenantContext": {
+                                "tenantId": "qamsa6",
+                                "userId": "adm"
+                            },
+                            "data": [
+                                {
+                                    "id": "1919272303",
+                                    "name": "Ventri C",
+                                    "customId": "VE",
+                                    "status": "Active",
+                                    "type": "Corporation",
+                                    "createdOn": "2022-08-30T13:27:08Z",
+                                    "taxpayerId": "123-45678",
+                                    "areas": [
+                                        {
+                                            "name": "India",
+                                            "owners": [
+                                              "Sandip Mittal"
+                                            ]
+                                        }
+                                    ],
+                                    "roles": [],
+                                    "address": {
+                                        "streetAddress": "12, Jorbagh",
+                                        "city": "New Delhi",
+                                        "zipCode": "110011"
+                                    },
+                                    "contacts": {
+                                        "phoneNo": "",
+                                        "mobileNo": "9013021844",
+                                        "faxNo": "",
+                                        "emailId": "abc@franconnect.com",
+                                        "phoneExtension": "91"
+                                    },
+                                    "formations": {
+                                        "country": "India",
+                                        "date": "2023-08-08"
+                                    },
+                                    "relations": [
+                                        {
+                                            "id": "334321851",
+                                            "name": "Entity 0",
+                                            "associationId": "3",
+                                            "associationLabel": "Related",
+                                            "status": "Active",
+                                            "links": [
+                                                {
+                                                    "rel": "self",
+                                                    "action": "get",
+                                                    "href": "https://localhost/company-management/v2/companies/334321851"
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "owners": [
+                                      "Atul Maurya",
+                                      "Sarim Mehmood"
+                                    ],
+                                    "employees": [
+                                        "employee 1",
+                                        "employee 2",
+                                        "employee 3"
+                          
+                                    ],
+                                    "associatedUnits": [
+                                        {
+                                            "unitId": "1267257523",
+                                            "unitName": "V-1200",
+                                            "centerName": "Jorbagh Central 01"
+                                        }
+                                    ],
+                                    "segments": [],
+                                    "customFields": [
+                                        {
+                                            "fieldDisplayName": "Cust Field 1",
+                                            "fieldName": "_custField11774591786",
+                                            "fieldValue": "Cust Field 1"
+                                        },
+                                        {
+                                            "fieldDisplayName": "Cust Field 2",
+                                            "fieldName": "_custField21475919868",
+                                            "fieldValue": "Cust Field 2"
+                                            }
+                                    ],
+                                    "customSections": [
+                                        {
+                                            "name": "Custom Section 1 Regular",
+                                            "customFields": [
+                                                {
+                                                    "fieldDisplayName": "Cust Sec 1 Field 1",
+                                                    "fieldName": "_custSec1Field1491736467",
+                                                    "fieldValue": ""
+                                                }
+                                            ]
+                                        }
+                                    ],
+                                    "links": [
+                                        {
+                                            "rel": "self",
+                                            "action": "get",
+                                            "href": "https://localhost/company-management/v2/companies/1919272303"
+                                        }
+                                    ]
+                                }
+                            ]
+                          }
                     }
                 }
             },
