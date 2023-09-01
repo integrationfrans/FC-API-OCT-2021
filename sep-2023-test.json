@@ -5346,7 +5346,7 @@
             },
             "responses": {
                 "200": {
-                    "$ref": "CreateCompanyResp"
+                    "$ref": "#/components/responses/CreateCompanyResp"
                 },
                 "401": {
                     "description": "Unauthorized"
@@ -12646,102 +12646,18 @@
                     "application/json": {
                         "example": {
                             "tenantContext": {
-                                "tenantId": "qamsa",
+                                "tenantId": "qamsa10.franconnectqa.net",
                                 "userId": "adm"
                             },
                             "data": [
                                 {
-                                    "id": "1919272303",
-                                    "name": "Bakers LLC",
-                                    "customId": "B-LLC",
-                                    "status": "Active",
-                                    "type": "Limited Liability Company",
-                                    "createdOn": "2022-08-30T13:27:08Z",
-                                    "taxpayerId": "12-3456789",
-                                    "areas": [
-                                        {
-                                            "name": "Midwest",
-                                            "owners": [
-                                                "Sam Grasso"
-                                            ]
-                                        }
-                                    ],
-                                    "roles": [],
-                                    "address": {
-                                        "streetAddress": "123 Elm Street, Suite 200",
-                                        "city": "Columbus",
-                                        "zipCode": "43201"
-                                    },
-                                    "contacts": {
-                                        "phoneNo": "",
-                                        "mobileNo": "5551234567",
-                                        "faxNo": "",
-                                        "emailId": "abc@franconnect.com",
-                                        "phoneExtension": "1"
-                                    },
-                                    "formations": {
-                                        "country": "USA",
-                                        "date": "2023-08-08"
-                                    },
-                                    "relations": [
-                                        {
-                                            "id": "334321851",
-                                            "name": "Sample Entity 0",
-                                            "associationId": "3",
-                                            "associationLabel": "Related",
-                                            "status": "Active",
-                                            "links": [
-                                                {
-                                                    "rel": "self",
-                                                    "action": "get",
-                                                    "href": "https://localhost/company-management/v2/companies/334321851"
-                                                }
-                                            ]
-                                        }
-                                    ],
-                                    "owners": [
-                                        "John Smith"
-                                    ],
-                                    "employees": [
-                                       "Pip sample Employee"
-                                    ],
-                                    "associatedUnits": [
-                                        {
-                                            "unitId": "1267257523",
-                                            "unitName": "B-1011",
-                                            "centerName": "Columbus Fairfield 01"
-                                        }
-                                    ],
-                                    "segments": [],
-                                    "customFields": [
-                                        {
-                                            "fieldDisplayName": "Custom Field String Type",
-                                            "fieldName": "_custField11774591786",
-                                            "fieldValue": "22-HBX"
-                                        },
-                                        {
-                                            "fieldDisplayName": "Custom Field Radio Type",
-                                            "fieldName": "_custField4Radio21667836",
-                                            "fieldValue": "Option 2"
-                                        },
-                                        {
-                                            "fieldDisplayName": "Custom Field DropDown Type",
-                                            "fieldName": "_custField5Dropdown743463252",
-                                            "fieldValue": "BrixHold"
-                                        },       
-                                        {
-                                            "fieldDisplayName": "Custom Field Checkbox Type",
-                                            "fieldName": "_custField7Checkboxes698972829",
-                                            "fieldValue": "Value1,Value2,Value3,Value4"
-                                        }
-                                    ],
-                                    "customSections": [
-                                    ],
+                                    "id": "1656636522",
+                                    "name": "Entity with only name",
                                     "links": [
                                         {
                                             "rel": "self",
                                             "action": "get",
-                                            "href": "https://qamsa.franconnect.net/company-management/v2/companies/1919272303"
+                                            "href": "https://api.franconnectqa.net/company-management/v2/companies/1656636522"
                                         }
                                     ]
                                 }
