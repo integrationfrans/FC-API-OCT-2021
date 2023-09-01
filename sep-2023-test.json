@@ -5403,6 +5403,44 @@
                     "description": "Not Found"
                 }
             }
+        },
+        "get": {
+            "tags": [
+                "Company v2"
+            ],
+            "summary": "Retrieve Companies",
+            "description": "Make a GET request to the specified endpoint to retrieve a list of companies present in your system. Refer to the query paramter section to learn how you can filter the data.",
+            "produces": [
+                "application/json"
+            ],
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "status",
+                    "description": "Retrieve active or terminated type companies",
+                    "schema": {
+                        "type": "string",
+                        "enum": [
+                            "active", "terminated"
+                        ]
+                    }
+                }
+            ],
+            "responses": {
+                "200": {
+                    "$ref": "#/components/responses/RetrieveCompaniesv2Resp"
+                },
+                "401": {
+                    "description": "Unauthorized"
+                },
+                "403": {
+                    "description": "Forbidden"
+                },
+                "404": {
+                    "description": "Not Found"
+                }
+            }
+        }
         }
         },
         "/company-management/v2/companies/{companyId}": {
@@ -12660,6 +12698,54 @@
                 },
                 "description": "Successful"
             },
+            "RetrieveCompaniesv2Resp": {
+                "content": {
+                    "application/json":{
+                        "example": {
+                            "tenantContext": {
+                                "tenantId": "qamsa6",
+                                "userId": "adm"
+                            },
+                            "data": [
+                                {
+                                    "id": "309265759",
+                                    "name": "SB-LLC",
+                                    "links": [
+                                        {
+                                            "rel": "self",
+                                            "action": "get",
+                                            "href": "https://localhost/company-management/v2/companies/309265759"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "773370676",
+                                    "name": "Ventri Corp",
+                                    "links": [
+                                        {
+                                            "rel": "self",
+                                            "action": "get",
+                                            "href": "https://localhost/company-management/v2/companies/773370676"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "241643858",
+                                    "name": "Munchies",
+                                    "links": [
+                                        {
+                                            "rel": "self",
+                                            "action": "get",
+                                            "href": "https://localhost/company-management/v2/companies/241643858"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
             "RetrieveCompaniesResp": {
                 "content": {
                     "application/json": {
@@ -12732,20 +12818,21 @@
                             },
                             "data": [
                                 {
-                                    "id": "1066711118",
-                                    "name": "Entity with only name",
+                                    "id": "1919272303",
+                                    "name": "Bakers LLC",
                                     "links": [
                                         {
                                             "rel": "self",
                                             "action": "get",
-                                            "href": "https://api.franconnectqa.net/company-management/v2/companies/1656636522"
+                                            "href": "https://api.franconnectqa.net/company-management/v2/companies/1919272303"
                                         }
                                     ]
                                 }
                             ]
                         }
                     }
-                }
+                },
+                "description": "Successful"
             },
             "RetrieveCompanyByIdv2Resp": {
                 "content": {
@@ -12858,7 +12945,8 @@
                             ]
                           }
                     }
-                }
+                },
+                "description": "Successful"
             },
             "RetrieveCompanyByIdResp": {
                 "content": {
