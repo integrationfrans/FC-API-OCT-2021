@@ -188,11 +188,15 @@
         },
         {
             "name": "INFO MANAGER WEBHOOK",
-            "description": "<p>FranConnect System now supports Webhook to pass information from FranConnect’s Info Mgr to another web application about a location.</p>"
+            "description": "<p>FranConnect System now supports webhooks to pass information from FranConnect’s Info Mgr to another web application about a location.</p>"
+        },
+        {
+            "name": "Company Webhook",
+            "description": "<p>FranConnect System now supports webhooks to pass information from FranConnect’s Info Mr to another web application about a company (also referred to as an entity).</p>"
         },
         {
             "name": "Segments Webhook",
-            "description": "<p>FranConnect System now supports Webhooks to pass information from FranConnect's segment module to another web application about segments, segment categories and custom segment fields.</p>"
+            "description": "<p>FranConnect System now supports webhooks to pass information from FranConnect's segment module to another web application about segments, segment categories and custom segment fields.</p>"
         }
     ],
     "x-tagGroups": [
