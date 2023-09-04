@@ -5350,7 +5350,7 @@
                 }
             },
             "responses": {
-                "200": {
+                "201": {
                     "$ref": "#/components/responses/CreateCompanyResp"
                 },
                 "401": {
@@ -5601,7 +5601,7 @@
                     "Company v2"
                 ],
                 "summary": "Retrieve Company By Id",
-                "description": "",
+                "description": "<p class=\"western\"> Make a GET request to the specified endpoint to retrieve the details of a company. The endpoint requires <b>companyId</b> as a path parameter.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/company-management/v2/companies/{companyId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/company-management/v2/companies/{companyId} </td> </tr></table>The following items must be included in the header of the request:<ol><li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol> <p><img src=\"images/Retrieve_Company_By_Id_v2.png\"></p>",
                 "produces": [
                     "application/json"
                 ],
@@ -5616,7 +5616,7 @@
                     }
                 ],
                 "responses": {
-                    "200": {
+                    "201": {
                         "$ref": "#/components/responses/RetrieveCompanyByIdv2Resp"
                     },
                     "401": {
@@ -12984,7 +12984,7 @@
                         }
                     }
                 },
-                "description": "Successful"
+                "description": "Created"
             },
             "UpdateCompanyResp": {
                 "content": {
@@ -13010,7 +13010,7 @@
                         }
                     }
                 },
-                "description": "Successful"
+                "description": "Created"
             },
             "RetrieveCompanyByIdv2Resp": {
                 "content": {
