@@ -7793,10 +7793,10 @@
                                     "update": {
                                         "summary": "Update",
                                         "value": {
-                                            "entityType": "segment",
+                                            "entityType": "company",
                                             "eventType": "update",
                                             "entityId": "1569275889",
-                                            "entityName": "Pre Transfer SB updated",
+                                            "entityName": "SB-LLC (updated)",
                                             "entityState": "active",
                                             "eventDateTime": "2023-03-29T07:42:45Z",
                                             "userNo": "1"
@@ -7805,10 +7805,10 @@
                                     "delete": {
                                         "summary": "delete",
                                         "value": {
-                                            "entityType": "segment",
+                                            "entityType": "company",
                                             "eventType": "delete",
                                             "entityId": "1569275889",
-                                            "entityName": "Pre Transfer SB updated",
+                                            "entityName": "SB-LLC (updated)",
                                             "entityState": "active",
                                             "eventDateTime": "2023-03-29T07:42:45Z",
                                             "userNo": "1"
