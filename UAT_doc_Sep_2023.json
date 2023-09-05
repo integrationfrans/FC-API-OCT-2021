@@ -9545,6 +9545,10 @@
                             "createFranchiseeWithTerminatedEntityResp": {
                                 "summary": "Create Franchise Using A Terminated Entity Response",
                                 "value": "<fcResponse>\n<responseStatus>Error</responseStatus>\n<responseId>1012053025</responseId>\n<responseData>\n<adminFranchisee>\n<status>Error</status>\n<error>\n<errorCode>400</errorCode>\n<errorDetails>Invalid mandatory field : fimTtEntityName</errorDetails>\n</error>\n<warning>\n<warningCode>216</warningCode>\n<warningDetails>\nMessage : Default value 'Y' is considered for storeEmail_includeInCampaignList, Default value 'Y' is considered for emailID_includeInCampaignList, Default value 'Y' is considered for legalNoticeEmail_includeInCampaignList\n</warningDetails>\n</warning>\n</adminFranchisee>\n</responseData>\n</fcResponse>\n"
+                            },
+                            "createFranchiseeWithCustomLifeCycleStage": {
+                                "summary": "Create Franchisee Using A Custom Life Cycle Stage",
+                                "value": "<fcRequest>\n <adminFranchisee>\n <status>No</status>\n <franchiseeName>SB-001</franchiseeName>\n <centerName>34th Clinton</centerName>\n <areaID>V region</areaID>\n <openingDate>2024-01-28</openingDate>\n <storeTypeId>Default</storeTypeId>\n <address>34th Clinton Street</address>\n <address2>Address2</address2>\n <city>Iowa City</city>\n <country>USA</country>\n <state>Iowa</state>\n <storePhone>1234567890</storePhone>\n <lifecycleStage>Remodel</lifecycleStage>\n <entityDetail>Entity</entityDetail>\n <entityType>New</entityType>\n <fimTtEntityName>Ventri LLC</fimTtEntityName>\n <ownerType>New</ownerType>\n <firstName>Sam</firstName>\n <lastName>Grasso</lastName>\n </adminFranchisee>\n </fcRequest>"
                             }
                         }
                     }
