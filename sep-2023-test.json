@@ -2745,8 +2745,9 @@
                                 "examples": {
                                     "create_sales_report": {
                                         "summary": "Create Sales Report",
-                                        "value": [
-                                            {
+                                        "value": {
+                                            [
+                                                {
                                                 "data": [
                                                     {
                                                         "franchiseeNo": "403968414",
