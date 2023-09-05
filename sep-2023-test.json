@@ -2682,7 +2682,7 @@
                     "Sales Reports"
                 ],
                 "summary": "Create New Sales Report",
-                "description": "<p class=\"western\">Sales reports allow locations to declare their proceeds during that report period. These are comprised of finance and non-finance categories. Sometimes, the sales report may contain additional invoice items. A sales report can be created for a location for that time duration for which sales is to be reported by the franchisees. In order to do so, a POST type request is to be made to the specified endpoint.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnect.net/manage-finance/sales</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/sales</td></tr></table>The following items must be included in the header of the request:<ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p></li><li><p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p></li></ol><p><u><a href=\"#operation/Finance_Categories\">Finance Categories</a></u>, <u><a href=\"#operation/Non_Finance_Categories\">Non Finance Categories</a></u> and <u><a href=\"#operation/Retrieve_Additional_Invoice_Items\">Additional Line Items</a></u> must be included in the body of the request. </p><p class=\"western\">Performing the above mentioned steps would create a new sales report. The response received from the API contains the “reportNo” and “salesReportID”. While the “reportNo” represents the \"Report ID\" of the report and can be seen in Finance > Sales > Sales Summary, the “salesReportID” represents the unique reference ID for that sales report.</p><img src=\"images/Create_New_Sales_Report.png\">",
+                "description": "<p class=\"western\">Sales reports allow locations to declare their proceeds during that report period. These are comprised of financial and non-financial categories. Sometimes, the sales report may contain additional invoice items as well. A sales report can be created for a location for that time duration for which sales is to be reported by the franchisees. In order to do so, a POST type request is to be made to the specified endpoint.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-finance/sales</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/sales</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p> </li></ol><p><u><a href=\"#operation/Finance_Categories\">Finance Categories</a></u>, <u><a href=\"#operation/Non_Finance_Categories\">Non Finance Categories</a></u> and <u><a href=\"#operation/Retrieve_Additional_Invoice_Items\">Additional Line Items</a></u> must be included in the body of the request. </p><p class=\"western\">Performing the above mentioned steps would create a new sales report. The response received from the API contains the “reportNo” and “salesReportID”. While the “reportNo” represents the \"Report ID\" of the report and can be seen in Finance > Sales > Sales Summary, the “salesReportID” represents the unique reference ID for that sales report.</p> <p> <h2>Create Sales Report in The Local Currency of the Franchise</h2> <p> The Create Sales Report API endpoint enables you to generate a sales report in the local currency of your franchise while allowing you to define on-the-fly currency rates for that specific sales report. To utilize this feature effectively, follow these steps: <ol> <li> To create a sales report in the local currency of a franchise, include a field called <b>localCurrency</b> in your payload and set it to true. This action informs the system that all the financial amounts entered in the sales report are in the local currency of the franchise. </li> <li> While the system typically retrieves currency exchange rate values from the exchange rate menu in the Royalty Manager, you also have the option to send on-the-fly currency rate values in the payload. The system will apply these rates exclusively to the current sales report being filled. Use the <b>currencyRate</b> field in the payload to define currency rate values. <br> <b>Please note</b> that currency rate values are measured in relation to the USD (United States Dollar). </li> </ol> </p> </p> <img src=\"images/Create_New_Sales_Report.png\">",
                 "operationId": "Create_New_Sales_Report",
                 "consumes": [
                     "application/json"
@@ -2713,79 +2713,187 @@
                                     },
                                     "reportPeriod": {
                                         "type": "string"
+                                    },
+                                    "dateReceived": {
+                                        "type": "string"
+                                    },
+                                    "acknowledgeSalesReport": {
+                                        "type": "string",
+                                        "enum": [
+                                            "yes", "no"
+                                        ]
+                                    },
+                                    "localCurrency": {
+                                        "type": "boolean",
+                                        "enum": [
+                                            true, false
+                                        ]
+                                    },
+                                    "currencyRate": {
+                                        "type": "string"
+                                    },
+                                    "financialItems": {
+                                        "type": "object"
+                                    },
+                                    "nonFinancialItems": {
+                                        "type": "object"
+                                    },
+                                    "finAddnlItems": {
+                                        "type": "object"
                                     }
                                 },
-                                "example": [
-                                    {
-                                        "data": [
+                                "examples": {
+                                    "create_sales_report": {
+                                        "summary": "Create Sales Report",
+                                        "value": [
                                             {
-                                                "franchiseeNo": "403968414",
-                                                "reportPeriod": "Jan - 2019",
-                                                "dateReceived": "2019-06-26",
-                                                "acknowledgeSalesReport": "yes",
-                                                "financialItems": [
+                                                "data": [
                                                     {
-                                                        "1": {
-                                                            "name": "Service",
-                                                            "calculationType": "(+)",
-                                                            "data": [
-                                                                {
-                                                                    "amount": "500",
-                                                                    "quantity": "50"
+                                                        "franchiseeNo": "403968414",
+                                                        "reportPeriod": "Jan - 2019",
+                                                        "dateReceived": "2019-06-26",
+                                                        "acknowledgeSalesReport": "yes",
+                                                        "financialItems": [
+                                                            {
+                                                                "1": {
+                                                                    "name": "Service",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "500",
+                                                                            "quantity": "50"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "24340465": {
+                                                                    "name": "Total Sales Category (+)",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "200",
+                                                                            "quantity": "2"
+                                                                        }
+                                                                    ]
                                                                 }
-                                                            ]
-                                                        },
-                                                        "24340465": {
-                                                            "name": "Total Sales Category (+)",
-                                                            "calculationType": "(+)",
-                                                            "data": [
-                                                                {
-                                                                    "amount": "200",
-                                                                    "quantity": "2"
+                                                            }
+                                                        ],
+                                                        "nonFinancialItems": [
+                                                            {
+                                                                "100": {
+                                                                    "name": "Non Financial Category",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "200"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "450294864": {
+                                                                    "name": "Non-Fin Category",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "250"
+                                                                        }
+                                                                    ]
                                                                 }
-                                                            ]
-                                                        }
+                                                            }
+                                                        ],
+                                                        "finAddnlItems": [
+                                                            {
+                                                                "450294861": {
+                                                                    "name": "Additional Invoice Item Categ",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "300"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
                                                     }
-                                                ],
-                                                "nonFinancialItems": [
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "create_sales_report_local_currency": {
+                                        "summary": "Create Sales Report in Local Currency",
+                                        "value": [
+                                            {
+                                                "data": [
                                                     {
-                                                        "100": {
-                                                            "name": "Non Financial Category",
-                                                            "calculationType": "(+)",
-                                                            "data": [
-                                                                {
-                                                                    "amount": "200"
+                                                        "franchiseeNo": "403968414",
+                                                        "reportPeriod": "Jan - 2019",
+                                                        "dateReceived": "2019-06-26",
+                                                        "acknowledgeSalesReport": "yes",
+                                                        "localCurrency": true,
+                                                        "currencyRate": "80.56",
+                                                        "financialItems": [
+                                                            {
+                                                                "1": {
+                                                                    "name": "Service",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "500",
+                                                                            "quantity": "50"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "24340465": {
+                                                                    "name": "Total Sales Category (+)",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "200",
+                                                                            "quantity": "2"
+                                                                        }
+                                                                    ]
                                                                 }
-                                                            ]
-                                                        },
-                                                        "450294864": {
-                                                            "name": "Non-Fin Category",
-                                                            "calculationType": "(+)",
-                                                            "data": [
-                                                                {
-                                                                    "amount": "250"
+                                                            }
+                                                        ],
+                                                        "nonFinancialItems": [
+                                                            {
+                                                                "100": {
+                                                                    "name": "Non Financial Category",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "200"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                "450294864": {
+                                                                    "name": "Non-Fin Category",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "250"
+                                                                        }
+                                                                    ]
                                                                 }
-                                                            ]
-                                                        }
-                                                    }
-                                                ],
-                                                "finAddnlItems": [
-                                                    {
-                                                        "450294861": {
-                                                            "name": "Additional Invoice Item Categ",
-                                                            "calculationType": "(+)",
-                                                            "data": [
-                                                                {
-                                                                    "amount": "300"
+                                                            }
+                                                        ],
+                                                        "finAddnlItems": [
+                                                            {
+                                                                "450294861": {
+                                                                    "name": "Additional Invoice Item Categ",
+                                                                    "calculationType": "(+)",
+                                                                    "data": [
+                                                                        {
+                                                                            "amount": "300"
+                                                                        }
+                                                                    ]
                                                                 }
-                                                            ]
-                                                        }
+                                                            }
+                                                        ]
                                                     }
                                                 ]
                                             }
                                         ]
                                     }
-                                ]
+                                } 
                             }
                         }
                     }
@@ -3057,6 +3165,17 @@
                         "description": "ParameterType:PaymentFilter",
                         "required": false,
                         "schema": {}
+                    },
+                    {
+                        "in": "query",
+                        "name": "localCurrency",
+                        "description": "Retrieve invoice data in the local currency of the franchise. Example: apiURL/manage-finance/royalties/filter?localCurrency=true",
+                        "schema": {
+                            "type": "boolean",
+                            "enum": [
+                                "true", "false"
+                            ]
+                        }
                     }
                 ],
                 "requestBody": {
@@ -3143,7 +3262,10 @@
                         "name": "localCurrency",
                         "description": "Retrieve invoice data in the local currency of the franchise. Example: apiURL/manage-finance/royalties/3645621?localCurrency",
                         "schema": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "enum": [
+                                "true", "false"
+                            ]
                         }
                     }
                 ],
