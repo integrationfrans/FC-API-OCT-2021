@@ -2742,85 +2742,7 @@
                                         "type": "object"
                                     }
                                 },
-                                "examples": {
-                                    "create_sales_report": {
-                                        "summary": "Create Sales Report",
-                                        "value": {
-                                            [
-                                                {
-                                                "data": [
-                                                    {
-                                                        "franchiseeNo": "403968414",
-                                                        "reportPeriod": "Jan - 2019",
-                                                        "dateReceived": "2019-06-26",
-                                                        "acknowledgeSalesReport": "yes",
-                                                        "financialItems": [
-                                                            {
-                                                                "1": {
-                                                                    "name": "Service",
-                                                                    "calculationType": "(+)",
-                                                                    "data": [
-                                                                        {
-                                                                            "amount": "500",
-                                                                            "quantity": "50"
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "24340465": {
-                                                                    "name": "Total Sales Category (+)",
-                                                                    "calculationType": "(+)",
-                                                                    "data": [
-                                                                        {
-                                                                            "amount": "200",
-                                                                            "quantity": "2"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        ],
-                                                        "nonFinancialItems": [
-                                                            {
-                                                                "100": {
-                                                                    "name": "Non Financial Category",
-                                                                    "calculationType": "(+)",
-                                                                    "data": [
-                                                                        {
-                                                                            "amount": "200"
-                                                                        }
-                                                                    ]
-                                                                },
-                                                                "450294864": {
-                                                                    "name": "Non-Fin Category",
-                                                                    "calculationType": "(+)",
-                                                                    "data": [
-                                                                        {
-                                                                            "amount": "250"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        ],
-                                                        "finAddnlItems": [
-                                                            {
-                                                                "450294861": {
-                                                                    "name": "Additional Invoice Item Categ",
-                                                                    "calculationType": "(+)",
-                                                                    "data": [
-                                                                        {
-                                                                            "amount": "300"
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        ]
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    },
-                                    "create_sales_report_local_currency": {
-                                        "summary": "Create Sales Report in Local Currency",
-                                        "value": [
+                                "example":[
                                             {
                                                 "data": [
                                                     {
@@ -2893,8 +2815,6 @@
                                                 ]
                                             }
                                         ]
-                                    }
-                                } 
                             }
                         }
                     }
