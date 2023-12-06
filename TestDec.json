@@ -5809,7 +5809,6 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                {
                                     "type": "object",
                                     "properties": {
                                       "unitId": {
@@ -5870,7 +5869,6 @@
                                       }
                                     },
                                     "required": ["unitId", "companyOwners"]
-                                  }
                             }
                         }
                     }
