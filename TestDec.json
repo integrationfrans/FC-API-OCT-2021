@@ -5838,7 +5838,6 @@
                                                 },
                                                 "ownershipStartDate": {
                                                   "type": "string",
-                                                  "format": "date (YYYY-MM-DD)",
                                                   "example": "2023-12-13"
                                                 },
                                                 "managingOwner": {
