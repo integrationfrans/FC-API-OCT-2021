@@ -5821,8 +5821,7 @@
                                           "type": "object",
                                           "properties": {
                                             "isNewCompany": {
-                                              "type": "boolean",
-                                              "enum": [true, false]
+                                              "type": "boolean"
                                             },
                                             "companyOwnership": {
                                               "type": "object",
@@ -5837,12 +5836,10 @@
                                                   "type": "double",
                                                 },
                                                 "ownershipStartDate": {
-                                                  "type": "string",
-                                                  "example": "2023-12-13"
+                                                  "type": "string"
                                                 },
                                                 "managingOwner": {
-                                                  "type": "string",
-                                                  "enum": ["Y", "N"]
+                                                  "type": "string"
                                                 }
                                               }
                                             },
@@ -5850,23 +5847,19 @@
                                               "type": "object",
                                               "properties": {
                                                 "companyId": {
-                                                  "type": "string",
+                                                  "type": "string"
                                                 },
                                                 "companyName": {
-                                                  "type": "string",
-                                                  "example": "BCCI Corp"
+                                                  "type": "string"
                                                 },
                                                 "companyType": {
-                                                  "type": "integer",
-                                                  "example": 311
+                                                  "type": "integer"
                                                 },
                                                 "countryOfFormation": {
-                                                  "type": "string",
-                                                  "example": "11"
+                                                  "type": "string"
                                                 },
                                                 "stateOfFormation": {
-                                                  "type": "string",
-                                                  "example": "210"
+                                                  "type": "string"
                                                 }
                                               },
                                               "required": ["companyName"]
@@ -5878,51 +5871,6 @@
                                     },
                                     "required": ["unitId", "companyOwners"]
                                   }
-                            },
-                            "examples": {
-                                "New": {
-                                    "summary": "Create Ownership Using New Company",
-                                    "value": {
-                                        "unitId": "1150822615",
-                                        "companyOwners": [
-                                            {
-                                                "isNewCompany": true,
-                                                "isUpdateRequired": false,
-                                                "companyOwnership": {
-                                                    "ownershipType": "2",
-                                                    "ownershipPercentage": "50",
-                                                    "ownershipStartDate": "2023-12-13",
-                                                    "managingOwner": "Y"
-                                                },
-                                                "companyDetails": {
-                                                    "companyName": "BCCI Corp",
-                                                    "companyType": 311,
-                                                    "countryOfFormation": "11",
-                                                    "stateOfFormation": "210"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "Existing": {
-                                    "summary": "Create Ownership Using Existing Company",
-                                    "value": {
-                                        "unitId": "1150822615",
-                                        "peopleOwners": [],
-                                        "companyOwners": [
-                                            {
-                                                "isNewCompany": false,
-                                                "companyOwnership": {
-                                                    "ownerId": "4",
-                                                    "ownershipType": "2",
-                                                    "ownershipPercentage": "20",
-                                                    "ownershipStartDate": "2023-11-01",
-                                                    "managingOwner": "N"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }   
                             }
                         }
                     }
