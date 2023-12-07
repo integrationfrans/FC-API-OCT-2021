@@ -3171,7 +3171,7 @@
                     "Royalties"
                 ],
                 "summary": "Retrieve Invoice By Id",
-                "description": " <p class=\"western\">Make a GET request to the specified endpoint to retrieve information corresponding to an Invoice by its franchiseRoyaltyId. franchiseRoyaltyId is the primary key of an invoice and can be retrieved by hitting <u><a href=\"#operation/Retrieve_Royalty_Invoices\">this</a></u> endpoint.</p> <table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-finance/royalties/{franchiseRoyaltyId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/royalties/{franchiseRoyaltyId}</td> </tr> </table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p> </li> </ol> <p class=\"western\">The response of this endpoint will give you detailed information corresponding to an invoice. The following data elements will be present in the response (if applicable):</p> <p> <ol> <li><b>invoiceReportDetails</b>: contains basic details of the invoice (for eg. location details, reporting period, etc) </li> <li><b>additionalInvoiceDetails</b>: contains additional bits of information that have been configured to be visible on the invoice</li> <li><b>royaltyItems</b>: contains amounts corresponding to each agreement item in the system (for eg. Royalty, Adv., etc) <ul> <li><b>taxTypes</b>: contains a list of taxes applied on the item</li> <li><b>yearlyCap</b>: contains the original yearly cap amount</li> <li><b>remainingYearlyCap</b>: contains the remaining yearly cap amount</li> </ul> </li> <li><b>additionalItems</b>: contains information corresponding to Additional Invoice Items</li> <li><b>additionalFees</b>: contains information corresponding to Additional Fee. Additional Fee refers to the total amount contributed by all the Additional Invoice Items applicable for the location</li> <li><b>invoiceAmount</b>: contains information corresponding to the total invoice amount</li> <li><b>paymentDetails</b>: contains information about the payment status of the invoice along with the payment amount (if any was applied)</li> </ol> </p><img src=\"images/Retrieve_Invoice_By_Id.png\">",
+                "description": "<p class=\"western\">Make a GET request to the specified endpoint to retrieve information corresponding to an Invoice by its franchiseRoyaltyId. franchiseRoyaltyId is the primary key of an invoice and can be retrieved by hitting <u><a href=\"#operation/Retrieve_Royalty_Invoices\">this</a></u> endpoint.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-finance/royalties/{franchiseRoyaltyId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance/royalties/{franchiseRoyaltyId}</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p> </li></ol><p class=\"western\">The response of this endpoint will give you detailed information corresponding to an invoice. The following data elements will be present in the response (if applicable):</p><p><ol> <li><b>invoiceReportDetails</b>: contains basic details of the invoice (for eg. location details, reporting period, etc) </li> <li><b>additionalInvoiceDetails</b>: contains additional bits of information that have been configured to be visible on the invoice</li> <li><b>royaltyItems</b>: contains amounts corresponding to each agreement item in the system (for eg. Royalty, Adv., etc) <ul> <li><b>taxTypes</b>: contains a list of taxes applied on the item</li> <li><b>yearlyCap</b>: contains the original yearly cap amount</li> <li><b>remainingYearlyCap</b>: contains the remaining yearly cap amount</li> </ul> </li> <li><b>additionalItems</b>: contains information corresponding to Additional Invoice Items</li> <li><b>additionalFees</b>: contains information corresponding to Additional Fee. Additional Fee refers to the total amount contributed by all the Additional Invoice Items applicable for the location</li> <li><b>invoiceAmount</b>: contains information corresponding to the total invoice amount</li> <li><b>paymentDetails</b>: contains information about the payment status of the invoice along with the payment amount (if any was applied)</li></ol> <h2>QBO Adjustments</h2> <p> If you have opted for QBO (Quickbooks Online) integration in Royalty Manager to import sales data, and have turned on the adjustments feature, the invoice retrieval endpoint not only fetches current invoice data but also includes any previous adjustments incurred in previous invoices that are related to the current invoice. Refer to the response sample on the right panel, \"QBO adjustments example\" to understand how the data can be extracted. </p></p><img src=\"images/Retrieve_Invoice_By_Id.png\">",
                 "operationId": "Retrieve_Invoice_By_Id",
                 "produces": [
                     "application/json"
@@ -11125,6 +11125,67 @@
                                         }
                                     
                                 }
+                            },
+                            "QBO_adjustments_example": {
+                                "summary": "QBO Adjustments Example",
+                                "value": {
+                                    "response": {
+                                        "data": {
+                                            "invoiceReportDetails": {
+                                                "franchiseeNo": "1039866514",
+                                                "franchiseeName": "SB-QBO",
+                                                "totalSales": 5000.0,
+                                                "storeType": "Default",
+                                                "area": "NortEast",
+                                                "reportPeriod": "2023-11-02",
+                                                "invoiceNo": "178",
+                                                "versionID": "SB-Simple-QBO",
+                                                "openBalance": 1200.0,
+                                                "additionalFees": 0.0,
+                                                "taxOnInvoice": 0.0,
+                                                "invoiceAmount": 1500.0,
+                                                "invoiceDate": "2023-12-05 04:40:32.0"
+                                            },
+                                            "royaltyItems": {
+                                                "Royalty": {
+                                                    "amount": 500.0,
+                                                    "total": 500.0,
+                                                    "openAmount": 200.0
+                                                },
+                                                "Adv.": {
+                                                    "amount": 1000.0,
+                                                    "total": 1000.0,
+                                                    "openAmount": 1000.0
+                                                }
+                                            },
+                                            "additionalItems": {},
+                                            "additionalFees": {
+                                                "amount": 0.0,
+                                                "total": 0.0,
+                                                "openAmount": 0.0
+                                            },
+                                            "invoiceAmount": {
+                                                "amount": 1500.0,
+                                                "total": 1500.0,
+                                                "openAmount": 1200.0
+                                            },
+                                            "paymentDetails": {
+                                                "paymentStatus": "Partially Paid",
+                                                "amountPaid": 300.0
+                                            },
+                                            "previousAdjustmentDataModel": {
+                                                "previousAdjustmentAmount": -300.0,
+                                                "previousAdjustmentOpenBalance": 0.0,
+                                                "currentInvoiceAmount": 1500.0,
+                                                "currentInvoiceOpenBalance": 1200.0,
+                                                "previousAdjustmentFranchiseRoyaltyID": "434642483",
+                                                "previousAdjustmentInvoiceNo": "177",
+                                                "totalDueAmount": 1200.0,
+                                                "totalOpenDueAmount": 1200.0
+                                            }
+                                        }
+                                    }
+                                  }
                             }
                         }
                     }
