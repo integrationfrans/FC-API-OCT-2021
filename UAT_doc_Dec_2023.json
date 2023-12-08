@@ -50,7 +50,7 @@
         },
         {
             "name": "API Usage",
-            "description": "<p> FranConnect API comes with usage guidelines by product areas that are monitored closely to ensure quality experience for our users. Below you'll find API call limits for different product packages: <ol> <li> <b>Develop</b>: 5,000 calls per hour | 10,000 calls per day </li> <li> <b>Foundation</b>: 5,000 calls per hour | 10,000 calls per day </li> <li> <b>Profit</b>: 5,000 calls per hour | 10,000 calls per day </li> <li> <b>Operate</b>: 5,000 calls per hour | 10,000 calls per day </li> </ol> <b>Please note</b> that we don't support concurrent calls. Ensure that your API calls are made sequentially to avoid getting unexpected data in response.</p>"
+            "description": "<p> FranConnect API comes with usage guidelines by product areas that are monitored closely to ensure quality experience for our users. Below you'll find API call limits for different product packages:<ol> <li> <b>Develop</b>: 5,000 calls per hour | 10,000 calls per day </li> <li> <b>Foundation</b>: 5,000 calls per hour | 10,000 calls per day </li> <li> <b>Profit</b>: 5,000 calls per hour | 10,000 calls per day </li> <li> <b>Operate</b>: 5,000 calls per hour | 10,000 calls per day </li></ol> <b>Please note</b> that we don't support concurrent calls. Ensure that your API calls are made sequentially toavoid getting unexpected data in response.<br><br><br><br><br><br></p>"
         },
         {
             "name": "List of Modules",
