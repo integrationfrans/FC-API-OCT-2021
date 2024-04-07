@@ -8818,6 +8818,185 @@
                 }
             }
         },
+        "/audit/v2/forms":{
+            "get": {
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Retrieve Visit Forms",
+                "description": "xyz",
+                "operationId": "Retrieve_Visit_Forms",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "example":  {
+                                    "tenantContext": {
+                                        "tenantId": "qamsa4.franconnectqa.net",
+                                        "userId": "adm"
+                                    },
+                                    "data": [
+                                        {
+                                            "formId": "1702965839",
+                                            "formName": "Monthly Food Health Check",
+                                            "links": []
+                                        },
+                                        {
+                                            "formId": "1854526784",
+                                            "formName": "Test Visit Form",
+                                            "links": []
+                                        },
+                                        {
+                                            "formId": "84118067",
+                                            "formName": "Non Compliance Regulatory Food Checks",
+                                            "links": []
+                                        },
+                                        {
+                                            "formId": "324732007",
+                                            "formName": "Random Visits",
+                                            "links": []
+                                        },
+                                        {
+                                            "formId": "1172780485",
+                                            "formName": "Menu Curation Visits",
+                                            "links": []
+                                        }
+                                      ]
+                                  }
+                                
+                            }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/audit/v2/consultants":{
+            "get": {
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Retrieve Consultants",
+                "description": "xyz",
+                "operationId": "Retrieve_Consultants",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "tenantContext": {
+                                        "tenantId": "qamsa4.franconnectqa.net",
+                                        "userId": "adm"
+                                    },
+                                    "data": [
+                                        {
+                                            "consultantId": "444607921",
+                                            "consultantName": "Amy Walker",
+                                            "links": []
+                                        },
+                                        {
+                                            "consultantId": "7056203",
+                                            "consultantName": "Abigail Kuhlman",
+                                            "links": []
+                                        },
+                                        {
+                                            "consultantId": "1825988946",
+                                            "consultantName": "Abraham Luettgen",
+                                            "links": []
+                                        },
+                                        {
+                                            "consultantId": "1399335058",
+                                            "consultantName": "Adan Ratke",
+                                            "links": []
+                                        }
+                                      ]
+                                    }
+                            }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/audit/v2/owners/{franchiseId}:": {
+            "get": {
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Retrieve Owners of a Franchise",
+                "description": "xyz",
+                "operationId": "Retrieve_Owners_Of_A_Franchise",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "franchiseId",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "tenantContext": {
+                                        "tenantId": "anvesha",
+                                        "userId": "adm"
+                                    },
+                                    "data": [
+                                        {
+                                            "ownerId": "511465690",
+                                            "ownerName": "Bilky Smith",
+                                            "links": []
+                                        }
+                                    ]
+                                }
+                            }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+
+            }
+        },
         "/{customer_SalesWebhook URL}": {
             "post": {
                 "tags": [
