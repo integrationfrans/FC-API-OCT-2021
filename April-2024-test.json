@@ -7985,6 +7985,489 @@
                 }
             }
         },
+        "audit/v2/visits":{
+            "post": {
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Retrieve Visits",
+                "description": "xyz",
+                "operationId": "Retrieve_Visits",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "pageId",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "in": "query",
+                        "name": "pageSize",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                  "visitNumber": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "status": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "enum": [
+                                        "1", "2", "3", "4", "5", "6", "7", "8"
+                                    ]
+                                  },
+                                  "visitForms": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "franchiseId": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    }
+                                  },
+                                  "consultants": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "string"
+                                    },
+                                    "description": "Enter consultant IDs (not actual names)"
+                                  },
+                                  "scheduledDate": {
+                                    "type": "object",
+                                    "properties": {
+                                      "clause": {
+                                        "type": "string",
+                                        "enum": [ "EQUAL", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
+                                      },
+                                      "values": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string",
+                                          "format": "date-time"
+                                        },
+                                        "description": "Format: YYYY-MM-DD"
+                                      }
+                                    }
+                                  }
+                                },
+                                "example": {
+                                    "visitNumber": [
+                                        "VST5"
+                                    ],
+                                    "status": [
+                                        "2",
+                                        "1"
+                                    ],
+                                    "visitForms": [
+                                        "777584470"
+                                    ],
+                                    "franchiseId": [
+                                        "391068979"
+                                    ],
+                                    "consultants": [
+                                        "1808213170"
+                                    ],
+                                    "scheduledDate": {
+                                        "clause": "BETWEEN",
+                                        "values": [
+                                            "2023-12-27",
+                                            "2024-01-27"
+                                        ]
+                                    }
+                                }
+                              }
+                              
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "tenantContext": {
+                                        "tenantId": "developers.franconnectdemo.net",
+                                        "userId": "adm"
+                                    },
+                                    "data": [
+                                        {
+                                            "visitNumber": "VST5",
+                                            "visitId": "991579412",
+                                            "visitForms": "Monthly Food Health Visit",
+                                            "franchiseId": "AD-901",
+                                            "creationDate": "2024-01-22 17:04:08",
+                                            "scheduleDate": "2024-01-22 06:34:08",
+                                            "consultant": "Sam Smith",
+                                            "status": "Scheduled",
+                                            "ownerScore": "",
+                                            "taskAssignedLink": [],
+                                            "actionsPlanCompletionDate": "",
+                                            "originalScheduleDate": "2024-01-22 17:03:35",
+                                            "visitStartDate": "",
+                                            "visitModifiedDate": "",
+                                            "visitCompletionDate": "",
+                                            "consultantScore": "",
+                                            "timeTakenByConsultants": "",
+                                            "ownerScoreTimeTaken": "",
+                                            "comments": "Test Comment",
+                                            "links": []
+                                        }
+                                    ],
+                                    "limit": 20,
+                                    "offset": 0,
+                                    "totalRecords": 1
+                                }
+                                
+                            }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }  
+        },
+        "audit/v2/{visitId}": {
+            "get": {
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Retrieve Visits by Id",
+                "description": "xyz",
+                "operationId": "Retrieve_Visit_By_Id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "tenantContext": {
+                                        "tenantId": "developers.franconnectdemo.net",
+                                        "userId": "Gin Valentine"
+                                    },
+                                    "data": [
+                                        {
+                                            "response": [
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 10.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": [
+                                                        "1"
+                                                    ],
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": [],
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": "15.00",
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "1",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": [],
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 20.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": [
+                                                        "2"
+                                                    ],
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": "20.00",
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "2",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": "10.00",
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "1",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 10.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": [
+                                                        "1"
+                                                    ],
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 20.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": 20.0,
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 20.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": 20.0,
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": "0.00",
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": [],
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": "10.00",
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "1",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": 20.0,
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": "25.00",
+                                                    "consultantComment": "",
+                                                    "consultantResponse": "2",
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 10.0,
+                                                    "consultantComment": "",
+                                                    "consultantResponse": 2.0,
+                                                    "privateComments": ""
+                                                },
+                                                {
+                                                    "ownerScore": "0.00",
+                                                    "consultantScore": 0.0,
+                                                    "consultantComment": "dd",
+                                                    "consultantResponse": "",
+                                                    "privateComments": ""
+                                                }
+                                            ],
+                                            "sectionScores": [
+                                                {
+                                                    "sectionId": "_sectionb_1497167991",
+                                                    "ownerMaxScore": "20.00",
+                                                    "consultantMaxScore": "20.00",
+                                                    "ownerActualScore": "0.00",
+                                                    "consultantActualScore": "0.00"
+                                                },
+                                                {
+                                                    "sectionId": "_sectiona_977403312",
+                                                    "ownerMaxScore": "20.00",
+                                                    "consultantMaxScore": "50.00",
+                                                    "ownerActualScore": "0.00",
+                                                    "consultantActualScore": "30.00"
+                                                },
+                                                {
+                                                    "sectionId": "_sectiona_912266595",
+                                                    "ownerMaxScore": "20.00",
+                                                    "consultantMaxScore": "70.00",
+                                                    "ownerActualScore": "0.00",
+                                                    "consultantActualScore": "40.00"
+                                                },
+                                                {
+                                                    "sectionId": "",
+                                                    "ownerMaxScore": "25.00",
+                                                    "consultantMaxScore": "25.00",
+                                                    "ownerActualScore": "0.00",
+                                                    "consultantActualScore": "25.00"
+                                                },
+                                                {
+                                                    "sectionId": "",
+                                                    "ownerMaxScore": "30.00",
+                                                    "consultantMaxScore": "115.00",
+                                                    "ownerActualScore": "0.00",
+                                                    "consultantActualScore": "65.00"
+                                                }
+                                            ],
+                                            "tabScores": [
+                                                {
+                                                    "tabName": "tab1",
+                                                    "consultantMaxScore": 2270.0,
+                                                    "consultantActualScore": 485.0,
+                                                    "ownerMaxScore": "",
+                                                    "ownerActualScore": "",
+                                                    "consultantScorePercentage": 21.365638766519822
+                                                },
+                                                {
+                                                    "tabName": "tab2",
+                                                    "consultantMaxScore": 2265.0,
+                                                    "consultantActualScore": 500.0,
+                                                    "ownerMaxScore": "",
+                                                    "ownerActualScore": "",
+                                                    "consultantScorePercentage": 22.075055187637968
+                                                }
+                                            ],
+                                            "liveMaxScore": "4535",
+                                            "liveScore": "985",
+                                            "score": "21.719955898566703",
+                                            "liveOwnerScore": "0",
+                                            "liveOwnerMaxScore": "0",
+                                            "creationDate": "2024-03-13",
+                                            "scheduleDate": "2024-03-13",
+                                            "status": "In Progress",
+                                            "ownerScore": "",
+                                            "actionsPlanCompletionDate": "",
+                                            "originalScheduleDate": "2024-03-13",
+                                            "visitStartDate": "2024-03-13",
+                                            "visitModifiedDate": "2024-03-13",
+                                            "visitCompletionDate": "",
+                                            "consultantScore": "21.72",
+                                            "timeTakenByConsultants": "00:21:33",
+                                            "ownerScoreTimeTaken": "",
+                                            "comments": "",
+                                            "visitNumber": "VST19",
+                                            "visitId": "599369698",
+                                            "visitForms": "CQ | Multi Page-Tab view | non self",
+                                            "franchiseId": "1108",
+                                            "consultant": "Sam Smith",
+                                            "links": []
+                                        }
+                                    ]
+                                }
+                                
+                            }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
         "audit/v2/visits/schedule": {
             "post": {
                 "tags": [
