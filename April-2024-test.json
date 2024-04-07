@@ -7985,6 +7985,22 @@
                 }
             }
         },
+        "audit/v2/visits/schedule": {
+            "post": {
+                "tags": [
+                    "Visits"
+                ],
+                "summary": "Create Visit",
+                "description": "xyz",
+                "operationId": "Create_Visit",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ]
+            }
+        },
         "/{customer_SalesWebhook URL}": {
             "post": {
                 "tags": [
