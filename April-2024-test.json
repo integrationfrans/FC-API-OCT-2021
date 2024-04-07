@@ -7998,15 +7998,6 @@
                 "produces": [
                     "application/json"
                 ],
-                "parameters": [
-                    {
-                        "in": "query",
-                        "name": "isCustomId",
-                        "schema": {
-                            "type": "boolean"
-                        }
-                    }
-                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -8035,7 +8026,7 @@
                                         "properties": {
                                           "status": {
                                             "type": "string",
-                                            "enum": ["now"]
+                                            "enum": ["now", "later"]
                                           },
                                           "scheduleDate": {
                                             "type": "string",
@@ -8050,6 +8041,26 @@
                                         }
                                       }
                                 },
+                                "example": {
+                                    "visitFormId":"634657169",
+                                    "segmentId":"",
+                                    "franchisees":["1748448824"],
+                                    "consultantId":"2083957589",
+                                    "visitSchedule":{
+                                        "status":"now",
+                                        "scheduleDate":"2024-02-06 11:01:10",
+                                        "startTime":"2024-02-06 11:01:10",
+                                        "endTime":"2024-02-06 15:01:10"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
                                 "example": {
                                     "tenantContext": {
                                         "tenantId": "qamsa2.franconnectqa.net",
@@ -8070,13 +8081,19 @@
                                     ]
                                 }
                             }
-                        }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
                     }
-                },
-                "responses": {
-
                 }
-
             }
 
         },
