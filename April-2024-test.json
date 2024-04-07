@@ -171,14 +171,6 @@
             "description": "These API endpoints support operations associated with Segments."
         },
         {
-            "name": "Audit",
-            "description": "to be updated"
-        },
-        {
-            "name": "Visits",
-            "description": "These API endpoints support operations associated with visits."
-        },
-        {
             "name": "Edit Segments",
             "description": "These API endpoints support operations related to editing of segments. Following these endpoints, you will be able to edit the general information of a segment like its name, categoryId, customSegmentId, description etc. and alter the list of associated units, owners and or segments."
         },
@@ -278,8 +270,6 @@
                 "Segment",
                 "Edit Segments",
                 "People",
-                "Audits",
-                "Visits",
                 "Events and Webhooks",
                 "Sales Webhook",
                 "Lead",
@@ -7873,7 +7863,8 @@
                                     }
                                 ]
                             }
-                        ],
+                        ]
+                    },
                     "description": "Successful"
                 },
                 "401": {
@@ -7982,22 +7973,6 @@
                         "description": "Not Found"
                     }
                 }
-            }
-        },
-        "audit/v2/visits/schedule": {
-            "post": {
-                "tags": [
-                    "Visits"
-                ],
-                "summary": "Create Visit",
-                "description": "xyz",
-                "operationId": "Create_Visit",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ]
             }
         },
         "/{customer_SalesWebhook URL}": {
