@@ -209,6 +209,10 @@
         {
             "name": "Segments Webhook",
             "description": "<p>FranConnect System now supports webhooks to pass information from FranConnect's segment module to another web application about segments, segment categories and custom segment fields.</p>"
+        },
+        {
+            "name": "Visits Webhook",
+            "description": "<p>FranConnect System now supports webhooks to pass information from FranConnect's visit module to another web application about a visit.</p>"
         }
     ],
     "x-tagGroups": [
@@ -287,6 +291,7 @@
                 "Segments Webhook",
                 "FRANCHISE",
                 "Company Webhook",
+                "Visits Webhook"
                 "CRM Webhook",
                 "LEAD/CONTACT"
             ]
@@ -8711,10 +8716,7 @@
                                     "visitFormId": {
                                         "type": "string"
                                       },
-                                      "segmentId": {
-                                        "type": "string"
-                                      },
-                                      "franchisees": {
+                                      "franchiseId": {
                                         "type": "array",
                                         "items": {
                                           "type": "string"
@@ -8737,10 +8739,10 @@
                                           },
                                           "startTime": {
                                             "type": "string",
-                                            "description": "Start time of the visit schedule (mandatory when status is 'now')"                                          },
+                                            "description": "Start time (YYYY-MM-DD HH:MM:SS) of the visit schedule (mandatory when status is 'now')"                                          },
                                           "endTime": {
                                             "type": "string",
-                                            "description": "End time of the visit schedule (mandatory when status is 'now')"                                          }
+                                            "description": "End time (YYYY-MM-DD HH:MM:SS) of the visit schedule (mandatory when status is 'now')"                                          }
                                         }
                                       }
                                 },
@@ -9239,7 +9241,7 @@
                     "Segments Webhook"
                 ],
                 "summary": "Segment",
-                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint that canreceive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this feature isenabled, the following events are captured corresponding to segments:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul> <p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
+                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint that canreceive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this feature is enabled, the following events are captured corresponding to segments:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul> <p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
                 "operationId": "Segment_Webhook",
                 "produces": [
                     "application/json"
@@ -9317,7 +9319,7 @@
                     "Segments Webhook"
                 ],
                 "summary": "Segment category",
-                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint that canreceive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this feature isenabled, the following events are captured corresponding to segment categories:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul> <p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
+                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint that can receive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this feature is enabled, the following events are captured corresponding to segment categories:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul> <p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
                 "operationId": "Segment_Category_Webhook",
                 "produces": [
                     "application/json"
@@ -9386,7 +9388,7 @@
                     "Segments Webhook"
                 ],
                 "summary": "Custom Segment Field",
-                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint that canreceive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this feature isenabled, the following events are captured corresponding to custom segment fields:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul> <p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
+                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint that can receive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this feature is enabled, the following events are captured corresponding to custom segment fields:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul> <p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
                 "operationId": "Custom_Segment_Field_Webhook",
                 "produces": [
                     "application/json"
@@ -9429,6 +9431,74 @@
                                             "entityName": "ABN No.",
                                             "entityState": "active",
                                             "eventDateTime": "2023-03-29T07:46:39Z",
+                                            "userNo": "1"
+                                          }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/{Customer_Webhook_URL_Visit}": {
+            "post": {
+                "tags": [
+                    "Visits Webhook"
+                ],
+                "summary": "Visit",
+                "description": "To enable this feature, you can send an email to helpdesk@franconnect.com and share the webhook URL(an endpoint thatcan receive arrays of events as JSON objects) where the updates can be pushed in the JSON format. Once this featureis enabled, the following events are captured corresponding to visits:-<ul> <li>Create</li> <li>Update</li> <li>Delete</li></ul><p> The captured events will be sent in real-time to the specified webhook URL in JSON format. The reference to all the events mentioned above can be found under Response Samples.</p>",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "create": {
+                                        "summary": "Create",
+                                        "value": {
+                                            "entityType": "audit_visit",
+                                            "eventType": "create",
+                                            "entityId": "1569275889",
+                                            "entityName": "VST141",
+                                            "entityState": "draft",
+                                            "eventDateTime": "2024-03-29T08:56:45.361096Z",
+                                            "userNo": "1"
+                                          }
+                                    },
+                                    "update": {
+                                        "summary": "Update",
+                                        "value": {
+                                            "entityType": "audit_visit",
+                                            "eventType": "modify",
+                                            "entityId": "1569275889",
+                                            "entityName": "VST143 (modified)",
+                                            "entityState": "unscheduled",
+                                            "eventDateTime": "2024-03-29T08:56:45.361096Z",
+                                            "userNo": "1"
+                                          }
+                                    },
+                                    "delete": {
+                                        "summary": "delete",
+                                        "value": {
+                                            "entityType": "audit_visit",
+                                            "eventType": "delete",
+                                            "entityId": "1569275889",
+                                            "entityName": "VST141",
+                                            "entityState": "draft",
+                                            "eventDateTime": "2024-03-29T08:56:45.361096Z",
                                             "userNo": "1"
                                           }
                                     }
