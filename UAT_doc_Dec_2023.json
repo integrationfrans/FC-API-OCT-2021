@@ -15387,6 +15387,7 @@
                                     "centerName": "Harlem Store Front",
                                     "status": "4",
                                     "customUnitId": "3434",
+                                    "unitSegmentMappingId": "2315050101",
                                     "links": [
                                         {
                                             "rel": "self",
@@ -15401,6 +15402,7 @@
                                     "centerName": "30th Street Septa",
                                     "status": "1",
                                     "customUnitId": "5678",
+                                    "unitSegmentMappingId": "2315133242",
                                     "links": [
                                         {
                                             "rel": "self",
