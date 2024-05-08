@@ -6195,7 +6195,7 @@
                     "Segment"
                 ],
                 "summary": "Retrieve Segments",
-                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve segments according to your custom filter criteria. Refer to the request body below to understand what data you need to send in the body to perform this request. You can customize your filter by adding more fields to the <i>constraints</i> field. Moreover, any configured custom segment fields for specific segment categories in the system will also be retrieved for a segment(s) in the response body. </p> <table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-segment/v2/segments/filter</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-segment/v2/segments/filter</td> </tr> </table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Segments.png\"> <p class=\"western\"> </ol>When defining contraints, you have the option of selecting from multiple clauses for a specific field. Following is a list of clauses, as how they look in the UI vs how they should be worded in your request body.<ul> <li>is = IEQUAL</li> <li>is not = INOT_EQUAL</li> <li>contains = ILIKE</li> <li>does not contain = NOT_ILIKE</li> <li>in = IN</li> <li>not in = NOT_IN</li> <li>on = ON</li> <li>before = BEFORE</li> <li>after = AFTER</li> <li>is between = IS_BETWEEN</li> <li>in last year = LAST_YEAR</li> <li>in current year = CURRENT_YEAR</li> <li>in last month = LAST_MONTH</li> <li>in this month = THIS_MONTH</li> </ul> <p><b>Note:</b> You can enable <b>topParents</b> field to retrieve only top parent segments from your system. Once enabled, the filters from your constraints field will apply only on the top parent segments available in your system.</p> </p>",
+                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve segments according to your custom filter criteria. Refer to the request body below to understand what data you need to send in the body to perform this request. You can customize your filter by adding more fields to the <i>constraints</i> field. Moreover, any configured custom segment fields for specific segment categories in the system will also be retrieved for a segment(s) in the response body. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-segment/v2/segments/filter</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-segment/v2/segments/filter</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Segments.png\"> <p class=\"western\"></ol>When defining contraints, you have the option of selecting from multiple clauses for a specific field. Following isa list of clauses, as how they look in the UI vs how they should be worded in your request body.<ul> <li>is = IEQUAL</li> <li>is not = INOT_EQUAL</li> <li>contains = ILIKE</li> <li>does not contain = NOT_ILIKE</li> <li>in = IN</li> <li>not in = NOT_IN</li> <li>on = ON</li> <li>before = BEFORE</li> <li>after = AFTER</li> <li>is between = IS_BETWEEN</li> <li>in last year = LAST_YEAR</li> <li>in current year = CURRENT_YEAR</li> <li>in last month = LAST_MONTH</li> <li>in this month = THIS_MONTH</li></ul><p><b>Note:</b> You can enable <b>topParents</b> field to retrieve only top parent segments from your system. Once enabled, the filters from your constraints field will apply only on the top parent segments available in your system.</p><h2>Enhanced Filter Capabilities Through Custom Segment Fields</h2><p> You can now utilize custom segment fields to refine your segment data filtering. The supported field types and corresponding clauses are:: <ol> <li> <b>Text</b> | Clauses supported: IEQUAL, INOT_EQUAL, ILIKE, NOT_ILIKE </li> <li> <b>Text Area</b> | Clauses supported: IEQUAL, INOT_EQUAL, ILIKE, NOT_ILIKE </li> <li> <b>Drop-down</b> | Clauses supported: IN, NOT_IN </li> <li> <b>Multi-select Drop-down</b> Clauses supported: IN, NOT_IN </li> <li> <b>Date</b> | Clauses supported: ON, BEFORE, AFTER, IS_BETWEEN, LAST_YEAR, CURRENT_YEAR, LAST_MONTH, THIS_MONTH </li> </ol> To filter segment data using custom segment fields, incorporate them within the constraints object. Ensure the following elements are included: <ol> <li> ApiKey of the custom segment field </li> <li> Clause to be applied </li> <li> Values for filtering the data </li> <li> Type of the field </li> </ol> Refer to an example of the payload structure required to make a successful request. </p></p>",
                 "operationId": "Retrieve_Segments",
                 "consumes": [
                     "application/json"
@@ -6413,28 +6413,65 @@
                                         ]
                                     }
                                 },
-                                "example": {
-                                    "page": {
-                                        "pageSize": 20,
-                                        "pageId": 0,
-                                        "viewAll": false,
-                                        "sort": {
-                                            "direction": "DESC",
-                                            "columns": [
-                                                "created_on"
-                                            ]
+                                "examples": {
+                                    "Using_default_filters": {
+                                        "summary": "Retrieve segments using default filters",
+                                        "value": {
+                                            "page": {
+                                                "pageSize": 20,
+                                                "pageId": 0,
+                                                "viewAll": false,
+                                                "sort": {
+                                                    "direction": "DESC",
+                                                    "columns": [
+                                                        "created_on"
+                                                    ]
+                                                }
+                                            },
+                                            "topParents": true,
+                                            "constraints": {
+                                                "createdOn": {
+                                                    "clause": "ON",
+                                                    "values": [
+                                                        "2021-10-04"
+                                                    ]
+                                                }
+                                            }
                                         }
                                     },
-                                    "topParents": true,
-                                    "constraints": {
-                                        "createdOn": {
-                                            "clause": "ON",
-                                            "values": [
-                                                "2021-10-04"
-                                            ]
+                                    "using_custom_segment_field": {
+                                        "summary": "Retrieve segments using custom segment fields",
+                                        "value": {
+                                            "page": {
+                                                "pageSize": 20,
+                                                "pageId": 0,
+                                                "viewAll": false,
+                                                "sort": {
+                                                    "direction": "DESC",
+                                                    "columns": [
+                                                        "created_on"
+                                                    ]
+                                                }
+                                            },
+                                            "constraints": {
+                                                "pickYourFlag1267442451": {
+                                                    "clause": "IN",
+                                                    "values": [
+                                                        "1713762825396"
+                                                    ],
+                                                    "type": "dropdown"
+                                                },
+                                                "joiningDate315508034": {
+                                                    "clause": "BETWEEN",
+                                                    "values": [
+                                                        "2024-01-01", "2024-04-01"
+                                                    ],
+                                                    "type": "date"
+                                                }
+                                            }
                                         }
                                     }
-                                }
+                                } 
                             }
                         }
                     }
