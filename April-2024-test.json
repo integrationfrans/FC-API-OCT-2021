@@ -4925,7 +4925,7 @@
                                             "validations": {
                                                 "textLengthMax": "255",
                                                 "isMandatory": false
-                                            },
+                                            }
                                         }
                                     ]
                                 },
@@ -6412,67 +6412,67 @@
                                             }
                                         ]
                                     }
-                                },
-                                "examples": {
-                                    "Using_default_filters": {
-                                        "summary": "Retrieve segments using default filters",
-                                        "value": {
-                                            "page": {
-                                                "pageSize": 20,
-                                                "pageId": 0,
-                                                "viewAll": false,
-                                                "sort": {
-                                                    "direction": "DESC",
-                                                    "columns": [
-                                                        "created_on"
-                                                    ]
-                                                }
-                                            },
-                                            "topParents": true,
-                                            "constraints": {
-                                                "createdOn": {
-                                                    "clause": "ON",
-                                                    "values": [
-                                                        "2021-10-04"
-                                                    ]
-                                                }
+                                }
+                            },
+                            "examples": {
+                                "UsingDefaultFilters": {
+                                    "summary": "Retrieve segments using default filters",
+                                    "value": {
+                                        "page": {
+                                            "pageSize": 20,
+                                            "pageId": 0, 
+                                            "viewAll": false,
+                                            "sort": {
+                                                "direction": "DESC",
+                                                "columns": [
+                                                    "created_on"
+                                                ]
                                             }
-                                        }
-                                    },
-                                    "using_custom_segment_field": {
-                                        "summary": "Retrieve segments using custom segment fields",
-                                        "value": {
-                                            "page": {
-                                                "pageSize": 20,
-                                                "pageId": 0,
-                                                "viewAll": false,
-                                                "sort": {
-                                                    "direction": "DESC",
-                                                    "columns": [
-                                                        "created_on"
-                                                    ]
-                                                }
-                                            },
-                                            "constraints": {
-                                                "pickYourFlag1267442451": {
-                                                    "clause": "IN",
-                                                    "values": [
-                                                        "1713762825396"
-                                                    ],
-                                                    "type": "dropdown"
-                                                },
-                                                "joiningDate315508034": {
-                                                    "clause": "BETWEEN",
-                                                    "values": [
-                                                        "2024-01-01", "2024-04-01"
-                                                    ],
-                                                    "type": "date"
-                                                }
+                                        },
+                                        "topParents": true,
+                                        "constraints": {
+                                            "createdOn": {
+                                                "clause": "ON",
+                                                "values": [
+                                                    "2021-10-04"
+                                                ]
                                             }
                                         }
                                     }
-                                } 
-                            }
+                                },
+                                "usingCustomSegmentField": {
+                                    "summary": "Retrieve segments using custom segment fields",
+                                    "value": {
+                                        "page": {
+                                            "pageSize": 20,
+                                            "pageId": 0,
+                                            "viewAll": false,
+                                            "sort": {
+                                                "direction": "DESC",
+                                                "columns": [
+                                                    "created_on"
+                                                ]
+                                            }
+                                        },
+                                        "constraints": {
+                                            "pickYourFlag1267442451": {
+                                                "clause": "IN",
+                                                "values": [
+                                                    "1713762825396"
+                                                ],
+                                                "type": "dropdown"
+                                            },
+                                            "joiningDate315508034": {
+                                                "clause": "BETWEEN",
+                                                "values": [
+                                                    "2024-01-01", "2024-04-01"
+                                                ],
+                                                "type": "date"
+                                            }
+                                        }
+                                    }
+                                }
+                            } 
                         }
                     }
                 },
