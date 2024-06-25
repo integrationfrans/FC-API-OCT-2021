@@ -8200,13 +8200,13 @@
                 }
             }  
         },
-        "/audit/v2/{visitId}": {
+        "/audit/v2/visits/{visitId}": {
             "get": {
                 "tags": [
                     "Visits"
                 ],
                 "summary": "Retrieve Visit by Id",
-                "description": "<p class=\"western\">Make a GET request to the specified endpoint using visitId to retrieve details of a specific visit.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/{visitId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/{visitId}</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visit_By_Id.png\"></ol>",
+                "description": "<p class=\"western\">Make a GET request to the specified endpoint using visitId to retrieve details of a specific visit.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits/{visitId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits/{visitId}</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visit_By_Id.png\"></ol>",
                 "operationId": "Retrieve_Visit_By_Id",
                 "produces": [
                     "application/json"
