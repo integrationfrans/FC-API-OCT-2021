@@ -5158,6 +5158,34 @@
                 }
             }
         },
+        "/manage-segment/v2/custom-fields/{customFieldId}": {
+            "get": {
+                "tags": [
+                    "Custom Segment Fields"
+                ],
+                "summary": "Retrieve Custom Segment Field By Id",
+                "description": "<p class=\"western\">Make a GET request to the specified endpoint to retrieve details of a custom segment field through its ID. <u><a href=\"#operation/Retrieve_Type-Specific_Categories\">request.</a></u></p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-segment/v2/custom-fields/{customSegmentFieldId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-segment/v2/custom-fields/{customSegmentFieldId} </td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Custom_Segment_Field_By_Id.png\"> <p class=\"western\"> </p>",
+                "operationId": "Retrieve_Custom_Segment_Field_By_Id",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RetrieveCustomSegmentFieldByIdResp"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+
+            }
+        },
         "/manage-segment/v1/configurations/countries": {
             "get": {
                 "tags": [
@@ -6540,7 +6568,7 @@
                     "Edit Segments"
                 ],
                 "summary": "Edit Segment",
-                "description": "<p class=\"western\">Make a PATCH request to the specified endpoint to edit a segment. Using this request, you will be able to edit a segment's name, categoryId, accessibility, characterCode and description. Refer to the request body below and the payload example on the right-hand side panel to understand what data you require to successfully make this request.</p> <p> <b>Note:</b> This endpoint primarily accepts a segmentId which is the primary key of a segment that FranConnect stores in its database. However, the <b>customSegmentId</b> can also be leveraged to make this endpoint work. A customSegmentId is the Id of a segment that is shown in the UI. In order to use the customSegmentId inplace of a segmentId, you need to the use the query parameter, namely <b>isCustomId</b> and it set to true, next to the customSegmentId value. <br> For eg: https://skyapi.franconnect.net/manage-segment/v2/segments/41?isCustomId=true <br> Here value 41 is the customSegmentId of a segment. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>PATCH</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-segment/v2/segments/{segmentId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-segment/v2/segments/{segmentId}</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Edit_Segment.png\"></ol>",
+                "description": "<p class=\"western\">Make a PATCH request to the specified endpoint to edit a segment. Using this request, you will be able to edit asegment's name, categoryId, accessibility, characterCode and description. Refer to the request body below and thepayload example on the right-hand side panel to understand what data you require to successfully make this request.</p><p> <b>Note:</b> This endpoint primarily accepts a segmentId which is the primary key of a segment that FranConnect stores in its database. However, the <b>customSegmentId</b> can also be leveraged to make this endpoint work. A customSegmentId is the Id of a segment that is shown in the UI. In order to use the customSegmentId inplace of a segmentId, you need to the use the query parameter, namely <b>isCustomId</b> and it set to true, next to the customSegmentId value. <br> For eg: https://skyapi.franconnect.net/manage-segment/v2/segments/41?isCustomId=true <br> Here value 41 is the customSegmentId of a segment. </p> <br><br> <h2>How to edit custom segment field values?</h2> <p> To update values in custom segment fields, follow these steps: <ol> <li>Use the <b>additionalFields</b> object to send the updated values.</li> <li>Use the <b>apikey</b> of the custom segment fields to identify which values to modify.</li> <li>Enter the new value for each field and send the request.</li> <ul> <li>Note: The API does not support the modification of document-type custom fields.</li> </ul> <li>Refer to the example payload on the right panel to understand how to properly edit custom segment field values.</li> </ol> </p> <table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>PATCH</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-segment/v2/segments/{segmentId}</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-segment/v2/segments/{segmentId}</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Edit_Segment.png\"></ol>",
                 "consumes": [
                     "application/json"
                 ],
@@ -6594,10 +6622,16 @@
                             },
                             "example": {
                                 "name": "Segment name updated",
-                                "customSegmentId": "Custom-880",
+                                "customSegmentId": "1880",
                                 "accessibility": "Public",
-                                "characterCode": "UTF-8",
-                                "description": "The description of this segment is updated"
+                                "description": "The description of this segment is updated",
+                                "additionalFields": {
+                                    "pickYourFlag1267442451": [
+                                        "1713762821714"
+                                    ],
+                                    "joiningDate315508034": "2024-07-07",
+                                    "abn79423630": "ABN-89018"
+                                }
                             }
                         }
                     }
@@ -14290,6 +14324,80 @@
                                         "isMandatory": false
                                     },
                                     "isSegmentDataAssociated": false,
+                                    "canBeDeleted": false,
+                                    "deleted": false,
+                                    "links": []
+                                }
+                            ]
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "RetrieveCustomSegmentFieldByIdResp": {
+                "content": {
+                    "application/json": {
+                        "example": {
+                            "tenantContext": {
+                                "tenantId": "qamsa10.franconnectqa.net",
+                                "userId": "adm"
+                            },
+                            "data": [
+                                {
+                                    "fieldId": "900719010214054098",
+                                    "apiKey": "invoiceGenerationFrequency488204268",
+                                    "fieldName": "Invoice Generation Frequency",
+                                    "fieldType": "dropdown",
+                                    "parent": {
+                                        "apiKey": "category",
+                                        "fields": [
+                                            {
+                                                "id": "111",
+                                                "value": "Master Franchise"
+                                            }
+                                        ]
+                                    },
+                                    "createdOn": "2024-03-21T12:15:46.GMT",
+                                    "createdBy": "FranConnect Administrator",
+                                    "status": "active",
+                                    "fieldTypeAttributes": {
+                                        "options": [
+                                            {
+                                                "id": "1711023469837",
+                                                "value": "Daily",
+                                                "state": 1
+                                            },
+                                            {
+                                                "id": "1711023465835",
+                                                "value": "Weekly",
+                                                "state": 0
+                                            },
+                                            {
+                                                "id": "1711023454567",
+                                                "value": "Bi-Weekly",
+                                                "state": 0
+                                            },
+                                            {
+                                                "id": "1711023450321",
+                                                "value": "Monthly",
+                                                "state": 0
+                                            },
+                                            {
+                                                "id": "1711023447187",
+                                                "value": "Bi-Monthly",
+                                                "state": 0
+                                            },
+                                            {
+                                                "id": "1711023433184",
+                                                "value": "Quarterly",
+                                                "state": 0
+                                            }
+                                        ]
+                                    },
+                                    "validations": {
+                                        "isMandatory": false
+                                    },
+                                    "isSegmentDataAssociated": true,
                                     "canBeDeleted": false,
                                     "deleted": false,
                                     "links": []
