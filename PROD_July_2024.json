@@ -9416,7 +9416,7 @@
                                         "summary": "Update",
                                         "value":{
                                             "entityType": "segmentCategory",
-                                            "eventType": "create",
+                                            "eventType": "update",
                                             "entityId": "770915990983677771",
                                             "entityName": "SB-cat (updated)",
                                             "entityState": "active",
@@ -9485,7 +9485,7 @@
                                         "summary": "Update",
                                         "value":{
                                             "entityType": "customSegmentField",
-                                            "eventType": "create",
+                                            "eventType": "update",
                                             "entityId": "770916427526838091",
                                             "entityName": "ABN No. (Updated)",
                                             "entityState": "active",
@@ -9497,7 +9497,7 @@
                                         "summary": "delete",
                                         "value": {
                                             "entityType": "customSegmentField",
-                                            "eventType": "create",
+                                            "eventType": "delete",
                                             "entityId": "770916427526838091",
                                             "entityName": "ABN No.",
                                             "entityState": "active",
