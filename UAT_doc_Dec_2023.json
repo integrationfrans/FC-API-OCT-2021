@@ -8769,7 +8769,7 @@
                     "Visits"
                 ],
                 "summary": "Create Visit",
-                "description": "<p class=\"western\">Make a POST request to the specified endpoint to create a visit.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits/schedule</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits/schedule</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Create_Visit.png\" alt=\"Create Visit\"></p><p class=\"western\"></ol>Here's more information on how you can procure different data attributes to create a visit successfully:<ol> <li> <strong>visitFormId</strong>: accepts a visit form Id to create a visit. You can retrieve visit forms by <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids on whom you want to trigger the visit. You can retrieve franchiseIds by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>consultantId</strong>: accepts a consultant Id to assign the particular visit to. You can retrieve consultant Ids by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>visitSchedule</strong>: this is where you can specify details around scheduling your visit(s). Refer to the below data attributes that you need to send as part of the visitSchedule object:</li> <ul> <li><strong>status</strong>: denotes whether the visit will be scheduled \"now\" or \"later\". If the visit schedule status is set to now, you will need to provide start and end times.</li> <li> <strong>startTime</strong>: denotes when the visit will be initiated by the consultant. Format: \"YYYY-MM-DD HH:MM:SS\". </li> <li> <strong>endTime</strong>: denotes when the visit will end. Format: \"YYYY-MM-DD HH:MM:SS\". </li> </ul></ol></p>",
+                "description": "<p class=\"western\">Make a POST request to the specified endpoint to create a visit.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits/schedule</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits/schedule</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Create_Visit.png\" alt=\"Create Visit\"></p> <p class=\"western\"></ol>Here's more information on how you can procure different data attributes to create a visit successfully:<ol> <li> <strong>visitFormId</strong>: accepts a visit form Id to create a visit. You can retrieve visit forms by <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids on whom you want to trigger the visit. You can retrieve franchiseIds by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>consultantId</strong>: accepts a consultant Id to assign the particular visit to. You can retrieve consultant Ids by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>visitSchedule</strong>: this is where you can specify details around scheduling your visit(s). Refer to the below data attributes that you need to send as part of the visitSchedule object:</li> <ul> <li><strong>status</strong>: denotes whether the visit will be scheduled \"now\" or \"later\". If the visit schedule status is set to now, you will need to provide start and end times.</li> <li> <strong>startTime</strong>: denotes when the visit will be initiated by the consultant. Format: \"YYYY-MM-DD HH:MM:SS\". </li> <li> <strong>endTime</strong>: denotes when the visit will end. Format: \"YYYY-MM-DD HH:MM:SS\". </li> </ul></ol><h2>Create Visit for Franchise Owners</h2><p>To create visits specifically for franchise owners, the process is similar to creating visits for franchise locations. Most of the request payload remains consistent, with the following changes:</p><p> Replace the <b>franchiseId</b> attribute with the following attributes to specify an owner-based visit:</p><ol> <li><b>relatedTo</b>: It is a string type attribute. Set it to <b>\"owner\"</b></li> <li><b>ownerIds</b>: it is an array type attribute. Mention all the ownerIds for whom you want to create visits</li>. To retrieve a list of ownerIds, use <b>this</b> endpoint.</ol></p>",
                 "operationId": "Create_Visit",
                 "consumes": [
                     "application/json"
@@ -8782,7 +8782,7 @@
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "required": ["visitFormId", "franchisees", "consultantId", "visitSchedule"],
+                                "required": ["visitFormId", "franchiseId", "relatedTo", "ownerIds", "consultantId", "visitSchedule"],
                                 "properties": {
                                     "visitFormId": {
                                         "type": "string"
@@ -8790,8 +8790,18 @@
                                       "franchiseId": {
                                         "type": "array",
                                         "items": {
-                                          "type": "string"
+                                          "type": "string",
+                                          "description": "Use this attribute for franchise location based visits."
                                         }
+                                      },
+                                      "relatedTo":{
+                                        "type": "string",
+                                        "enum": ["franchisee", "owner"],
+                                        "description": "This attribute is only mandatory when creating owner-based visits. If not specified, the system will treat it as franchise location based visit."
+                                      },
+                                      "ownerIds":{
+                                        "type": "string",
+                                        "description": "Use this attribute for owner-based visits."
                                       },
                                       "consultantId": {
                                         "type": "string"
@@ -8806,7 +8816,7 @@
                                           },
                                           "scheduleDate": {
                                             "type": "string",
-                                            "description": "Date (YYYY-MM-DD) of the visit schedule (mandatory when status is 'now')",
+                                            "description": "Date (YYYY-MM-DD) of the visit schedule (mandatory when status is 'now')"
                                           },
                                           "startTime": {
                                             "type": "string",
@@ -8817,16 +8827,35 @@
                                         }
                                       }
                                 },
-                                "example": {
-                                    "visitFormId":"634657169",
-                                    "segmentId":"",
-                                    "franchisees":["1748448824"],
-                                    "consultantId":"2083957589",
-                                    "visitSchedule":{
-                                        "status":"now",
-                                        "scheduleDate":"2024-02-06 11:01:10",
-                                        "startTime":"2024-02-06 11:01:10",
-                                        "endTime":"2024-02-06 15:01:10"
+                                "examples": {
+                                    "locationBased": {
+                                        "summary": "Create franchise location based visit",
+                                        "value":  {
+                                            "visitFormId":"634657169",
+                                            "franchisees":["1748448824"],
+                                            "consultantId":"2083957589",
+                                            "visitSchedule":{
+                                                "status":"now",
+                                                "scheduleDate":"2024-02-06 11:01:10",
+                                                "startTime":"2024-02-06 11:01:10",
+                                                "endTime":"2024-02-06 15:01:10"
+                                            }
+                                        }
+                                    },
+                                    "ownerBased": {
+                                        "summary": "Create owner based visit",
+                                        "value":  {
+                                            "visitFormId":"634657169",
+                                            "relatedTo": "owner",
+                                            "ownerIds":["1748448824"],
+                                            "consultantId":"2083957589",
+                                            "visitSchedule":{
+                                                "status":"now",
+                                                "scheduleDate":"2024-02-06 11:01:10",
+                                                "startTime":"2024-02-06 11:01:10",
+                                                "endTime":"2024-02-06 15:01:10"
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -9416,7 +9445,7 @@
                                         "summary": "Update",
                                         "value":{
                                             "entityType": "segmentCategory",
-                                            "eventType": "create",
+                                            "eventType": "update",
                                             "entityId": "770915990983677771",
                                             "entityName": "SB-cat (updated)",
                                             "entityState": "active",
@@ -9485,7 +9514,7 @@
                                         "summary": "Update",
                                         "value":{
                                             "entityType": "customSegmentField",
-                                            "eventType": "create",
+                                            "eventType": "update",
                                             "entityId": "770916427526838091",
                                             "entityName": "ABN No. (Updated)",
                                             "entityState": "active",
@@ -9497,7 +9526,7 @@
                                         "summary": "delete",
                                         "value": {
                                             "entityType": "customSegmentField",
-                                            "eventType": "create",
+                                            "eventType": "delete",
                                             "entityId": "770916427526838091",
                                             "entityName": "ABN No.",
                                             "entityState": "active",
