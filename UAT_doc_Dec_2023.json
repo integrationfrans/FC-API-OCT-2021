@@ -8790,9 +8790,9 @@
                                       "franchiseId": {
                                         "type": "array",
                                         "items": {
-                                          "type": "string",
-                                          "description": "Use this attribute for franchise location based visits."
-                                        }
+                                          "type": "string"
+                                        },
+                                        "description": "Use this attribute for franchise location based visits."
                                       },
                                       "relatedTo":{
                                         "type": "string",
@@ -8800,7 +8800,10 @@
                                         "description": "This attribute is only mandatory when creating owner-based visits. If not specified, the system will treat it as franchise location based visit."
                                       },
                                       "ownerIds":{
-                                        "type": "string",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
                                         "description": "Use this attribute for owner-based visits."
                                       },
                                       "consultantId": {
@@ -8826,8 +8829,9 @@
                                             "description": "End time (YYYY-MM-DD HH:MM:SS) of the visit schedule (mandatory when status is 'now')"                                          }
                                         }
                                       }
-                                },
-                                "examples": {
+                                }
+                            },
+                            "examples": {
                                     "locationBased": {
                                         "summary": "Create franchise location based visit",
                                         "value":  {
@@ -8858,7 +8862,6 @@
                                         }
                                     }
                                 }
-                            }
                         }
                     }
                 },
