@@ -8068,7 +8068,7 @@
                     "Visits"
                 ],
                 "summary": "Retrieve Visits",
-                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve visits in your system. <ol> <li>In the payload, you can send several attributes to properly filter out your data. Refer to the requestBody schema of this endpoint for attributes that are available as filters.</li> <li> When using multiple attributes as filters, they will be combined in an AND manner, and only results matching all filter attributes will be returned. </li> <li> To limit data, use query parameters <strong>pageId</strong> and <strong>pageSize</strong> to paginate your response data. Both parameters accept integer values. pageId, which represents a page number starts from 0 (zero), as the initial number. We recommend keeping pageSize as \"20\" to get quicker responses. </li> </ol> </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits?pageId=0&pageSize=20</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits?pageId=0&pageSize=20</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visits.png\"> <p class=\"western\"></ol>Here's more information on how you can procure data to filter your visits more effectively:<ol> <li><strong>visitNumber</strong>: Visit's number as visible on the UI</li> <li> <strong>status</strong>: Status values are common for all visits. Refer to the below list of status values when filtering your data: <ul> <li>Scheduled: 1</li> <li>Completed: 2</li> <li>Cancelled: 3</li> <li>Non Compliance: 4</li> <li>Draft: 5</li> <li>Follow Up: 6</li> <li>In Progress: 7</li> <li>Unscheduled: 8</li> </ul> </li> <li> <strong>visitForms</strong>: accepts a list of visit forms to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Visit_Forms\">this</a> request. </li> <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>consultants</strong>: accepts a list of consultant Ids to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>division</strong>: accepts a list of division Ids (also known as brand) to filter data. You can retrieve division Ids by using <a href=\"#operation/Retrieve_Divisions\">this</a> request. </li> <li> <strong>scheduledDate</strong>: retrieve data based on when the visit was scheduled. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li></ol></p>",
+                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve visits in your system.<ol> <li>In the payload, you can send several attributes to properly filter out your data. Refer to the requestBody schema of this endpoint for attributes that are available as filters.</li> <li> When using multiple attributes as filters, they will be combined in an AND manner, and only results matching all filter attributes will be returned. </li> <li> To limit data, use query parameters <strong>pageId</strong> and <strong>pageSize</strong> to paginate your response data. Both parameters accept integer values. pageId, which represents a page number starts from 0 (zero), as the initial number. We recommend keeping pageSize as \"20\" to get quicker responses. </li></ol></p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits?pageId=0&pageSize=20</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits?pageId=0&pageSize=20</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visits.png\"> <p class=\"western\"></ol>Here's more information on how you can procure data to filter your visits more effectively:<ol> <li><strong>visitNumber</strong>: Visit's number as visible on the UI</li> <li> <strong>status</strong>: Status values are common for all visits. Refer to the below list of status values when filtering your data: <ul> <li>Scheduled: 1</li> <li>Completed: 2</li> <li>Cancelled: 3</li> <li>Non Compliance: 4</li> <li>Draft: 5</li> <li>Follow Up: 6</li> <li>In Progress: 7</li> <li>Unscheduled: 8</li> </ul> </li> <li> <strong>visitForms</strong>: accepts a list of visit forms to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Visit_Forms\">this</a> request. </li> <li> <strong>relatedTo</strong>: Informs the system to retrieve either franchise location or owner based visits, or both. It accepts an array of string values. Use <b>\"owner\"</b> and <b>\"franchisee\"</b> to retrieve owner based or franchise location based visits respectively. </li> <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids to filter data. You can retrieve franchise Ids by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>ownerIds</strong>: accepts a list of owner Ids to filter owner based visits. You can retrieve owner Ids by using <a href=\"#operation/Retrieve_Owners_Of_A_Franchise\">this</a> request. </li> <li> <strong>consultants</strong>: accepts a list of consultant Ids to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>division</strong>: accepts a list of division Ids (also known as brand) to filter data. You can retrieve division Ids by using <a href=\"#operation/Retrieve_Divisions\">this</a> request. </li> <li> <strong>scheduledDate</strong>: retrieve data based on when the visit was scheduled. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li></ol></p>",
                 "operationId": "Retrieve_Visits",
                 "consumes": [
                     "application/json"
@@ -8119,10 +8119,23 @@
                                       "type": "string"
                                     }
                                   },
+                                  "relatedTo": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["franchisee", "owner"]
+                                    }
+                                  },
                                   "franchiseId": {
                                     "type": "array",
                                     "items": {
                                       "type": "string"
+                                    }
+                                  },
+                                  "ownerIds": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
                                     }
                                   },
                                   "consultants": {
@@ -8551,7 +8564,7 @@
                     "Visits"
                 ],
                 "summary": "Retrieve Visit Tasks",
-                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve visit tasks in you system.<ol> <li>In the payload, you can send several attributes to properly filter out your data. Refer to the requestBody schema of this endpoint for attributes that are available as filters.</li> <li> When using multiple attributes as filters, they will be combined in an AND manner, and only results matching all filter attributes will be returned. </li> <li> To limit data, use query parameters <strong>pageId</strong> and <strong>pageSize</strong> to paginate your response data. Both parameters accept integer values. pageId, which represents a page number starts from 0 (zero), as the initial number. We recommend keeping pageSize as \"20\" to get quicker responses. </li></ol></p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/task/v2/filter?pageId=0&pageSize=20</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/task/v2/filter?pageId=0&pageSize=20</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visits.png\"> <p class=\"western\"></ol>Here's more information on how you can procure data to filter your visit tasks more effectively:<ol> <li><strong>visitNumber</strong>: Visit's number as visible on the UI</li> <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids to filter data. You can retrieve franchiseIds by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>assignedTo</strong>: accepts a list of people Ids; people that are associated with the task. You can retrieve peopleIds by using <a href=\"#operation/Retrieve_People\">this</a> request. </li> <li> <strong>status</strong>: Status values are common for all tasks. Refer to the below list of status values when filtering your data: <ul> <li>Not Started: 637</li> <li>Work In Progress: 638</li> <li>Completed: 639</li> <li>Waiting For Some One: 640</li> <li>Deferred: 641</li> </ul> </li> <li> <strong>consultants</strong>: accepts a list of consultant Ids to filter data. You can retrieve consultant Ids by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>visitForms</strong>: accepts a list of visit forms to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Visit_Forms\">this</a> request. </li> <li> <strong>priority</strong>: priority values are common for all tasks. Refer to the below list of priority values when filtering your data: <ul> <li>Low: 619</li> <li>Medium: 620</li> <li>High: 621</li> </ul> </li> <li> <strong>dueDate</strong>: retrieve data based on when the task is due. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li> <li> <strong>creationDate</strong>: retrieve data based on when the task was created. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li></ol></p>",
+                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve visit tasks in you system.<ol> <li>In the payload, you can send several attributes to properly filter out your data. Refer to the requestBody schema of this endpoint for attributes that are available as filters.</li> <li> When using multiple attributes as filters, they will be combined in an AND manner, and only results matching all filter attributes will be returned. </li> <li> To limit data, use query parameters <strong>pageId</strong> and <strong>pageSize</strong> to paginate your response data. Both parameters accept integer values. pageId, which represents a page number starts from 0 (zero), as the initial number. We recommend keeping pageSize as \"20\" to get quicker responses. </li></ol></p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/task/v2/filter?pageId=0&pageSize=20</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/task/v2/filter?pageId=0&pageSize=20</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visits.png\"> <p class=\"western\"></ol>Here's more information on how you can procure data to filter your visit tasks more effectively:<ol> <li><strong>visitNumber</strong>: Visit's number as visible on the UI</li> <li> <strong>relatedTo</strong>: Informs the system to retrieve either franchise location or owner based visit tasks, or both. It accepts an array of string values. Use <b>\"owner\"</b> and <b>\"franchisee\"</b> to retrieve owner based or franchise location based visit tasks respectively. </li> <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids to filter data. You can retrieve franchiseIds by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>ownerIds</strong>: accepts a list of owner Ids to filter owner based visit tasks. You can retrieve owner Ids by using <a href=\"#operation/Retrieve_Owners_Of_A_Franchise\">this</a> request. </li> <li> <strong>assignedTo</strong>: accepts a list of people Ids; people that are associated with the task. You can retrieve peopleIds by using <a href=\"#operation/Retrieve_People\">this</a> request. </li> <li> <strong>status</strong>: Status values are common for all tasks. Refer to the below list of status values when filtering your data: <ul> <li>Not Started: 637</li> <li>Work In Progress: 638</li> <li>Completed: 639</li> <li>Waiting For Some One: 640</li> <li>Deferred: 641</li> </ul> </li> <li> <strong>consultants</strong>: accepts a list of consultant Ids to filter data. You can retrieve consultant Ids by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>visitForms</strong>: accepts a list of visit forms to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Visit_Forms\">this</a> request. </li> <li> <strong>priority</strong>: priority values are common for all tasks. Refer to the below list of priority values when filtering your data: <ul> <li>Low: 619</li> <li>Medium: 620</li> <li>High: 621</li> </ul> </li> <li> <strong>dueDate</strong>: retrieve data based on when the task is due. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li> <li> <strong>creationDate</strong>: retrieve data based on when the task was created. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li></ol></p>",
                 "produces": [
                     "application/json"
                 ],
@@ -8584,13 +8597,26 @@
                                   "visitNumber": {
                                     "type": "string"
                                   },
+                                  "relatedTo":{
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string",
+                                        "enum": ["franchisee", "owner"]
+                                    }
+                                  },
                                   "franchiseId": {
                                     "type": "array",
                                     "items": {
                                       "type": "string"
                                     }
                                   },
-                                  "assignedTo": {
+                                    "ownerIds": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
+                                  },
+                                    "assignedTo": {
                                     "type": "array",
                                     "items": {
                                       "type": "string"
@@ -8769,7 +8795,7 @@
                     "Visits"
                 ],
                 "summary": "Create Visit",
-                "description": "<p class=\"western\">Make a POST request to the specified endpoint to create a visit.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits/schedule</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits/schedule</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Create_Visit.png\" alt=\"Create Visit\"></p><p class=\"western\"></ol>Here's more information on how you can procure different data attributes to create a visit successfully:<ol> <li> <strong>visitFormId</strong>: accepts a visit form Id to create a visit. You can retrieve visit forms by <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids on whom you want to trigger the visit. You can retrieve franchiseIds by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>consultantId</strong>: accepts a consultant Id to assign the particular visit to. You can retrieve consultant Ids by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>visitSchedule</strong>: this is where you can specify details around scheduling your visit(s). Refer to the below data attributes that you need to send as part of the visitSchedule object:</li> <ul> <li><strong>status</strong>: denotes whether the visit will be scheduled \"now\" or \"later\". If the visit schedule status is set to now, you will need to provide start and end times.</li> <li> <strong>startTime</strong>: denotes when the visit will be initiated by the consultant. Format: \"YYYY-MM-DD HH:MM:SS\". </li> <li> <strong>endTime</strong>: denotes when the visit will end. Format: \"YYYY-MM-DD HH:MM:SS\". </li> </ul></ol></p>",
+                "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve visits in your system.<ol> <li>In the payload, you can send several attributes to properly filter out your data. Refer to the requestBody schema of this endpoint for attributes that are available as filters.</li> <li> When using multiple attributes as filters, they will be combined in an AND manner, and only results matching all filter attributes will be returned. </li> <li> To limit data, use query parameters <strong>pageId</strong> and <strong>pageSize</strong> to paginate your response data. Both parameters accept integer values. pageId, which represents a page number starts from 0 (zero), as the initial number. We recommend keeping pageSize as \"20\" to get quicker responses. </li></ol></p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\">Operation Name</td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td>Production API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/audit/v2/visits?pageId=0&pageSize=20</td> </tr> <tr> <td>UAT API Endpoint</td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/audit/v2/visits?pageId=0&pageSize=20</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;. <p><img src=\"images/Retrieve_Visits.png\"> <p class=\"western\"></ol>Here's more information on how you can procure data to filter your visits more effectively:<ol> <li><strong>visitNumber</strong>: Visit's number as visible on the UI</li> <li> <strong>status</strong>: Status values are common for all visits. Refer to the below list of status values when filtering your data: <ul> <li>Scheduled: 1</li> <li>Completed: 2</li> <li>Cancelled: 3</li> <li>Non Compliance: 4</li> <li>Draft: 5</li> <li>Follow Up: 6</li> <li>In Progress: 7</li> <li>Unscheduled: 8</li> </ul> </li> <li> <strong>visitForms</strong>: accepts a list of visit forms to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Visit_Forms\">this</a> request. </li> <li> <strong>relatedTo</strong>: Informs the system to retrieve either franchise location or owner based visits, or both. It accepts an array of string values. Use <b>\"owner\"</b> and <b>\"franchisee\"</b> to retrieve owner based or franchise location based visits respectively. </li> <li> <strong>franchiseId</strong>: accepts a list of franchise location Ids to filter data. You can retrieve franchise Ids by using <a href=\"#operation/Retrieve_Franchise_Number_Specific\">this</a> request. </li> <li> <strong>ownerIds</strong>: accepts a list of owner Ids to filter owner based visits. You can retrieve owner Ids by using <a href=\"#operation/Retrieve_Owners_Of_A_Franchise\">this</a> request. </li> <li> <strong>consultants</strong>: accepts a list of consultant Ids to filter data. You can retrieve visit forms by using <a href=\"#operation/Retrieve_Consultants\">this</a> request. </li> <li> <strong>division</strong>: accepts a list of division Ids (also known as brand) to filter data. You can retrieve division Ids by using <a href=\"#operation/Retrieve_Divisions\">this</a> request. </li> <li> <strong>scheduledDate</strong>: retrieve data based on when the visit was scheduled. Refer to the requestBody schema to understand what date clauses can be used to filter data. </li></ol></p>",
                 "operationId": "Create_Visit",
                 "consumes": [
                     "application/json"
@@ -8782,7 +8808,7 @@
                         "application/json": {
                             "schema": {
                                 "type": "object",
-                                "required": ["visitFormId", "franchisees", "consultantId", "visitSchedule"],
+                                "required": ["visitFormId", "franchiseId", "relatedTo", "ownerIds", "consultantId", "visitSchedule"],
                                 "properties": {
                                     "visitFormId": {
                                         "type": "string"
@@ -8791,7 +8817,20 @@
                                         "type": "array",
                                         "items": {
                                           "type": "string"
-                                        }
+                                        },
+                                        "description": "Use this attribute for franchise location based visits."
+                                      },
+                                      "relatedTo":{
+                                        "type": "string",
+                                        "enum": ["franchisee", "owner"],
+                                        "description": "This attribute is only mandatory when creating owner-based visits. If not specified, the system will treat it as franchise location based visit."
+                                      },
+                                      "ownerIds":{
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        },
+                                        "description": "Use this attribute for owner-based visits."
                                       },
                                       "consultantId": {
                                         "type": "string"
@@ -8806,7 +8845,7 @@
                                           },
                                           "scheduleDate": {
                                             "type": "string",
-                                            "description": "Date (YYYY-MM-DD) of the visit schedule (mandatory when status is 'now')",
+                                            "description": "Date (YYYY-MM-DD) of the visit schedule (mandatory when status is 'now')"
                                           },
                                           "startTime": {
                                             "type": "string",
@@ -8816,20 +8855,39 @@
                                             "description": "End time (YYYY-MM-DD HH:MM:SS) of the visit schedule (mandatory when status is 'now')"                                          }
                                         }
                                       }
-                                },
-                                "example": {
-                                    "visitFormId":"634657169",
-                                    "segmentId":"",
-                                    "franchisees":["1748448824"],
-                                    "consultantId":"2083957589",
-                                    "visitSchedule":{
-                                        "status":"now",
-                                        "scheduleDate":"2024-02-06 11:01:10",
-                                        "startTime":"2024-02-06 11:01:10",
-                                        "endTime":"2024-02-06 15:01:10"
+                                }
+                            },
+                            "examples": {
+                                    "locationBased": {
+                                        "summary": "Create franchise location based visit",
+                                        "value":  {
+                                            "visitFormId":"634657169",
+                                            "franchiseId":["1748448824"],
+                                            "consultantId":"2083957589",
+                                            "visitSchedule":{
+                                                "status":"now",
+                                                "scheduleDate":"2024-02-06 11:01:10",
+                                                "startTime":"2024-02-06 11:01:10",
+                                                "endTime":"2024-02-06 15:01:10"
+                                            }
+                                        }
+                                    },
+                                    "ownerBased": {
+                                        "summary": "Create owner based visit",
+                                        "value":  {
+                                            "visitFormId":"634657169",
+                                            "relatedTo": "owner",
+                                            "ownerIds":["1748448824"],
+                                            "consultantId":"2083957589",
+                                            "visitSchedule":{
+                                                "status":"now",
+                                                "scheduleDate":"2024-02-06 11:01:10",
+                                                "startTime":"2024-02-06 11:01:10",
+                                                "endTime":"2024-02-06 15:01:10"
+                                            }
+                                        }
                                     }
                                 }
-                            }
                         }
                     }
                 },
