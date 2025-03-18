@@ -8160,7 +8160,7 @@
                                     "properties": {
                                       "clause": {
                                         "type": "string",
-                                        "enum": [ "EQUAL", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
+                                        "enum": [ "ON", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
                                       },
                                       "values": {
                                         "type": "array",
@@ -8275,7 +8275,7 @@
                                 "example": {
                                     "tenantContext": {
                                         "tenantId": "developers.franconnectdemo.net",
-                                        "userId": "Gin Valentine"
+                                        "userId": "John Valentine"
                                     },
                                     "data": [
                                         {
@@ -8657,7 +8657,7 @@
                                     "properties": {
                                       "clause": {
                                         "type": "string",
-                                        "enum": [ "EQUAL", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
+                                        "enum": [ "ON", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
                                       },
                                       "values": {
                                         "type": "array",
@@ -8674,7 +8674,7 @@
                                     "properties": {
                                         "clause": {
                                           "type": "string",
-                                          "enum": [ "EQUAL", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
+                                          "enum": [ "ON", "BETWEEN", "LESS_THAN", "GREATER_THAN", "GREATER_THAN_OR_EQUAL", "LESS_THAN_OR_EQUAL"]
                                         },
                                         "values": {
                                             "type": "array",
