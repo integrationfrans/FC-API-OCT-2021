@@ -8563,6 +8563,121 @@
                 }
             }
         },
+        "/audit/v2/visits/{visitId}/summary": {
+            "get": {
+              "tags": [
+                "Visits"
+              ],
+              "summary": "Retrieve Visit Summary with Questions and Responses",
+              "description": "<p class=\"western\">Make a GET request to the specified endpoint using visitId to retrieve the full details of a specific visit.</p><p>This endpoint is designed to return a complete representation of a visit's outcome, including:</p><ul><li>Visit data</li><li>Form structure (tabs, sections)</li><li>Actual question text used in the visit</li><li>Consultant's responses, scores, and comments</li><li>Owner's scores (if enabled)</li></ul><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td>:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://skyapi.franconnect.net/audit/v2/visits/{visitId}/summary</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td>https://skyapi.franconnectuat.net/audit/v2/visits/{visitId}/summary</td></tr>
+               </table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on identifying the &ldquo;X-TenantId&rdquo;.<p><img src=\"images/Retrieve_Visit_Summary_with_Questions_and_Responses.png\"></ol>",
+              "operationId": "Retrieve_Visit_Summary",
+              "produces": [
+                "application/json"
+              ],
+              "responses": {
+                "200": {
+                  "description": "Successful",
+                  "content": {
+                    "application/json": {
+                      "example": {
+                        "tenantContext": {
+                          "tenantId": "developers.franconnectdemo.net",
+                          "userId": "John Valentine"
+                        },
+                        "data": [
+                          {
+                            "visitNumber": "VST1858",
+                            "associatedWith": "1004 (Annandale)",
+                            "scheduledDate": "Apr 22, 2025",
+                            "consultant": "Aditya Ashri",
+                            "visitStatus": "Completed",
+                            "formName": "CLEAN PROMISE INITIATIVE CHECK",
+                            "consultantScore": "38.98",
+                            "timeTaken": "00 HRS: 10 MIN: 52 SEC",
+                            "formTabs": [
+                              {
+                                "tabName": "Way of Clean",
+                                "sections": [
+                                  {
+                                    "sectionName": "",
+                                    "formQuestions": [
+                                      {
+                                        "question": "Do you have Social distancing operating procedures and signage in place?",
+                                        "auditorResponse": "Yes",
+                                        "auditorScore": "10.0",
+                                        "ownerScore": "",
+                                        "maxScore": "10.00",
+                                        "auditorComments": "",
+                                        "auditorPrivateComments": ""
+                                      },
+                                      {
+                                        "question": "Have you received guidance on the use of protective equipment?",
+                                        "auditorResponse": "",
+                                        "auditorScore": "0.0",
+                                        "ownerScore": "",
+                                        "maxScore": "10.00",
+                                        "auditorComments": "",
+                                        "auditorPrivateComments": ""
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "sectionName": "Disinfecting and Sanitizing Lobby",
+                                    "formQuestions": [
+                                      {
+                                        "question": "How frequently are you disinfecting  floor, trash in the Lobby area",
+                                        "auditorResponse": "14.00",
+                                        "auditorScore": "20.0",
+                                        "ownerScore": "",
+                                        "maxScore": "20.00",
+                                        "auditorComments": "",
+                                        "auditorPrivateComments": ""
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "tabName": "ECOLAB",
+                                "sections": [
+                                  {
+                                    "sectionName": "",
+                                    "formQuestions": [
+                                      {
+                                        "question": "Do you have ECOLAB supplies available",
+                                        "auditorResponse": "[1]",
+                                        "auditorScore": "3.0",
+                                        "ownerScore": "",
+                                        "maxScore": "9.00",
+                                        "auditorComments": "",
+                                        "auditorPrivateComments": ""
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ],
+                            "tasks": [],
+                            "links": []
+                          }
+                        ]
+                      }
+                    }
+                  }
+                },
+                "401": {
+                  "description": "Unauthorized"
+                },
+                "403": {
+                  "description": "Forbidden"
+                },
+                "404": {
+                  "description": "Not Found"
+                }
+              }
+            }
+        },
         "/task/v2/filter": {
             "post": {
                 "tags": [
