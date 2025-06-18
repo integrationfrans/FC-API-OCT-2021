@@ -79,16 +79,24 @@
             "description": "<p>Using the FranConnect API, you can manage the \"in-development\" and the operational locations in the Info Manager module. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the location’s main page (in Center Info) or in any of the tabs (such as Real Estate and Mystery Review).</p><p>Note that the following sections explain and provide examples on how to perform these operations on the “Primary Info” tab for locations. Similarly, you can perform these  operations for other tabs as well for locations that are either in-development or have been opened since.</p>"
         },
         {
-            "name": "Ownership",
-            "description": "<p>Leverage Ownership APIs to create ownerships between companies (or people) with franchises in the system.</p>"
-        },
-        {
             "name": "Company v1",
             "description": "These API endpoints support operations associated with Companies."
         },
         {
             "name": "Company v2",
             "description": "These v2 API endpoints provide functionality for managing company-related operations, offering enhanced features and capabilities."
+        },
+        {
+            "name": "Custom Profiles",
+            "description": "These API endpoints helps to configure custom field names for franchise user profiles. The configured fields will appear in the Franchise Location Details section."
+        },
+        {
+            "name": "Reference Dates",
+            "description": "These API endpoints helps to define field names for reference dates, which are used to schedule store-related tasks and milestones."
+        },
+        {
+            "name": "Ownership",
+            "description": "<p>Leverage Ownership APIs to create ownerships between companies (or people) with franchises in the system.</p>"
         },
         {
             "name": "Regional",
@@ -253,6 +261,8 @@
                 "Franchisee",
                 "Company v1",
                 "Company v2",
+                "Custom Profiles",
+                "Reference Dates",
                 "Ownership",
                 "Company Ownership",
                 "People Ownership",
@@ -1270,7 +1280,8 @@
                     "Franchisee"
                 ],
                 "summary": "Create",
-                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a franchisee location through the Info Manager module. In a similar manner, the Create operation can be performed to add the different Info Manager entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?key=generatedAccessToken&module=fim&subModule=franchisee&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding a franchisee location using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a franchisee location. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p class=\"western\">Performing the above mentioned steps would create a new  franchisee location. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that franchisee location and can be used for the Update, Retrieve and the Delete operations.</p><p><strong>Note:</strong> In order to create data in any tab/sub-module other than “Center Info”, it is mandatory to specify the franchisee for which this data is to be created. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. For a franchisee location, the reference ID refers to its Franchisee number. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p><img src=\"images/InfoMgr_CreateFranchise.png\">",
+                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a franchisee location through the Info Manager module. In a similar manner, the Create operation can be performed to add the different Info Manager entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?key=generatedAccessToken&module=fim&subModule=franchisee&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding a franchisee location using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a franchisee location. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p class=\"western\">Performing the above mentioned steps would create a new  franchisee location. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that franchisee location and can be used for the Update, Retrieve and the Delete operations.</p><p><strong>Note:</strong> In order to create data in any tab/sub-module other than “Center Info”, it is mandatory to specify the franchisee for which this data is to be created. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. For a franchisee location, the reference ID refers to its Franchisee number. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details. The API now also supports adding Custom Profile and Reference Date for a location.</p><img src=\"images/InfoMgr_CreateFranchise.png\">",
+                "operationId": "FIM_Create_Location",
                 "responses": {
                     "200": {
                         "$ref": "#/components/responses/FimCreateFranchiseeResp"
@@ -5720,6 +5731,7 @@
                 }
             },
             "get": {
+
                 "tags": [
                     "Company v2"
                 ],
@@ -5828,6 +5840,246 @@
                     "404": {
                         "description": "Not Found"
                     }
+                }
+            }
+        },
+        "/create?module=fim&subModule=customProfile": {
+            "post": {
+                "tags": [ 
+                    "Custom Profiles"
+                ],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a custom profile through the Admin setting. </p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?key=generatedAccessToken&module=fim&subModule=customProfile&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding a custom profile using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “customProfile”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a custom profile. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p class=\"western\">Performing the above mentioned steps would create a new custom profile. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that custom profile and can be used for the Update, Retrieve and the Delete operations.</p><img src=\"images/Admin_CreateCustomProfile.png\">",
+                "operationId": "FIM_Create_CustomProfile",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimCreatecustomProfileResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimCreatecustomProfileArray"
+                }
+            }
+        },
+        "/retrieve?module=fim&subModule=customProfile": {
+            "post": {
+                "tags": [
+                    "Custom Profiles"
+                ],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving a Custom Profile.</p>For the Retrieve operation, you can also use pagination to chain through the records using the limit and offset parameters appended in the URL. Click <a href=\"#Pagination\">here</a> for more details.<table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=fim&subModule=customProfile&filterXML=filteredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Retrieve operation for retrieving a custom profile using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “customProfile”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve a Custom Profile. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the details of an existing custom profile. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_RetrieveCustomProfile.png\">",
+                "operationId": "FIM_Retrieve_CustomProfile",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimRetrievecustomProfileResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimRetrievecustomProfileArray"
+                }
+            }
+        },
+        "/update?module=fim&subModule=customProfile": {
+            "post": {
+                "tags": [
+                    "Custom Profiles"
+                ],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation performed for updating a custom profile. </p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=fim&subModule=customProfile&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform an Update operation for updating a custom profile using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above.  The following items must be used in the  header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Update operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “customProfile”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to update a custom profile. In this case,<strong> \"referenceId\"</strong> has been used to update the details of an existing custom profile. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Update. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_UpdateCustomProfile.png\">",
+                    "operationId": "FIM_Update_CustomProfile",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimUpdatecustomProfileResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimUpdatecustomProfileArray"
+                }
+            }
+        },
+        "/delete?module=fim&subModule=customProfile": {
+            "post": {
+                "tags": [
+                    "Custom Profiles"
+                ],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation to delete a custom profile through the Admin setting. Note that a Custom Profile cannot be deleted if some Franchise Opener Store(s) or Checklist(s) are associated with it.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=fim&subModule=customProfile&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Delete operation for deleting a custom profile using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Delete operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “customProfile”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to delete a sub module. In this case,<strong> \"referenceId\"</strong> has been used to delete a custom profile associated with a opener store. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Delete. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_DeleteCustomProfile.png\">",
+                "operationId": "FIM_Delete_CustomProfile",            
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimDeletecustomProfileResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimDeletecustomProfileArray"
+                }
+            }
+        },
+        "/create?module=fim&subModule=referenceDate": {
+            "post": {
+                "tags": [ 
+                    "Reference Dates"
+                ],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a reference date through the Admin setting. </p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?key=generatedAccessToken&module=fim&subModule=referenceDate&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding a reference date using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “referenceDate”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to add a reference date. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><p class=\"western\">Performing the above mentioned steps would create a new reference dates. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that reference dates and can be used for the Update, Retrieve and the Delete operations.</p><img src=\"images/Admin_CreateReferenceDate.png\">",
+                "operationId": "FIM_Create_ReferenceDate",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimCreateReferenceDateResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimCreateReferenceDateArray"
+                }
+            }
+        },
+        "/retrieve?module=fim&subModule=referenceDate": {
+            "post": {
+                "tags": [
+                    "Reference Dates"
+                ],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving a Reference Date.</p>For the Retrieve operation, you can also use pagination to chain through the records using the limit and offset parameters appended in the URL. Click <a href=\"#Pagination\">here</a> for more details.<table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=fim&subModule=referenceDate&filterXML=filteredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Retrieve operation for retrieving a reference date using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “referenceDate”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve a reference date. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the details of an existing reference date. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_RetrieveReferenceDate.png\">",
+                "operationId": "FIM_Retrieve_ReferenceDate",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimRetrieveReferenceDateResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimRetrieveReferenceDateArray"
+                }
+            }
+        },
+        "/update?module=fim&subModule=referenceDate": {
+            "post": {
+                "tags": [
+                    "Reference Dates"
+                ],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation performed for updating a reference date. </p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=fim&subModule=referenceDate&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform an Update operation for updating a reference date using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above.  The following items must be used in the  header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Update operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “referenceDate”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to update a reference date. In this case,<strong> \"referenceId\"</strong> has been used to update the details of an existing reference date. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Update. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_UpdateReferenceDate.png\">",
+                    "operationId": "FIM_Update_ReferenceDate",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimUpdateReferenceDateResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimUpdateReferenceDateArray"
+                }
+            }
+        },
+        "/delete?module=fim&subModule=referenceDate": {
+            "post": {
+                "tags": [
+                    "Reference Dates"
+                ],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation to delete a reference date through the Admin setting. Note that a Reference Date can't be deleted if it is associated with some Franchise locations or Milestone date triggers.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=fim&subModule=referenceDate&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Delete operation for deleting a reference date using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is “fim”</u>.</p></li><li><p>The sub-module for which the Delete operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “referenceDate”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to delete a sub module. In this case,<strong> \"referenceId\"</strong> has been used to delete a reference date associated with a opener store. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Delete. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/Admin_DeleteReferenceDate.png\">",
+                "operationId": "FIM_Delete_ReferenceDate",            
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimDeleteReferenceDateResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimDeleteReferenceDateArray"
                 }
             }
         },
@@ -10353,7 +10605,7 @@
                         "examples": {
                             "createFranchisee": {
                                 "summary": "Create Franchise",
-                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<status>Yes</status>\n<franchiseeName>West Collection</franchiseeName>\n<centerName>Franchise-100001</centerName>\n<areaID>EST</areaID>\n<division></division>\n<licenseNo>10354</licenseNo>\n<fbc></fbc>\n<openingDate>2019-06-13</openingDate>\n<storeTypeId>Default</storeTypeId>\n<address>C-08</address>\n<address2>Lane-08</address2>\n<city>New York City</city>\n<country>USA</country>\n<state>New York</state>\n<zipcode>201254</zipcode>\n<storePhone>9876543210</storePhone>\n<storePhoneExtn>12</storePhoneExtn>\n<storeFax></storeFax>\n<storeMobile></storeMobile>\n<storeEmail>example@franconnect.com</storeEmail>\n<storeWebsite>www.google.com</storeWebsite>\n<contactTitle>Mrs</contactTitle>\n<contactFirstName>Freddie</contactFirstName>\n<contactLastName>Louis</contactLastName>\n<phone1>9876543210</phone1>\n<phone1Extn>55</phone1Extn>\n<fax></fax>\n<mobile></mobile>\n<emailID></emailID>\n<versionID></versionID>\n<taxRateId></taxRateId>\n<entityDetail>Individual</entityDetail>\n<entityType>New</entityType>\n<fimCbEntityType></fimCbEntityType>\n<fimTtEntityName></fimTtEntityName>\n<fimTtTaxpayer></fimTtTaxpayer>\n<fimCbStateOfFormation>USA</fimCbStateOfFormation>\n<fimCbCountryOfFormation>New York</fimCbCountryOfFormation>\n<ownerType>New</ownerType>\n<ownerTitle>Mr.</ownerTitle>\n<firstName>Freddie</firstName>\n<lastName>Louis</lastName>\n<muidValue></muidValue>\n</fimFranchisee>\n</fcRequest>"
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<status>No</status>\n<franchiseeName>HP-4</franchiseeName>\n<centerName>Sydney Street</centerName>\n<areaID>New South Wales</areaID>\n<division>Australia</division>\n<openingDate>05/01/2025</openingDate>\n<storeTypeId>Default</storeTypeId>\n<city>Sydney</city>\n<country>Australia</country>\n<state>New South Wales</state>\n<storePhone>987654321</storePhone>\n<storeEmail_includeInCampaignList>Y</storeEmail_includeInCampaignList>\n<emailID_includeInCampaignList>Y</emailID_includeInCampaignList>\n<legalNoticeEmail_includeInCampaignList>Y</legalNoticeEmail_includeInCampaignList>\n<foCustomFieldC1>2025-06-14</foCustomFieldC1>\n<foCustomFieldC15>2025-06-16</foCustomFieldC15>\n<lifecycleStage>Active</lifecycleStage>\n<entityDetail>Individual</entityDetail>\n<entityType>New</entityType>\n<ownerType>New</ownerType>\n<firstName>Arnav</firstName>\n<lastName>Singh</lastName>\n<fimCustomProfile_176381495>1228781550</fimCustomProfile_176381495>\n<fimCustomProfile_215278855>1228781550</fimCustomProfile_215278855>\n</fimFranchisee>\n</fcRequest>"
                             },
                             "createFranchiseeWithTerminatedEntity": {
                                 "summary": "Create Franchise Using A Terminated Entity",
@@ -10379,10 +10631,96 @@
                 "description": "Admin User Deletion object",
                 "required": true
             },
+            "FimCreatecustomProfileArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createcustomProfile": {
+                                "summary": "Create Custom Profile",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCustomProfile>\n<displayName>Real Estate Broker</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n</fcRequest>"
+                            },
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimCreateReferenceDateArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createcustomProfile": {
+                                "summary": "Create Reference Date",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimReferenceDate>\n<displayName>Store Opening Date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n</fcRequest>"
+                            },
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
             "FimRetrieveFranchiseeArray": {
                 "content": {
                     "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>557097219</referenceId>\n</filter>\n</fcRequest>",
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>849339702</referenceId>\n</filter>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimRetrievecustomProfileArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<displayName>Launch</displayName>\n</filter>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimRetrieveReferenceDateArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<displayName>Project</displayName>\n</filter>\n</fcRequest>",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -10417,10 +10755,87 @@
                 "description": "Admin User Deletion object",
                 "required": true
             },
+            "FimUpdatecustomProfileArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCustomProfile>\n<referenceId>1730103020</referenceId>\n<displayName>Franchisee Consultant</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n</fcRequest>
+                        ",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimUpdateReferenceDateArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimReferenceDate>\n<referenceId>21</referenceId>\n<displayName>Site Opening Date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
             "FimDeleteFranchiseeArray": {
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<referenceId>1174579387</referenceId>\n</fimFranchisee>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimDeletecustomProfileArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCustomProfile>\n<referenceId>1174579387</referenceId>\n</fimCustomProfile>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimDeleteReferenceDateArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimReferenceDate>\n<referenceId>21</referenceId>\n</fimReferenceDate>\n</fcRequest>",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -11282,18 +11697,70 @@
                 },
                 "description": "Successful"
             },
+            "FimCreatecustomProfileResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createFranchiseeResp": {
+                                "summary": "Create Franchise Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<fimFranchisee>\n<status>Success</status>\n<referenceId>1665635279</referenceId>\n</fimFranchisee>\n</responseData>\n</fcResponse>"
+                            },
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimCreateReferenceDateResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createFranchiseeResp": {
+                                "summary": "Create Franchise Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>218197610</responseId>\n<responseData>\n<fimReferenceDate>\n<status>Success</status>\n<referenceId>1166157558</referenceId>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
+                            },
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
             "FimRetrieveFranchiseeResp": {
                 "content": {
                     "application/xml": {
                         "examples": {
                             "centerInfo": {
                                 "summary": "Example: Center Info Tab Response",
-                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1546252019</responseId>\n<responseData>\n<fimFranchisee>\n<referenceId>557097219</referenceId>\n<status>Corporate Locations</status>\n<franchiseeName>10001</franchiseeName>\n<centerName>Franchise-100001</centerName>\n<areaID>EST</areaID>\n<licenseNo>10354</licenseNo>\n<reportPeriodStartDate></reportPeriodStartDate>\n<fbc></fbc>\n        <openingDate>2019-06-13</openingDate>\n<storeStatus></storeStatus>\n  <storeTypeId>Default</storeTypeId>\n<address>39 HOLLANDBUSH CT.</address>\n<address2>8883 18 Ave</address2>\n<city>ST.PETERS</city>\n<country>USA</country>\n<state>New York</state>\n<zipcode>63304</zipcode>\n<storePhone>(866) 987-5432</storePhone>\n<storePhoneExtn>8669786</storePhoneExtn>\n<storeFax>(654) 987-5432</storeFax>\n     <storeMobile>(756) 984-5323</storeMobile>\n<storeEmail>example@franconnect.com</storeEmail>\n<storeWebsite>www.franconnect.com</storeWebsite>\n<contactTitle>Mr.</contactTitle>\n          <contactFirstName>Oliver</contactFirstName>\n          <contactLastName>Williams</contactLastName>\n<phone1>(654) 987-6543</phone1>\n<phone1Extn>5487954</phone1Extn>\n<fax>(654) 789-6543</fax>\n<mobile>(702) 987-6543</mobile>\n<emailID>example@franconnect.com</emailID>\n<franchiseeStatus>Active</franchiseeStatus>\n<lifecycleStage>Remodel</lifecycleStage>\n<division></division>\n<website>www.franconnect.com</website>\n<competitor></competitor>\n<serviceCategory></serviceCategory>\n<keyBusinessPerson></keyBusinessPerson>\n<commonBusinessName></commonBusinessName>\n<twitterSearch></twitterSearch>\n  <businessCategory></businessCategory>\n<description></description>\n<tagLine></tagLine>\n<altPhone></altPhone>\n<paymentType></paymentType>\n<businessType></businessType>\n<fimEntity>\n<referenceId></referenceId>\n<fimCbEntityType></fimCbEntityType>\n   <fimTtEntityName></fimTtEntityName>\n<fimTtTaxpayer></fimTtTaxpayer>\n<fimCbCountryOfFormation></fimCbCountryOfFormation>\n          <fimCbStateOfFormation></fimCbStateOfFormation>\n</fimEntity>\n  <fimOwner>\n<referenceId>1917033192</referenceId>\n<ownerTitle>Mr.</ownerTitle>\n<firstName>Sandy</firstName>\n<lastName>Nadia</lastName>\n<muidValue>MUID1</muidValue>\n</fimOwner>\n<socialURL>\n<referenceId></referenceId>\n<linkTitle></linkTitle>\n<linkUrl></linkUrl>\n</socialURL>\n<storeHours>\n<referenceId></referenceId>\n<operatingDay></operatingDay>\n<openingTime></openingTime>\n         <closingTime></closingTime>\n</storeHours>\n</fimFranchisee>\n</responseData>\n</fcResponse>"
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1529601222</responseId>\n<responseData>\n<fimFranchisee>\n<referenceId>849339702</referenceId>\n<status>Active Franchisees</status>\n<franchiseeName>HP-4</franchiseeName>\n<centerName>NSW 4</centerName>\n<areaID>New South Wales</areaID>\n<licenseNo></licenseNo>\n<reportPeriodStartDate></reportPeriodStartDate>\n<fbc></fbc>\n<grandStoreOpeningDate></grandStoreOpeningDate>\n<openingDate>01/01/2025</openingDate>\n<storeStatus></storeStatus>\n<storeTypeId>Default</storeTypeId>\n<address></address>\n<city>Sydney</city>\n<country>Australia</country>\n<state>New South Wales</state>\n<zipcode></zipcode>\n<storePhone>987654321</storePhone>\n<storeMobile></storeMobile>\n<storeEmail></storeEmail>\n<storeWebsite></storeWebsite>\n<comments></comments>\n<contactTitle></contactTitle>\n<contactFirstName></contactFirstName>\n<contactLastName></contactLastName>\n<mobile></mobile>\n<emailID></emailID>\n<legalNoticeFirstName></legalNoticeFirstName>\n<legalNoticeLastName></legalNoticeLastName>\n<legalNoticeAddress></legalNoticeAddress>\n<legalNoticeCity></legalNoticeCity>\n<legalNoticeCountry></legalNoticeCountry>\n<legalNoticeState></legalNoticeState>\n<legalNoticeZipcode></legalNoticeZipcode>\n<legalNoticeEmail></legalNoticeEmail>\n<transferDate></transferDate>\n<lastUpdate>06/09/2025 05:32 AM</lastUpdate>\n<lastAttended></lastAttended>\n<_revelShopNum1745232559></_revelShopNum1745232559>\n<_closeDate2066701566></_closeDate2066701566>\n<_originalShopNumber1940906002></_originalShopNumber1940906002>\n<_faDate1287531666></_faDate1287531666>\n<_unitOfUnitsSoldPerFa1135547115></_unitOfUnitsSoldPerFa1135547115>\n<_timeZone81612359></_timeZone81612359>\n<_timeAdjust1133048324></_timeAdjust1133048324>\n<_businessHours360104915></_businessHours360104915>\n<_syscoOpcoNum1957863952></_syscoOpcoNum1957863952>\n<_syscoOpco179057552></_syscoOpco179057552>\n<_altSyscoOpcoNum1497531836></_altSyscoOpcoNum1497531836>\n<_altSyscoCustomerNum976104080></_altSyscoCustomerNum976104080>\n<_licenseType2097170214></_licenseType2097170214>\n<_address21901546345></_address21901546345>\n<_transferDate938744437></_transferDate938744437>\n<_lsm1922288944></_lsm1922288944>\n<_latitude2024607303></_latitude2024607303>\n<_longitude578330482></_longitude578330482>\n<_pepsiDirectCustomerNum1254723668></_pepsiDirectCustomerNum1254723668>\n<_altSyscoCustomerNum28161400></_altSyscoCustomerNum28161400>\n<_originalShopGrandOpenDate1740493105></_originalShopGrandOpenDate1740493105>\n<_revelInstallDate56823665></_revelInstallDate56823665>\n<_projectStatusNew853720490></_projectStatusNew853720490>\n<franchiseeStatus>Active</franchiseeStatus>\n<lifecycleStage>Active</lifecycleStage>\n<division>Australia</division>\n<latitude>-33.8698439</latitude>\n<longitude>151.2082848</longitude>\n<fbcreferenceId></fbcreferenceId>\n<fimEntity>\n<referenceId></referenceId>\n<fimCbEntityType></fimCbEntityType>\n<fimTtEntityName></fimTtEntityName>\n<fimTtTaxpayer></fimTtTaxpayer>\n<fimCbCountryOfFormation></fimCbCountryOfFormation>\n<fimCbStateOfFormation></fimCbStateOfFormation>\n<entityReferenceId></entityReferenceId>\n<entityStatus>Terminated</entityStatus>\n</fimEntity>\n<fimOwner>\n<referenceId></referenceId>\n<ownerTitle></ownerTitle>\n<firstName></firstName>\n<lastName></lastName>\n<muidValue></muidValue>\n</fimOwner>\n<fimCustomProfile>\n<referenceId>176381495</referenceId>\n<userName>Ayush Singh</userName>\n<userId>1228781550</userId>\n<displayName>Real Estate Broker</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimCustomProfile>\n<fimCustomProfile>\n<referenceId>215278855</referenceId>\n<userName>Ayush Singh</userName>\n<userId>1228781550</userId>\n<displayName>Deal Manager</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimCustomProfile>\n<fimReferenceDates>\n<referenceId>1</referenceId>\n<value>2025-06-14</value>\n<displayName>Transfer Date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDates>\n<fimReferenceDates>\n<referenceId>2</referenceId>\n<value></value>\n<displayName>Projected Training start date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDates>\n</fimFranchisee>\n</responseData>\n</fcResponse>"
                             },
                             "entityInfo": {
                                 "summary": "Example: Entity Details Tab Response",
                                 "value": "<!--This response showcases example of a unit related to an entity that is associated with multiple Area/Regions -->\n<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>605564084</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>2144414430</referenceId>\n<franchiseeName>10001</franchiseeName>\n<fimEntity>\n<referenceId>1566270597</referenceId>\n<fimTtEntityName>Maester Alaska, LLC</fimTtEntityName>\n<clientEntityID>LLC-001</clientEntityID>\n<fimEntityDetail0/>\n<entityDetails_address>\n<referenceId>1119328174</referenceId>\n<address/>\n<city/>\n<country/>\n<state/>\n<zipcode/>\n<phoneNumbers/>\n<extn/>\n<faxNumbers/>\n<mobileNumbers/>\n<emailIds/>\n</entityDetails_address>\n<fimCbCountryOfFormation/>Australia<fimCbStateOfFormation/>\n<fimDdDateOfFormation/>\n<fimTtTaxpayer/>\n<fimCbEntityType/>\n<fimCbOtherEntityType/>\n<fimEntityAreaMapping>\n<referenceId>492</referenceId>\n<areaID>EST</areaID>\n</fimEntityAreaMapping>\n<fimEntityAreaMapping>\n<referenceId>493</referenceId>\n<areaID>CST</areaID>\n</fimEntityAreaMapping>\n<fimEntityAreaMapping>\n<referenceId>494</referenceId>\n<areaID>EMEA Updated</areaID>\n</fimEntityAreaMapping>\n<fimEntityLocationMapping>\n<referenceId>1566270597</referenceId>\n<storeOwnedPercentage/>\n<typeOfOwnership/>\n</fimEntityLocationMapping>\n</fimEntity>\n</fimCenterInfo>\n</responseData>\n</fcResponse>\n"
                             }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimRetrievecustomProfileResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "centerInfo": {
+                                "summary": "Example: Custom Profile Retrieve Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2090523190</responseId>\n<responseData>\n<fimCustomProfile>\n<referenceId>12</referenceId>\n<displayName>Launch Manager</displayName>\n<isMandatory>N</isMandatory>\n</fimCustomProfile>\n<fimCustomProfile>\n<referenceId>1607063233</referenceId>\n<displayName>Launch Operations Head</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n<fimCustomProfile>\n<referenceId>1607063234</referenceId>\n<displayName>Launch Executive</displayName>\n<isMandatory>N</isMandatory>\n</fimCustomProfile>\n</responseData>\n</fcResponse>"
+                            },
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimRetrieveReferenceDateResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "centerInfo": {
+                                "summary": "Example: Reference Date Retrieve Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1047071773</responseId>\n<responseData>\n<fimReferenceDate>\n<referenceId>2</referenceId>\n<displayName>Projected Training start date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n<fimReferenceDate>\n<referenceId>5</referenceId>\n<displayName>Projected Soft Open Date</displayName>\n<milestoneApplicable>N</milestoneApplicable>\n</fimReferenceDate>\n<fimReferenceDate>\n<referenceId>6</referenceId>\n<displayName>Projected Sneak Peek</displayName>\n<milestoneApplicable>N</milestoneApplicable>\n</fimReferenceDate>\n<fimReferenceDate>\n<referenceId>11</referenceId>\n<displayName>Projected Grand Open Date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
+                            },
                         }
                     }
                 },
@@ -11307,10 +11774,43 @@
                 },
                 "description": "Successful"
             },
+            "FimUpdatecustomProfileResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1410780740</responseId>\n<responseData>\n<fimCustomProfile>\n<status>Success</status>\n<referenceId>1730103020</referenceId>\n</fimCustomProfile>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimUpdateReferenceDateResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1235893037</responseId>\n<responseData>\n<fimReferenceDate>\n<status>Success</status>\n<referenceId>21</referenceId>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
             "FimDeleteFranchiseeResp": {
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n  <responseStatus>Error</responseStatus>\n<responseId>1624694868</responseId>\n<error>\n<errorCode>400</errorCode>\n<errorDetails>Request to delete Franchisee is not supported.</errorDetails>\n   </error>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimDeletecustomProfileResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Error</responseStatus>\n<responseId>1800377591</responseId>\n<responseData>\n<fimCustomProfile>\n<status>Error</status>\n<error>\n<errorCode>400</errorCode>\n<errorDetails>This Profile cannot be deleted as some Franchise Opener Store(s) or Checklist(s) are associated with it.</errorDetails>\n</error>\n</fimCustomProfile>\n</responseData>\n</fcResponse>
+                        "
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimDeleteReferenceDateResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>781160907</responseId>\n<responseData>\n<fimReferenceDate>\n<status>Success</status>\n<referenceId>21</referenceId>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
                     }
                 },
                 "description": "Successful"
@@ -16667,7 +17167,7 @@
                     }
                 },
                 "description": "Successful"
-            }
+            },
         }
     }
 }
