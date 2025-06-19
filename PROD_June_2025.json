@@ -2937,7 +2937,7 @@
                                         "salesReportID": {
                                             "clause": "EQUAL",
                                             "values": [
-                                                "1758848040"
+                                                "297699310"
                                             ]
                                         }
                                     },
@@ -12393,240 +12393,182 @@
                         "example": {
                             "response": {
                                 "data": [
-                                    {
-                                        "1758848040": {
-                                            "reportNo": "56",
-                                            "salesReportID": "1758848040",
-                                            "franchiseeNo": "907680077",
-                                            "reportPeriodStart": "2019-01-01",
-                                            "reportPeriodEnd": "2019-01-31",
-                                            "reportSubmitDate": "2019-12-02 02:06:11",
-                                            "dateReceived": "2019-12-02",
-                                            "totalSales": "10000.0",
-                                            "reportStatus": "I",
-                                            "reportType": "M",
-                                            "franchiseRoyaltyID": "1842529681",
-                                            "versionID": "Flat percent 2015",
-                                            "totalQuantity": "0.0",
-                                            "lastModifiedDate": "2020-05-19 06:30:26",
-                                            "financialItems": [
-                                                {
-                                                    "1": {
-                                                        "name": "Service 1",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 10000,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "110353610": {
-                                                        "name": "Product 1",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "172558286": {
-                                                        "name": "Product 2",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "489950611": {
-                                                        "name": "Adjustments",
-                                                        "calculationType": "(-)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "771657194": {
-                                                        "name": "Service 3",
-                                                        "calculationType": "(+)",
-                                                        "children": [
-                                                            {
-                                                                "247817332": {
-                                                                    "name": "Weekly Special",
-                                                                    "calculationType": "(+)",
-                                                                    "data": [
-                                                                        {
-                                                                            "amount": 0,
-                                                                            "quantity": 0
-                                                                        }
-                                                                    ]
-                                                                }
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1155069001": {
-                                                        "name": "Product 3",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1508280192": {
-                                                        "name": "Package 1",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1925589920": {
-                                                        "name": "Service 2",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0,
-                                                                "quantity": 0
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            ],
-                                            "nonFinancialItems": [
-                                                {
-                                                    "100": {
-                                                        "name": "Non Financial Category",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 100
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1925589933": {
-                                                        "name": "Average Transaction Value",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1925589935": {
-                                                        "name": "New Leads",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1925589937": {
-                                                        "name": "Loyalty Program Enrollments",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1925589939": {
-                                                        "name": "Total Marketing Campaigns",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            ],
-                                            "finAddnlItems": [
-                                                {
-                                                    "91768934": {
-                                                        "name": "Printing",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 300
-                                                            }
-                                                        ]
-                                                    },
-                                                    "425629981": {
-                                                        "name": "Training Fee",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "602785080": {
-                                                        "name": "Tech Fee",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "714608200": {
-                                                        "name": "Marketing Fee",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1637569982": {
-                                                        "name": "Call Center Fee",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 0
-                                                            }
-                                                        ]
-                                                    },
-                                                    "1659664436": {
-                                                        "name": "Co-op Fee",
-                                                        "calculationType": "(+)",
-                                                        "data": [
-                                                            {
-                                                                "amount": 400
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            ],
-                                            "actionLogs": {
-                                                "764579323": {
-                                                    "salestasklogId": 764579323,
-                                                    "userComments": "",
-                                                    "userName": "FranConnect Administrator",
-                                                    "finSalestasklogsdate": "2019-12-02T07:06:11.000+0000",
-                                                    "finSalesTaskId": "Added"
-                                                }
-                                            },
-                                            "promissoryNotes": {
-                                                "673395639": {
-                                                    "amount": "837.85",
-                                                    "name": "Promissory note test"
-                                                }
-                                            }
+                                {
+                                    "reportNo": "001781",
+                                    "salesReportID": "297699310",
+                                    "franchiseeNo": "1983908936",
+                                    "franchiseeName": "Franconnect-1001",
+                                    "storeType": "Default",
+                                    "reportPeriodStart": "08/01/2024",
+                                    "reportPeriodEnd": "08/31/2024",
+                                    "reportSubmitDate": "06/12/2025",
+                                    "address": "Mobile, Alabama, USA",
+                                    "areaRegion": "Alabama Region",
+                                    "reportingFrequency": "Monthly",
+                                    "totalInvoiceAmount": 200.00,
+                                    "dateReceived": "06/12/2025",
+                                    "totalSales": 1920.00,
+                                    "reportStatus": "Invoiced",
+                                    "reportType": "M",
+                                    "franchiseRoyaltyID": "1485487257",
+                                    "agreementVersionID": "395776058",
+                                    "agreementVersionName": "FC Monthly Agreeement",
+                                    "totalQuantity": "0.00",
+                                    "lastModifiedDate": "06/19/2025 02:32 AM",
+                                    "discountCapId": "0",
+                                    "totalPositiveCategoriesSales": 1920.00,
+                                    "totalNegativeCategoriesSales": 0.00,
+                                    "totalDiscountAmount": 0.00,
+                                    "maxDiscountAllowed": 0.00,
+                                    "applicableDiscount": 0.00,
+                                    "totalMainAmount": 0.00,
+                                    "totalAdjustmentAmount": 0.00,
+                                    "totalAdditionalFeeAmount": 0.00,
+                                    "comments": "",
+                                    "financialItems": [
+                                        {
+                                            "id": "1",
+                                            "name": "Service",
+                                            "calculationType": "(+)",
+                                            "quantity": 10.00,
+                                            "amount": 1000.00
                                         },
-                                        "response": "Success"
-                                    }
-                                ],
+                                        {
+                                            "id": "306741292",
+                                            "name": "Service1",
+                                            "calculationType": "(+)",
+                                            "quantity": 5.00,
+                                            "amount": 50.00
+                                        },
+                                        {
+                                            "id": "58250149",
+                                            "name": "Service_LC",
+                                            "calculationType": "(+)",
+                                            "quantity": 7.00,
+                                            "amount": 70.00
+                                        },
+                                        {
+                                            "id": "1302021597",
+                                            "name": "Service_Port_Of_Subs",
+                                            "calculationType": "(+)",
+                                            "quantity": 10.00,
+                                            "amount": 100.00
+                                        },
+                                        {
+                                            "id": "1477188660",
+                                            "name": "NS positive",
+                                            "calculationType": "(+)",
+                                            "quantity": 0.00,
+                                            "amount": 0.00,
+                                            "children": [
+                                                {
+                                                    "id": "374396192",
+                                                    "name": "poschild1",
+                                                    "calculationType": "(+)",
+                                                    "quantity": 0.00,
+                                                    "amount": 0.00
+                                                },
+                                                {
+                                                    "id": "1049237043",
+                                                    "name": "Nschildsubneg",
+                                                    "calculationType": "(-)",
+                                                    "quantity": 0.00,
+                                                    "amount": 0.00
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "166504008",
+                                            "name": "Discounts",
+                                            "calculationType": "(D)",
+                                            "quantity": 0.00,
+                                            "amount": 0.00
+                                        },
+                                        {
+                                            "id": "26697644",
+                                            "name": "Burger",
+                                            "calculationType": "(+)",
+                                            "quantity": 100.00,
+                                            "amount": 500.00,
+                                            "children": [
+                                                {
+                                                    "id": "1135435178",
+                                                    "name": "Non Veg burger",
+                                                    "calculationType": "(+)",
+                                                    "quantity": 70.00,
+                                                    "amount": 300.00
+                                                },
+                                                {
+                                                    "id": "1415036810",
+                                                    "name": "veg Burger",
+                                                    "calculationType": "(+)",
+                                                    "quantity": 30.00,
+                                                    "amount": 200.00
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "id": "216207911",
+                                            "name": "Discount cap",
+                                            "calculationType": "(D)",
+                                            "quantity": 0.00,
+                                            "amount": 0.00
+                                        },
+                                        {
+                                            "id": "685139172",
+                                            "name": "nachos",
+                                            "calculationType": "(+)",
+                                            "quantity": 20.00,
+                                            "amount": 200.00
+                                        },
+                                        {
+                                            "id": "1246504457",
+                                            "name": "Test",
+                                            "calculationType": "(+)",
+                                            "quantity": 0.00,
+                                            "amount": 0.00
+                                        },
+                                    ],
+                                    "finAddnlItems": [],
+                                    "actionLogs": [
+                                        {
+                                            "salestasklogId": "2145795297",
+                                            "userComments": "",
+                                            "userName": "John Morales",
+                                            "finSalestasklogsdate": "06/20/2025 08:32 PM",
+                                            "finSalesTaskId": "Approved"
+                                        },
+                                        {
+                                            "salestasklogId": "2145795296",
+                                            "userComments": "",
+                                            "userName": "Kim Miles",
+                                            "finSalestasklogsdate": "06/20/2025 12:32 PM",
+                                            "finSalesTaskId": "Acknowledged"
+                                        },
+                                        {
+                                            "salestasklogId": "384597760",
+                                            "userComments": "",
+                                            "userName": "Kim Miles",
+                                            "finSalestasklogsdate": "06/19/2025 10:32 PM",
+                                            "finSalesTaskId": "Modified"
+                                        },
+                                        {
+                                            "salestasklogId": "2145795295",
+                                            "userComments": "",
+                                            "userName": "Kim Miles",
+                                            "finSalestasklogsdate": "06/19/2025 02:31 PM",
+                                            "finSalesTaskId": "Acknowledged"
+                                        },
+                                        {
+                                            "salestasklogId": "288490412",
+                                            "userComments": "",
+                                            "userName": "Kim Miles",
+                                            "finSalestasklogsdate": "06/18/2025 03:22 PM",
+                                            "finSalesTaskId": "Added"
+                                        }
+                                    ]
+                                }
+                            ],
                                 "page": {
                                     "size": 100,
                                     "totalRecords": 1,
