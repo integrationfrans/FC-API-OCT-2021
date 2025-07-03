@@ -3577,8 +3577,9 @@
                         "examples": {
                             "createAdjustment": {
                               "summary": "Create Adjustment",
-                              "value": {
-                                "data": [
+                              "value": [
+                                {
+                                    "data": [
                                   {
                                     "salesReportID": "1476675187",
                                     "franchiseeNo": "501957516",
@@ -3662,12 +3663,14 @@
                                     ]
                                   }
                                 ]
-                              }
+                                }
+                              ]
                             },
                             "createAdjustmentWithReason": {
                               "summary": "Create Adjustment with Reason",
-                              "value": {
-                                "data": [
+                              "value":[
+                                {
+                                    "data": [
                                   {
                                     "franchiseeNo": "1091880591",
                                     "salesReportID": "634906164",
@@ -3922,7 +3925,8 @@
                                     ]
                                   }
                                 ]
-                              }
+                                }
+                              ] 
                             }
                         }
                       }
@@ -4022,8 +4026,9 @@
                         "examples": {
                             "updateAdjustment": {
                               "summary": "Update Adjustment",
-                              "value": {
-                                "data": [
+                              "value": [
+                                {
+                                    "data": [
                                   {
                                     "salesReportID": "1476675187",
                                     "franchiseeNo": "501957516",
@@ -4107,17 +4112,19 @@
                                     ]
                                   }
                                 ]
-                              }
+                                }
+                              ]
                             },
                             "updateAdjustmentWithReason": {
                               "summary": "Update Adjustment with Reason",
-                              "value": {
-                                "data": [
+                              "value":[
+                                {
+                                    "data": [
                                   {
                                     "franchiseeNo": "1091880591",
                                     "salesReportID": "634906164",
                                     "dateReceived": "2025-06-27",
-                                    "adjustmentReason": "Service Error",
+                                    "adjustmentReason": "Price Error",
                                     "acknowledgeSalesReport": "yes",
                                     "localCurrency": true,
                                     "currencyRate": 102.21,
@@ -4367,7 +4374,8 @@
                                     ]
                                   }
                                 ]
-                              }
+                                }
+                              ] 
                             }
                         }
                       }
