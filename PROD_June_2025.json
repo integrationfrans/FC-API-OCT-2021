@@ -255,8 +255,10 @@
                 "Division",
                 "Area/Region",
                 "Multi-Unit",
+                "Lead Source Category & Details",
                 "Sales",
                 "Sales Lead",
+                "Retrieve Sales Lead Webform",
                 "Info Manager",
                 "Franchisee",
                 "Company v1",
@@ -1128,6 +1130,71 @@
                 }
             }
         },
+        "/retrieve?module=admin&subModule=leadSource": {
+            "post": {
+                "tags": [
+                    "Lead Source Category & Details"
+                ],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the details of a Lead Category. In a similar manner, the Retrieve operation can be performed to retrieve other details for the lead category.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path> /rest/dataservices/retrieve?module=admin&subModule=leadSource&filterXML=filteredxmlString&responseType=XML </td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the details of a lead category using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p> </li></ol><p>The following items must be used as path parameters:</p><ol> <li> <p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “admin”. </p> </li> <li> <p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"leadSource\". </p> </li> <li> <p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p> </li> <li> <p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve Lead source category. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u> </li></ol></p><p> <strong>Note:</strong>The API gives you the ability to retrieve Lead Source Category on the basis of various filters, which have to be passed inside the filter tag. You can use the following filters (or a combination of them) to retrieve Lead Source Category:<ol> <li>referenceId (comma-seperated referenceId(s))</li> <li>leadSource2Name</li> <li>isActive</li> <li>leadSourceDetails</li><li>includeInWebPage</li></ol></p><img src=\"images/Retrieve_LeadSource.png\">",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/RetrieveLeadSourceResp"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/xml": {
+                            "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>3,4,6</referenceId>\n<leadSourceDetails>Y</leadSourceDetails>\n</filter>\n</fcRequest>",
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "module": {
+                                            "type": "string",
+                                            "description": "Module name",
+                                            "example": "admin"
+                                        },
+                                        "subModule": {
+                                            "type": "string",
+                                            "description": "Sub-module name",
+                                            "example": "leadSource"
+                                        },
+                                        "filterXML": {
+                                            "type": "string",
+                                            "description": "XML string with filter details",
+                                            "example": "<fcRequest><filter><referenceId>3,4,6</referenceId><leadSourceDetails>Y</leadSourceDetails></filter></fcRequest>"
+                                        },
+                                        "responseType": {
+                                            "type": "string",
+                                            "description": "Desired response type (XML or JSON)",
+                                            "example": "XML"
+                                        }
+                                    },
+                                    "required": [
+                                        "module",
+                                        "subModule",
+                                        "filterXML",
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "description": "Lead Source Category & Details Retrieval object",
+                    "required": true
+                }                
+            }
+        },
         "/create?module=fs&subModule=lead": {
             "post": {
                 "tags": [
@@ -1163,7 +1230,7 @@
                     "Sales Lead"
                 ],
                 "summary": "Retrieve",
-                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the details of a Sales lead. In a similar manner, the Retrieve operation can be performed to retrieve other details for the lead.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path> /rest/dataservices/retrieve?module=fs&subModule=lead&filterXML=filteredxmlString&responseType=XML </td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the details of a lead using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p> </li></ol><p>The following items must be used as path parameters:</p><ol> <li> <p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p> </li> <li> <p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p> </li> <li> <p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p> </li> <li> <p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve a lead. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the details of an existing lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u> </li></ol><p><h1>Case: Retrieve Merged Lead</h1><p> When leads are merged together, they result in a singular lead that is referred to as either a child lead or a merged lead. The leads that come together during the merging process are called the parent leads. Once such a merge occurs in the system, the parent leads are archived and can not be accessed anymore. <br> If you try to retrieve information corresponding to any of the parent leads through their <b>referenceId</b>, the API response will throw a soft error, expressing that the parent lead can not be retrieved because it does not exist anymore. Along with that, the response will in turn give you the <b>referenceId</b> of the child lead/merged lead as part of the <b>mergedChildId</b> tag, which you can then use to retrieve the information of the merged lead. <br> When you retrieve a child lead/merged lead, the API response will show-case all the parent lead Ids that were involved in the merging process, as part of the <b>mergedParentIds</b> tag in case of xml-type response.</p></p></p><a name=\"Pagination\"></a><p><strong>Note:</strong> In order to retrieve data from any tab/sub-module other than “Primary Info”, it is mandatory to specify the parameter(s) in your filterXML, based on which the results would be filtered. You can also perform a Query operation to retrieve the names of the fields that you would want to use as parameters in the filterXML. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p><img src=\"images/Sales_Lead_Retrieve.png\"><p><a name=\"Pagination\"></a><strong>Retrieve Values using Pagination</strong></p><p>Pagination is a process that is used to divide the potential result into records and retrieve the required records, one by one on demand. All retrieve operations using the FranConnect API support pagination, with the help of limit and offset parameters appended in the request URL.</p><p>An offset is simply the number of records that are skipped after which the response data is retrieved. For the FranConnect API, offset can have any positive value. By default, 0 is considered as the offset value. </p><p>Limit is the total number of records that are to be retrieved in one response. For the FranConnect API, limit can have a maximum value of 100. </p><p>To get a paginated response for your retrieve request, you must define how many records you want to retrieve, using the <strong>limit </strong>parameter, and from where would the records be starting from, using the <strong>offset </strong>parameter. For example, if your response dataset contains more than 100 records, you must use pagination as \"offset=0&limit=100\". For the next iteration, you must use pagination as \"offset=100&limit=100\". Note that the response data also contains a flag <strong> \"hasMoreRecords=true\"</strong> which indicates that there are more records remaining to be paginated.</p><p>Following is an example of the limit and offset parameters used for a Retrieve operation using the Sales sub-module. In a similar manner, these parameters can be applied to retrieve fields that are available during the Retrieve operation for the Admin, Info Manager and CRM sub-modules.</p></p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path> /rest/dataservices/retrieve?module=fs&subModule=lead&responseType=xml&includeLimit=on&limit=50&offset=0&filterXML=filteredxmlString&responseType=XML </td> </tr> <tr> <td></td> </tr></table><img src=\"images/Retrieve_Limit_Offset_example.png\">",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the details of a Sales lead. In a similar manner, the Retrieve operation can be performed to retrieve other details for the lead.</p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path> /rest/dataservices/retrieve?module=fs&subModule=lead&filterXML=filteredxmlString&responseType=XML </td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the details of a lead using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p> </li></ol><p>The following items must be used as path parameters:</p><ol> <li> <p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p> </li> <li> <p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p> </li> <li> <p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p> </li> <li> <p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve a lead. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the details of an existing lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u> </li></ol><img src=\"images/Retrieve_Limit_Offset_example.png\">",
                 "operationId": "Sales_Retrieve_Lead",
                 "responses": {
                     "200": {
@@ -1271,6 +1338,36 @@
                 },
                 "requestBody": {
                     "$ref": "#/components/requestBodies/retrieveFieldDataArray"
+                }
+            }
+        }, 
+        "/retrieve?module=fs&subModule=externalWebForm": {
+            "post": {
+                "tags": [
+                    "Retrieve Sales Lead Webform"
+                ],
+                "summary": "Retrieve Webform Filled by Lead",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the details of a WebformURL filled by Lead. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path> /rest/dataservices/retrieve?module=fs&subModule=externalWebForm&filterXML=filteredxmlString&responseType=XML </td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the details of a lead&apos;s webformURL using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>Content-Type as the key and its value in the format “application/x-www-form-urlencoded“.</p> </li></ol><p>The following items must be used as path parameters:</p><ol> <li> <p>The module for which the Retrieve operation is being performed. In this case, the module to be used is “fs”</u>.</p> </li> <li> <p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “externalWebForm”.</p> </li> <li> <p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p> </li> <li> <p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve the webform. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the web form details of an existing lead. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u> </li></ol><img src=\"images/Retrieve_Lead_Webform.png\">",
+                "operationId": "Sales_Retrieve_External_Webform",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/retrieveleadwebformResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/retrievewebformArray"
                 }
             }
         },
@@ -3233,6 +3330,54 @@
                 "responses":  {
                     "200": {
                         "$ref": "#/components/responses/RetrieveInvoiceByIdResp"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        },
+        "/manage-finance-royalty/royalties/{franchiseRoyaltyId}/nfc-calculation-details": {
+            "get": {
+                "tags": [
+                    "Royalties"
+                ],
+                "summary": "Retrieve Non-Financial Category Calculation By Invoice Id",
+                "description": "<p class=\"western\">Make a GET request to the specified endpoint to retrieve Non-Financial Category (NFC) calculation details for a specific invoice by its <b>franchiseRoyaltyId</b>. The <b>franchiseRoyaltyId</b> is the primary identifier for an invoice and can be obtained by calling the <u><a href=\"#operation/Retrieve_Royalty_Invoices\">Retrieve Royalty Invoices</a></u> endpoint.</p> <table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>GET</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-finance-royalty/royalties/{franchiseRoyaltyId}/nfc-calculation-details</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-finance-royalty/royalties/{franchiseRoyaltyId}/nfc-calculation-details</td> </tr> </table>The following items must be included in the header of the request: <ol> <li>\"Authorization\" as the key and its value in the format <code>Bearer access_token</code>. This access_token is generated as part of the authentication process. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on generating the access token.</li> <li>\"Content-Type\" as the key and its value in the format <code>application/json</code>.</li> <li>\"X-TenantId\" as the key and its value based on your FranConnect system&apos;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on identifying the \"X-TenantId\".</li> </ol> <p class=\"western\">This endpoint provides a detailed breakdown of the calculations for each non-financial category included in the invoice. It shows exactly how the values were derived, for example, by multiplying quantities with fixed rates, so you can clearly understand how the total amount for each category was calculated. The response includes the following elements:</p> <ol> <li><b>royaltyItemDetailsMap</b>: Contains calculation details grouped by each royalty item.</li> <li><b>includeInCalculation</b>: Lists all categories that were included in the NFC calculation. Each category contains: <ul> <li><b>categoryId</b>: The name of the category.</li> <li><b>amount</b>: Total calculated amount for this category.</li> <li><b>quantity</b>: Total quantity applicable for this category.</li> <li><b>ranges</b>: Lists configured range brackets for the category. Each range includes: <ul> <li><b>range</b>: The defined quantity or value range (e.g., “0.0-1000.0”).</li> <li><b>value</b>: Rate applied for this range.</li> <li><b>countApplicable</b>: Quantity applicable for the range.</li> <li><b>amountApplicable</b>: Amount calculated for this range.</li> <li><b>actualAmountCalculated</b>: Final amount after applying caps, if any.</li> <li><b>isMaxCapApplied</b>: Indicates if a maximum cap was applied (true/false).</li> <li><b>isMinCapApplied</b>: Indicates if a minimum cap was applied (true/false).</li> </ul> </li> </ul> </li> <li><b>excludeInCalculation</b>: Lists all categories that were excluded from the non-financial category calculation.</li> <li><b>totalAmount</b>: The total calculated amount across all categories for the royalty item.</li> <li><b>totalAmountAfterCap</b>: The total amount after applying configured caps (if any).</li> <li><b>isMaxCapApplied</b>/<b>isMinCapApplied</b>: Boolean flags indicating whether maximum or minimum caps were applied during the calculation.</li> <li><b>appliedAs</b>: Describes how the amounts are applied (e.g., “Flat Per Category or Flat”).</li> </ol> <p class=\"western\">This endpoint is especially useful to determine the breakdown of NFC calculations for each royalty item and category. It helps franchisees and administrators understand how amounts were derived for both included and excluded categories.</p><img src=\"images/Retrieve_NFC_Calculations.png\">",
+                "operationId": "Retrieve_NFC_by_Invoice_Id",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "franchiseRoyaltyId",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "required": true
+                    },
+                    {
+                        "in": "query",
+                        "name": "localCurrency",
+                        "description": "Retrieve invoice data in the local currency of the franchise. Example: apiURL/manage-finance/royalties/3645621?localCurrency",
+                        "schema": {
+                            "type": "boolean",
+                            "enum": [
+                                "true", "false"
+                            ]
+                        }
+                    }
+                ],
+                "responses":  {
+                    "200": {
+                        "$ref": "#/components/responses/RetrieveNFCCalcbyinvoiceID"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -11192,6 +11337,49 @@
                 "description": "Lead Creation object",
                 "required": true
             },
+            "retrievewebformArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<fcRequest>\n<filter>\n<referenceId>1652722613,1388823072</referenceId>\n<formName>Lead Qualification Details</formName>\n</filter>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "module": {
+                                  "type": "string",
+                                  "description": "Module name",
+                                  "example": "fs"
+                                },
+                                "subModule": {
+                                  "type": "string",
+                                  "description": "Sub-module name",
+                                  "example": "externalWebForm"
+                                },
+                                "filterXML": {
+                                  "type": "string",
+                                  "description": "XML string with filter details",
+                                  "example": "<fcRequest><filter><referenceId>1652722613,1388823072</referenceId><formName>Lead Qualification Details</formName></filter></fcRequest>"
+                                },
+                                "responseType": {
+                                  "type": "string",
+                                  "description": "Desired response type (XML or JSON)",
+                                  "example": "XML"
+                                }
+                              },
+                              "required": [
+                                "module",
+                                "subModule",
+                                "filterXML",
+                                "responseType"
+                              ]
+                            }
+                        }                          
+                    }
+                },
+                "description": "Retrieve Web Form details using reference IDs (comma-separated) and a webform name.",
+                "required": true
+            },
             "FimCreateFranchiseeArray": {
                 "content": {
                     "application/xml": {
@@ -12224,6 +12412,14 @@
                 },
                 "description": "Successful"
             },
+            "RetrieveLeadSourceResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xmlversion='1.0'encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1550859336</responseId>\n<responseData>\n<adminLeadSource>\n<referenceId>3</referenceId>\n<leadSource2Name>Referred By</leadSource2Name>\n<isActive>Y</isActive>\n<includeInWebPage>N</includeInWebPage>\n<fsLeadSource3>\n<referenceId>8</referenceId>\n<leadSource3Name>Friend of reffer by</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>9</referenceId>\n<leadSource3Name>Family</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>10</referenceId>\n<leadSource3Name>Co-workers</leadSource3Name>\n<isActive>N</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n</adminLeadSource>\n<adminLeadSource>\n<referenceId>4</referenceId>\n<leadSource2Name>Search</leadSource2Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n<fsLeadSource3>\n<referenceId>12</referenceId>\n<leadSource3Name>Google</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>13</referenceId>\n<leadSource3Name>Yahoo</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>14</referenceId>\n<leadSource3Name>MSN</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>15</referenceId>\n<leadSource3Name>Other</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>1390512611</referenceId>\n<leadSource3Name>Edge</leadSource3Name>\n<isActive>N</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n</adminLeadSource>\n<adminLeadSource>\n<referenceId>6</referenceId>\n<leadSource2Name>Advertisement</leadSource2Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n<fsLeadSource3>\n<referenceId>24</referenceId>\n<leadSource3Name>Newspaper</leadSource3Name>\n<isActive>N</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>25</referenceId>\n<leadSource3Name>Magazine</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>26</referenceId>\n<leadSource3Name>Trade Shows</leadSource3Name>\n<isActive>N</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n<fsLeadSource3>\n<referenceId>27</referenceId>\n<leadSource3Name>Other</leadSource3Name>\n<isActive>Y</isActive>\n<includeInWebPage>Y</includeInWebPage>\n</fsLeadSource3>\n</adminLeadSource>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
             "FSCreateLeadResp": {
                 "content": {
                     "application/xml": {
@@ -12269,6 +12465,15 @@
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>382399713</responseId>\n<responseData>\n<countyID>Abbeville</countyID>\n<countyID>Acadia Parish</countyID>\n<countyID>Ballard</countyID>\n<countyID>Baltimore</countyID>\n<countyID>Cambria</countyID>\n<countyID>Campbell</countyID>\n<countyID>Dallas</countyID>\n<countyID>Dane</countyID>\n<countyID>Eagle</countyID>\n<countyID>Edgefield</countyID>\n<countyID>Fairfield</countyID>\n<countyID>Florence</countyID>\n<countyID>Garfield</countyID>\n<countyID>Geneva</countyID>\n<countyID>Hampshire</countyID>\n<countyID>Hawaii</countyID>\n<countyID>Isle of Wight</countyID>\n<countyID>James City</countyID>\n<countyID>Kenedy</countyID>\n<countyID>La Crosse</countyID>\n<countyID>Madison</countyID>\n<countyID>Navajo</countyID>\n<countyID>Oakland</countyID>\n<countyID>Palo Alto</countyID>\n<countyID>Queens</countyID>\n<countyID>Republic</countyID>\n<countyID>Salt Lake</countyID>\n<countyID>Texas</countyID>\n<countyID>Union Parish</countyID>\n<countyID>Vermilion</countyID>\n<countyID>Walsh</countyID>\n<countyID>Yadkin</countyID>\n<countyID>Ziebach</countyID>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "retrieveleadwebformResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1961724181</responseId>\n<responseData>https://developers.franconnectdemo.net/fc/leadQualificationDetails.jsp?pqId=aomq--lq-q-oar,arbbbq-rz--lq-</responseData>\n</fcResponse>
+                        "
                     }
                 },
                 "description": "Successful"
@@ -13551,6 +13756,423 @@
                                     }
                                   }
                             }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "RetrieveNFCCalcbyinvoiceID":{
+                "content": {
+                    "application/json": {
+                        "examples": {
+                                "normal_retrieve": {
+                                    "summary": "Retrieve Invoice Details",
+                                    "value": {
+                                        "royaltyItemDetailsMap": {
+                                            "1": {
+                                                "includeInCalculation": {
+                                                    "categories": {
+                                                        "878772094": {
+                                                            "categoryId": "BH NFC-1",
+                                                            "amount": "600.00",
+                                                            "quantity": "1050",
+                                                            "previousAmount": "600.00",
+                                                            "adjustedAmount": "0.00",
+                                                            "totalQuantity": "2100",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "0.0-1000.0",
+                                                                    "value": "280.00",
+                                                                    "countApplicable": "1000",
+                                                                    "amountApplicable": "280.00",
+                                                                    "actualAmountCalculated": "280.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                },
+                                                                {
+                                                                    "range": "1000.01-And Above",
+                                                                    "value": "320.00",
+                                                                    "countApplicable": "1100",
+                                                                    "amountApplicable": "320.00",
+                                                                    "actualAmountCalculated": "320.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        "1646266697": {
+                                                            "categoryId": "BH NFC-2",
+                                                            "amount": "360.00",
+                                                            "quantity": "660.00",
+                                                            "previousAmount": "360.00",
+                                                            "adjustedAmount": "0.00",
+                                                            "totalQuantity": "1,320.00",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "0.0-1500.0",
+                                                                    "value": "360.00",
+                                                                    "countApplicable": "1,320.00",
+                                                                    "amountApplicable": "360.00",
+                                                                    "actualAmountCalculated": "360.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        "1668137859": {
+                                                            "categoryId": "BH NFC-5",
+                                                            "amount": "1,000.00",
+                                                            "quantity": "1250",
+                                                            "previousAmount": "1,000.00",
+                                                            "adjustedAmount": "0.00",
+                                                            "totalQuantity": "2500",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "0.0-1200.0",
+                                                                    "value": "600.00",
+                                                                    "countApplicable": "1200",
+                                                                    "amountApplicable": "600.00",
+                                                                    "actualAmountCalculated": "600.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                },
+                                                                {
+                                                                    "range": "1200.01-And Above",
+                                                                    "value": "400.00",
+                                                                    "countApplicable": "1300",
+                                                                    "amountApplicable": "400.00",
+                                                                    "actualAmountCalculated": "400.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        "1847352855": {
+                                                            "categoryId": "BH NFC-4",
+                                                            "amount": "440.00",
+                                                            "quantity": "500.00",
+                                                            "previousAmount": "440.00",
+                                                            "adjustedAmount": "0.00",
+                                                            "totalQuantity": "1,000.00",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "0.0-2000.0",
+                                                                    "value": "440.00",
+                                                                    "countApplicable": "1,000.00",
+                                                                    "amountApplicable": "440.00",
+                                                                    "actualAmountCalculated": "440.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "royaltyItem": "Royalty",
+                                                "totalAmount": "2,400.00",
+                                                "totalAmountAfterCap": "0.00",
+                                                "isMaxCapApplied": false,
+                                                "isMinCapApplied": false,
+                                                "isGrowthBased": true,
+                                                "appliedAs": "Flat"
+                                            },
+                                            "2": {
+                                                "includeInCalculation": {
+                                                    "categories": {
+                                                        "878772094": {
+                                                            "categoryId": "BH NFC-1",
+                                                            "amount": "672,000.00",
+                                                            "quantity": "1050",
+                                                            "previousAmount": "336,000.00",
+                                                            "adjustedAmount": "336,000.00",
+                                                            "totalQuantity": "2100",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "1000.01-And Above",
+                                                                    "value": "320.00",
+                                                                    "countApplicable": "2100",
+                                                                    "amountApplicable": "672,000.00",
+                                                                    "actualAmountCalculated": "672,000.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        "1646266697": {
+                                                            "categoryId": "BH NFC-2",
+                                                            "amount": "528,000.00",
+                                                            "quantity": "660.00",
+                                                            "previousAmount": "237,600.00",
+                                                            "adjustedAmount": "290,400.00",
+                                                            "totalQuantity": "1,320.00",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "1200.01-And Above",
+                                                                    "value": "400.00",
+                                                                    "countApplicable": "1,320.00",
+                                                                    "amountApplicable": "528,000.00",
+                                                                    "actualAmountCalculated": "528,000.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        "1668137859": {
+                                                            "categoryId": "BH NFC-5",
+                                                            "amount": "1,600,000.00",
+                                                            "quantity": "1250",
+                                                            "previousAmount": "750,000.00",
+                                                            "adjustedAmount": "850,000.00",
+                                                            "totalQuantity": "2500",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "1500.01-And Above",
+                                                                    "value": "640.00",
+                                                                    "countApplicable": "2500",
+                                                                    "amountApplicable": "1,600,000.00",
+                                                                    "actualAmountCalculated": "1,600,000.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        },
+                                                        "1847352855": {
+                                                            "categoryId": "BH NFC-4",
+                                                            "amount": "520,000.00",
+                                                            "quantity": "500.00",
+                                                            "previousAmount": "240,000.00",
+                                                            "adjustedAmount": "280,000.00",
+                                                            "totalQuantity": "1,000.00",
+                                                            "ranges": [
+                                                                {
+                                                                    "range": "800.01-And Above",
+                                                                    "value": "520.00",
+                                                                    "countApplicable": "1,000.00",
+                                                                    "amountApplicable": "520,000.00",
+                                                                    "actualAmountCalculated": "520,000.00",
+                                                                    "isMaxCapApplied": false,
+                                                                    "isMinCapApplied": false
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                "royaltyItem": "Adv.",
+                                                "totalAmount": "3,320,000.00",
+                                                "totalAmountAfterCap": "1,756,400.00",
+                                                "isMaxCapApplied": false,
+                                                "isMinCapApplied": false,
+                                                "isGrowthBased": false,
+                                                "appliedAs": "Flat Per Category"
+                                            }
+                                        }
+                                    }
+                                },
+                                "local_currency_retrieve": {
+                                    "summary": "Retrieve Invoice Details in Local Currency",
+                                    "value": {
+                                        "royaltyItemDetailsMap": {
+                                            "royaltyItemDetailsMap": {
+                                                "1": {
+                                                    "includeInCalculation": {
+                                                        "categories": {
+                                                            "878772094": {
+                                                                "categoryId": "BH NFC-1",
+                                                                "amount": "15.00",
+                                                                "quantity": "1050",
+                                                                "previousAmount": "15.00",
+                                                                "adjustedAmount": "0.00",
+                                                                "totalQuantity": "2100",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "0.0-1000.0",
+                                                                        "value": "7.00",
+                                                                        "countApplicable": "1000",
+                                                                        "amountApplicable": "7.00",
+                                                                        "actualAmountCalculated": "7.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    },
+                                                                    {
+                                                                        "range": "1000.01-And Above",
+                                                                        "value": "8.00",
+                                                                        "countApplicable": "1100",
+                                                                        "amountApplicable": "8.00",
+                                                                        "actualAmountCalculated": "8.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "1646266697": {
+                                                                "categoryId": "BH NFC-2",
+                                                                "amount": "9.00",
+                                                                "quantity": "660.00",
+                                                                "previousAmount": "9.00",
+                                                                "adjustedAmount": "0.00",
+                                                                "totalQuantity": "1,320.00",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "0.0-1500.0",
+                                                                        "value": "9.00",
+                                                                        "countApplicable": "1,320.00",
+                                                                        "amountApplicable": "9.00",
+                                                                        "actualAmountCalculated": "9.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "1668137859": {
+                                                                "categoryId": "BH NFC-5",
+                                                                "amount": "25.00",
+                                                                "quantity": "1250",
+                                                                "previousAmount": "25.00",
+                                                                "adjustedAmount": "0.00",
+                                                                "totalQuantity": "2500",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "0.0-1200.0",
+                                                                        "value": "15.00",
+                                                                        "countApplicable": "1200",
+                                                                        "amountApplicable": "15.00",
+                                                                        "actualAmountCalculated": "15.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    },
+                                                                    {
+                                                                        "range": "1200.01-And Above",
+                                                                        "value": "10.00",
+                                                                        "countApplicable": "1300",
+                                                                        "amountApplicable": "10.00",
+                                                                        "actualAmountCalculated": "10.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "1847352855": {
+                                                                "categoryId": "BH NFC-4",
+                                                                "amount": "11.00",
+                                                                "quantity": "500.00",
+                                                                "previousAmount": "11.00",
+                                                                "adjustedAmount": "0.00",
+                                                                "totalQuantity": "1,000.00",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "0.0-2000.0",
+                                                                        "value": "11.00",
+                                                                        "countApplicable": "1,000.00",
+                                                                        "amountApplicable": "11.00",
+                                                                        "actualAmountCalculated": "11.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "royaltyItem": "Royalty",
+                                                    "totalAmount": "60.00",
+                                                    "totalAmountAfterCap": "0.00",
+                                                    "isMaxCapApplied": false,
+                                                    "isMinCapApplied": false,
+                                                    "isGrowthBased": true,
+                                                    "appliedAs": "Flat"
+                                                },
+                                                "2": {
+                                                    "includeInCalculation": {
+                                                        "categories": {
+                                                            "878772094": {
+                                                                "categoryId": "BH NFC-1",
+                                                                "amount": "16,800.00",
+                                                                "quantity": "1050",
+                                                                "previousAmount": "8,400.00",
+                                                                "adjustedAmount": "8,400.00",
+                                                                "totalQuantity": "2100",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "1000.01-And Above",
+                                                                        "value": "8.00",
+                                                                        "countApplicable": "2100",
+                                                                        "amountApplicable": "16,800.00",
+                                                                        "actualAmountCalculated": "16,800.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "1646266697": {
+                                                                "categoryId": "BH NFC-2",
+                                                                "amount": "13,200.00",
+                                                                "quantity": "660.00",
+                                                                "previousAmount": "5,940.00",
+                                                                "adjustedAmount": "7,260.00",
+                                                                "totalQuantity": "1,320.00",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "1200.01-And Above",
+                                                                        "value": "10.00",
+                                                                        "countApplicable": "1,320.00",
+                                                                        "amountApplicable": "13,200.00",
+                                                                        "actualAmountCalculated": "13,200.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "1668137859": {
+                                                                "categoryId": "BH NFC-5",
+                                                                "amount": "40,000.00",
+                                                                "quantity": "1250",
+                                                                "previousAmount": "18,750.00",
+                                                                "adjustedAmount": "21,250.00",
+                                                                "totalQuantity": "2500",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "1500.01-And Above",
+                                                                        "value": "16.00",
+                                                                        "countApplicable": "2500",
+                                                                        "amountApplicable": "40,000.00",
+                                                                        "actualAmountCalculated": "40,000.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "1847352855": {
+                                                                "categoryId": "BH NFC-4",
+                                                                "amount": "13,000.00",
+                                                                "quantity": "500.00",
+                                                                "previousAmount": "6,000.00",
+                                                                "adjustedAmount": "7,000.00",
+                                                                "totalQuantity": "1,000.00",
+                                                                "ranges": [
+                                                                    {
+                                                                        "range": "800.01-And Above",
+                                                                        "value": "13.00",
+                                                                        "countApplicable": "1,000.00",
+                                                                        "amountApplicable": "13,000.00",
+                                                                        "actualAmountCalculated": "13,000.00",
+                                                                        "isMaxCapApplied": false,
+                                                                        "isMinCapApplied": false
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    },
+                                                    "royaltyItem": "Adv.",
+                                                    "totalAmount": "83,000.00",
+                                                    "totalAmountAfterCap": "43,910.00",
+                                                    "isMaxCapApplied": false,
+                                                    "isMinCapApplied": false,
+                                                    "isGrowthBased": false,
+                                                    "appliedAs": "Flat Per Category"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                         }
                     }
                 },
