@@ -26,11 +26,6 @@
             "url": "tag/Authentication"
         },
         {
-            "displayName": "Implicit",
-            "name": "Authentication",
-            "url": "tag/Implicit"
-        },
-        {
             "displayName": "Password Credentials",
             "name": "Authentication",
             "url": "tag/Password-Credentials"
