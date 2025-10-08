@@ -26,7 +26,7 @@
         },
         {
             "name": "Authorization Code",
-            "description": "<p><img src=\"images/Get-New-Access-Token.png\"><br>For using the grant type as <strong>Authorization Code</strong>, enter the details in the <strong>Get New Access Token&nbsp;</strong>dialog as explained in the following steps:<ol> <li style=\"margin-left: 1px;\">Enter a name for your Access Token (Optional).</li><li style=\"margin-left: 1px;\">Select the <strong>Grant Type</strong> as <strong>Authorization Code</strong>.</li><li style=\"margin-left: 1px;\">Enter the callback URL to which the generated access token would be redirected. The callback URL is also known as redirect URI and this URL should match the one that you use during the application registration process.<br>Example: Callback URL can be https://oauth.powerbi.com/views/oauthredirect.html<br>To register your callback/redirect URL, contact <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a></li><strong>Note:</strong> The above mentioned example uses the callback URL using the Postman client. If you are using any other GUI client, use your own redirect URI.<li style=\"margin-left: 1px;\">Enter the endpoint for the authorization server as the <strong>Auth URL</strong>. This is used to get the authorization code.<br>Example: Auth URL can be https://auth.franconnectuat.net/userauth/oauth/authorize?response_type=code</li><p><strong>Note:</strong> The response_type is <strong>code</strong> for the Grant Type <strong>Authorization</strong> and the redirect URI is same as the callback URL.</p><li style=\"margin-left: 1px;\">Enter the endpoint for the authentication server in the <strong>Access Token URL&nbsp;</strong>field. This is used to exchange the authorization code for an access token.<br>Example: Access Token URL can be https://auth.franconnectuat.net/userauth/oauth/token <p><strong>Note:</strong> If the login URL for your FranConnect system isthen the X-TenantID will be developers.franconnectdemo.net</li><li style=\"margin-left: 1px;\">Enter the Client ID provided to you by FranConnect in the <strong>Client ID</strong> field. <br>Example: Client ID can be FRANC0NN3CT_API</li><li style=\"margin-left: 1px;\">Enter the Client Secret provided to you by FranConnect in the <strong>Client Secret</strong> field.<br>Example: Client Secret can be DDEEMVOE2L0O1P9E<br>Contact <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a> to get your Client ID and Client Secret.</li><li style=\"margin-left: 1px;\">Select the option <strong>Send as Basic Auth header</strong> for the <strong>Client Authentication&nbsp;</strong>field.</li></ol></li></ol></p><img src=\"images/Auth_Request.png\"><p>Enter all these details, and click <strong>Request Token</strong> to request for a token.</p><p>The FranConnect API validates all the details and displays a dialog to enter the following additional information: <strong>Company Code</strong>, <strong>Username</strong> and <strong>Password</strong>.</p> </p><img src=\"images/Auth-Comp-Code.png\"><ol><li>If the login URL for your FranConnect system is https://developers.franconnectdemo.net/fc, then the company code will be developers.franconnectdemo.net</li><li>Your username and password will be your login credentials for your FranConnect system</li></ol><p>If all the details are valid, then, the access token is generated that can be used for the API calls.</p><p><strong>Note:</strong> The access token is valid for 12 hours, after which a new access token is to be generated using the <a href=\"#operation/Refresh_Token_Auth\"> refresh token</a>. This refresh token is valid for 30 days. Refresh tokens that were generated more than 30 days back cannot be used to generate a new access token.</p>"
+            "description": "<p><img src=\"images/Get-New-Access-Token.png\"><br>For using the grant type as <strong>Authorization Code</strong>, enter the details in the <strong>Get New Access Token&nbsp;</strong>dialog as explained in the following steps:<ol> <li style=\"margin-left: 1px;\">Enter a name for your Access Token (Optional).</li><li style=\"margin-left: 1px;\">Select the <strong>Grant Type</strong> as <strong>Authorization Code</strong>.</li><li style=\"margin-left: 1px;\">Enter the callback URL to which the generated access token would be redirected. The callback URL is also known as redirect URI and this URL should match the one that you use during the application registration process.<br>Example: Callback URL can be https://oauth.powerbi.com/views/oauthredirect.html<br>To register your callback/redirect URL, contact <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a></li><strong>Note:</strong> The above mentioned example uses the callback URL using the Postman client. If you are using any other GUI client, use your own redirect URI.<li style=\"margin-left: 1px;\">Enter the endpoint for the authorization server as the <strong>Auth URL</strong>. This is used to get the authorization code.<br>Example: Auth URL can be https://auth.franconnectuat.net/userauth/oauth/authorize?response_type=code&amp;client_id=FRANC0NN3CT_API&amp;redirect_uri=https://oauth.powerbi.com/views/oauthredirect.html</li><p><strong>Note:</strong> The response_type is <strong>code</strong> for the Grant Type <strong>Authorization</strong> and the redirect URI is same as the callback URL.</p><li style=\"margin-left: 1px;\">Enter the endpoint for the authentication server in the <strong>Access Token URL&nbsp;</strong>field. This is used to exchange the authorization code for an access token.<br>Example: Access Token URL can be https://auth.franconnectuat.net/userauth/oauth/token?X-TenantID=developers.franconnectdemo.net&grant_type=authorization_code&client_id=FRANC0NN3CT_API&redirect_uri=https://oauth.powerbi.com/views/oauthredirect.html</p><p><strong>Note:</strong> If the login URL for your FranConnect system is https://developers.franconnectdemo.net/fc, then the X-TenantID will be developers.franconnectdemo.net</li><li style=\"margin-left: 1px;\">Enter the Client ID provided to you by FranConnect in the <strong>Client ID</strong> field. <br>Example: Client ID can be FRANC0NN3CT_API</li><li style=\"margin-left: 1px;\">Enter the Client Secret provided to you by FranConnect in the <strong>Client Secret</strong> field.<br>Example: Client Secret can be DDEEMVOE2L0O1P9E<br>Contact <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a> to get your Client ID and Client Secret.</li><li style=\"margin-left: 1px;\">Select the option <strong>Send as Basic Auth header</strong> for the <strong>Client Authentication&nbsp;</strong>field.</li></ol></li></ol></p><p>Enter all these details, and click <strong>Request Token</strong> to request for a token.</p><p>The FranConnect API validates all the details and displays a dialog to enter the following additional information: <strong>Company Code</strong>, <strong>Username</strong> and <strong>Password</strong>.</p> </p><img src=\"images/Auth-Comp-Code.png\"><ol><li>If the login URL for your FranConnect system is https://developers.franconnectdemo.net/fc, then the company code will be developers.franconnectdemo.net</li><li>Your username and password will be your login credentials for your FranConnect system</li></ol><p>If all the details are valid, then, the access token is generated that can be used for the API calls.</p><p><strong>Note:</strong> The access token is valid for 12 hours, after which a new access token is to be generated using the <a href=\"#operation/Refresh_Token_Auth\"> refresh token</a>. This refresh token is valid for 30 days. Refresh tokens that were generated more than 30 days back cannot be used to generate a new access token.</p>"
         },
         {
             "name": "Password Credentials",
@@ -72,11 +72,27 @@
         },
         {
             "name": "Sales",
-            "description": "<p>The Sales Module helps you to manage franchisee leads across their lifecycle. Using the FranConnect API, you can perform Create, Retrieve, Update, and Delete operations for all the tabs that are available in <strong>Sales > Lead Management</strong>, except the file type fields and the pages/tabs that contain multiple tabular sections. The “file” type of fields are not supported by the FranConnect API and you can perform only Retrieve operations on pages that contain multiple tabular sections. </p><p>The following sections provide details and examples to perform Create, Retrieve, Update, and Delete operations on a Sales Lead’s “Primary Info” tab. Similarly, you can perform these operations for any other tab in <strong>Sales > Lead Management</strong>.</p>"
+            "description": "<p>The Sales Module helps you to manage franchisee leads across their lifecycle. Using the FranConnect API, you can perform Create, Retrieve, Update, and Delete operations for all the tabs that are available in <strong>Sales > Lead Management</strong>, except the pages/tabs that contain multiple tabular sections. You can perform only Retrieve operations on pages that contain multiple tabular sections. </p><p>The following sections provide details and examples to perform Create, Retrieve, Update, and Delete operations on a Sales Lead’s “Primary Info” tab. Similarly, you can perform these operations for any other tab in <strong>Sales > Lead Management</strong>.</p>"
+        },
+        {
+            "name": "Sales - Retrieve and Upload Documents",
+            "description": "These API endpoints allow you to retrieve and upload documents linked to the Sales tab, whether it's a system-defined or custom tab. You can use them to fetch documents related to a specific lead or to create and update documents associated with that lead. This helps streamline document management within your sales workflows."
         },
         {
             "name": "Info Manager",
-            "description": "<p>Using the FranConnect API, you can manage the \"in-development\" and the operational locations in the Info Manager module. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the location’s main page (in Center Info) or in any of the tabs (such as Real Estate and Mystery Review).</p><p>Note that the following sections explain and provide examples on how to perform these operations on the “Primary Info” tab for locations. Similarly, you can perform these  operations for other tabs as well for locations that are either in-development or have been opened since.</p>"
+            "description": "<p>Using the FranConnect API, you can manage the \"in-development\" and the operational locations in the Info Manager module. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the location’s main page (in Center Info) or in any of the tabs (such as Real Estate, Mystery Review).</p><p>Note that the following sections explain and provide examples on how to perform these operations on the “Primary Info” tab for locations. Similarly, you can perform these  operations for other tabs as well for locations that are either in-development or have been opened since.</p>"
+        },
+        {
+            "name": "IM - Retrieve and Upload Documents",
+            "description": "<p>These API endpoints allow you to retrieve and upload documents linked to the different Info Manager tab(s), whether it's a system-defined or custom tab. You can use them to fetch documents related to a specific info manager entity or to create and update documents associated with it. This helps streamline document management within your Info Manager workflows.</p><p>The following tabs are supported with document API:</p><ul><li>Agreement</li><li>Center Info</li><li>Contract Signing</li><li>Default and Termination</li><li>Employees</li><li>Entity Details</li><li>Financial</li><li>Insurance</li><li>Legal Violation</li><li>Lenders</li><li>Mystery Review</li><li>Real Estate</li><li>Renewal</li><li>Territory</li><li>Training</li><li>Transfer</li><li>Promissory Notes</li><li>Customer Complaint</li><li>All Custom Tabs</li></ul>"
+        },
+        {
+            "name": "Transfer",
+            "description": "This API endpoints support retrieve operation associated with Transfers."
+        },
+        {
+            "name": "Previous Ownership",
+            "description": "This API endpoints support retrieve operation associated with Previous Ownerships associated with a franchisee."
         },
         {
             "name": "Company v1",
@@ -259,12 +275,16 @@
                 "Sales",
                 "Sales Lead",
                 "Retrieve Sales Lead Webform",
+                "Sales - Retrieve and Upload Documents",
                 "Info Manager",
                 "Franchisee",
+                "IM - Retrieve and Upload Documents",
                 "Company v1",
                 "Company v2",
                 "Custom Profiles",
                 "Reference Dates",
+                "Transfer",
+                "Previous Ownership",
                 "Ownership",
                 "Company Ownership",
                 "People Ownership",
@@ -1371,6 +1391,76 @@
                 }
             }
         },
+        "/retrieveDocuments?module=fs&subModule=lead": {
+            "post": {
+                "tags": [
+                    "Sales - Retrieve and Upload Documents"
+                ],
+                "summary": "Retrieve Documents",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the documents associated with a lead on Primary info tab. In a similar manner, the Retrieve operation can be performed to retrieve other documents under different sub-module. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path>/rest/dataservices/retrieveDocuments/module=fs&subModule=selectedsubmodule&filterXML=filteredxmlString&responseType=XML </td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the details of a lead's documents uploaded under the given sub-module using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p> </li></ol><p>The following items must be used as path parameters:</p><ol> <li> <p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fs\".</p> </li> <li> <p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"lead\".</p> </li> <li> <p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p> </li> <li> <p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve the document for the given lead under selected sub-module. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the documents of an existing lead under primary info tab. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u> </p></li></ol><p class=\"western\"><strong>Example: Retrieve documents via Terminal (cURL)</strong></p><p class=\"western\">Run the following command in your macOS Terminal. It downloads a ZIP containing all documents for the specified lead (identified by <code>referenceId</code>) under the selected sub-module. Replace <code>[enter your access token]</code> and the output path as needed.</p><pre><code>curl --location \"https://developers.franconnectdemo.net/fc/rest/dataservices/retrieveDocuments\" \\\n--header \"Authorization: Bearer [enter your access token]\" \\\n--header \"Content-Type: application/x-www-form-urlencoded\" \\\n--data-urlencode \"module=fs\" \\\n--data-urlencode \"subModule=lead\" \\\n--data-urlencode \"responseType=xml\" \\\n--data-urlencode \"filterXML=&lt;fcRequest&gt;&lt;filter&gt;&lt;referenceId&gt;1256248607&lt;/referenceId&gt;&lt;/filter&gt;&lt;/fcRequest&gt;\" \\\n--output ~/Desktop/lead-documents.zip</code></pre><p class=\"western\">What happens: the token authenticates your request, <code>module</code>/<code>subModule</code> point to Sales &rarr; Lead, <code>filterXML</code> selects the target lead by <code>referenceId</code>, and <code>--output</code> saves the resulting ZIP to your chosen path. If the filter does not match any documents, the ZIP will be empty.</p>",
+                "operationId": "Sales_Retrieve_Lead_Documents",
+            }
+        },
+        "/createMultiPart?module=fs&subModule=lead": {
+            "post": {
+                "tags": [
+                    "Sales - Retrieve and Upload Documents"
+                ],
+                "summary": "Create Data with Documents",
+                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a sales lead through the Sales module. Similarly, the Create operation can be performed to add the different Sales tab entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/createMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding a sales lead with primary info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fs”.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString contains the attribute names and their corresponding values used in the request to add a lead. If you need to upload a document, you must include values for the relevant document fields within the xmlString (refer to the example for guidance). To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the create operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would create a new sales lead. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that lead and can be used for the Update and Retrieve operations.</p><p><strong>Note:</strong></p><ol><li><p>In order to create data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the sub-module for which this data is to be created. The best way to uniquely specify a lead is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API: </strong> Primary Info; Candidate Portal; Co-Applicants; Compliance; Documents; Personal Profile; Qualification Details; Real Estate; All Custom Tabs.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/SalesLead_CreateDoc_Header.png\"><img src=\"images/SalesLead_CreateDoc_Body.png\">",
+                "operationId": "Fs_Create_LeadwithDoc",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FSCreateLeadwithDocResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FSCreateLeadwithDocArray"
+                }
+            }
+        },
+        "/updateMultiPart?module=fs&subModule=lead": {
+            "post": {
+                "tags": [
+                    "Sales - Retrieve and Upload Documents"
+                ],
+                "summary": "Update Documents",
+                "description": "<p class=\"western\">This section contains an example of the Update operation performed for updating information or documents associated with an existing sales lead through the Sales module. Similarly, the Update operation can be performed to update the different Sales sub-modules.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/updateMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform the update operation for on an existing sales lead with primary info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”.</p></li><li><p>The sub-module for which the update operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString should include only the fields you want to update, along with the lead’s reference ID. To update a document, include the document name in the string to specify which document should be replaced. To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to update. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the update operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would update the existing sales lead. </p><p><strong>Note:</strong></p><ol><li><p>In order to update data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the sub-module for which this data is to be updated. The best way to uniquely specify a lead is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to update data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API: </strong> Primary Info; Candidate Portal; Co-Applicants; Compliance; Documents; Personal Profile; Qualification Details; Real Estate; All Custom Tabs.</p></li><li><p>If a document already exists in the target field, the uploaded document will overwrite the existing one.</p></li><li><p>Document upload is only allowed if data exists for the respective tab.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/SalesLead_UpdateDoc_Header.png\"><img src=\"images/SalesLead_UpdateDoc_Body.png\">",
+                "operationId": "Fs_Update_LeadwithDoc",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FSUpdateLeadwithDocResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FSUpdateLeadwithDocArray"
+                }
+            }
+        },
         "/create?module=fim&subModule=franchisee": {
             "post": {
                 "tags": [
@@ -1486,6 +1576,136 @@
                 },
                 "requestBody": {
                     "$ref": "#/components/requestBodies/FimDeleteFranchiseeArray"
+                }
+            }
+        },
+        "/retrieveDocuments?module=fim&subModule=franchisee": {
+            "post": {
+                "tags": [
+                    "IM - Retrieve and Upload Documents"
+                ],
+                "summary": "Retrieve Documents",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the documents associated with a franchisee on Center Info tab. In a similar manner, the Retrieve operation can be performed to retrieve other documents under different sub-modules. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td><context-path>/rest/dataservices/retrieveDocuments/module=fim&subModule=selectedsubmodule&filterXML=filteredxmlString&responseType=XML</td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the documents of a franchisee uploaded under the given sub-module using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"franchisee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve the documents for the given franchisee under the selected sub-module. In this case, <strong>\"referenceId\"</strong> has been used to retrieve the documents of an existing franchisee under the Center Info tab. In order to determine the parameter names/schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li></ol><p class=\"western\"><strong>Example: Retrieve documents via Terminal (cURL)</strong></p><p class=\"western\">Run the following command in your macOS Terminal. It downloads a ZIP containing all documents for the specified franchisee (identified by <code>referenceId</code>) under the selected sub-module. Replace <code>[enter your access token]</code> and the output path as needed.</p><pre><code>curl --location \"https://qamsastg4.franconnectstg.net/fc/rest/dataservices/retrieveDocuments\" \\\n--header \"Authorization: Bearer [enter your access token]\" \\\n--header \"Content-Type: application/x-www-form-urlencoded\" \\\n--data-urlencode \"module=fim\" \\\n--data-urlencode \"subModule=franchisee\" \\\n--data-urlencode \"responseType=xml\" \\\n--data-urlencode \"filterXML=&lt;fcRequest&gt;&lt;filter&gt;&lt;referenceId&gt;1256248607&lt;/referenceId&gt;&lt;/filter&gt;&lt;/fcRequest&gt;\" \\\n--output ~/Desktop/franchisee-documents.zip</code></pre><p class=\"western\">What happens: the token authenticates your request, <code>module</code>/<code>subModule</code> point to Info Manager → Franchisee, <code>filterXML</code> selects the target franchisee by <code>referenceId</code>, and <code>--output</code> saves the resulting ZIP to your chosen path. If the filter does not match any documents, the ZIP will be empty.</p>",
+                "operationId": "Fim_Retrieve_Documents",
+            }
+        },
+        "/createMultiPart?module=fim&subModule=franchisee": {
+            "post": {
+                "tags": [
+                    "IM - Retrieve and Upload Documents"
+                ],
+                "summary": "Create Data with Documents",
+                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a franchisee center info through the Info Manager module. Similarly, the Create operation can be performed to add the different Info Manager tab entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/createMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding franchisee center info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fim”.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString contains the attribute names and their corresponding values used in the request to add a franchisee. If you need to upload a document, you must include values for the relevant document fields within the xmlString (refer to the example and photo for guidance). To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the create operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would create a new franchisee with center info tab filled. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that franchisee and can be used for the Update and Retrieve operations.</p><p><strong>Note:</strong></p><ol><li><p>In order to create data in any tab/sub-module other than “Center Info”, it is mandatory to specify the sub-module for which this data is to be created. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API under Info manager: </strong>  Agreement; Center Info; Contract Signing; Default and Termination; Employees; Entity Details; Financial; Insurance; Legal Violation; Lenders; Mystery Review; Real Estate; Renewal; Territory; Training; Transfer; Promissory Notes; Customer Complaint; All Custom Tabs.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/IMFranchisee_CreateDoc_Header.png\"><img src=\"images/IMFranchisee_CreateDoc_Body.png\">",
+                "operationId": "Fim_Create_FranchiseewithDoc",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimCreateFranchiseewithDocResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimCreateFrancshiseewithDocArray"
+                }
+            }
+        },
+        "/updateMultiPart?module=fim&subModule=franchisee": {
+            "post": {
+                "tags": [
+                    "IM - Retrieve and Upload Documents"
+                ],
+                "summary": "Update Documents",
+                "description": "<p class=\"western\">This section contains an example of the Update operation performed for updating information or documents associated with an existing franchisee center info through the Info Manager module. Similarly, the Update operation can be performed to update the different Info Manager sub-modules.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/updateMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform the update operation on an existing franchisee with center info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fim”.</p></li><li><p>The sub-module for which the update operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString should include only the fields you want to update, along with the franchisee’s reference ID. To update a document, include the document name in the string to specify which document should be replaced. To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to update. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the update operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would update the existing franchisee center info. </p><p><strong>Note:</strong></p><ol><li><p>In order to update data in any tab/sub-module other than “Center Info”, it is mandatory to specify the sub-module for which this data is to be updated. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to update data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API: </strong> Agreement; Center Info; Contract Signing; Default and Termination; Employees; Entity Details; Financial; Insurance; Legal Violation; Lenders; Mystery Review; Real Estate; Renewal; Territory; Training; Transfer; Promissory Notes; Customer Complaint; All Custom Tabs.</p></li><li><p>If a document already exists in the target field, the uploaded document will overwrite the existing one.</p></li><li><p>Document upload is only allowed if data exists for the respective tab.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/IMFranchisee_UpdateDoc_Header.png\"><img src=\"images/IMFranchisee_UpdateDoc_Body.png\">",
+                "operationId": "Fim_Update_FranchiseewithDoc",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimUpdateFranchiseewithDocResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimUpdateFranchiseewithDocArray"
+                }
+            }
+        },
+        "/retrieve?module=fim&subModule=transfer": {
+            "post": {
+                "tags": [
+                    "Transfer"
+                ],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving transfer records through the Info Manager module. For the Retrieve operation, you can also use pagination to chain through the records using the limit and offset parameters appended in the URL. Click <a href=\"#Pagination\">here</a> for more details.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=fim&subModule=transfer&filterXML=filteredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Retrieve operation for retrieving transfer records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"transfer\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML contains the attribute names and their values used to retrieve transfer records. For example, <strong>\"franchiseeName\"</strong> is passed to retrieve the details of an existing transfer record. To determine the valid parameter names or schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed are mentioned <u><a href=\"#tag/List-of-Field-Names\">here</a></u>. Additionally, the following filters can be applied under the <strong>fimtransfer</strong> tag to retrieve data specific to a transfer record:</p><ol type=\"a\"><li><p>Filter by <strong>referenceId</strong> - Retrieve one or more transfer records by their unique identifier(s).</p></li><li><p>Filter by <strong>newCenterNo</strong> - Identify whether a new franchise ID was created during the transfer. Use \"Yes\" to return transfers with a new franchise ID, and \"No\" to exclude them.</p></li><li><p>Filter by <strong>centerNo</strong> - Use together with the newCenterNo filter to specify the exact franchise ID created during the transfer.</p></li></ol></li></ol></p><img src=\"images/TransferRetrieve_Param.png\"><img src=\"images/TransferRetrieve_Body.png\">",
+                "operationId": "FIM_Retrieve_Transfer",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimRetrieveTransferResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimRetrieveTransferArray"
+                }
+            }
+        },
+        "/retrieve?module=fim&subModule=previousOwnerships": {
+            "post": {
+                "tags": [
+                    "Previous Ownership"
+                ],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving previous ownerships records through the Info Manager module for the given franchisee. For the Retrieve operation, you can also use pagination to chain through the records using the limit and offset parameters appended in the URL. Click <a href=\"#Pagination\">here</a> for more details.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=fim&subModule=previousOwnerships&filterXML=filteredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Retrieve operation for retrieving previous ownerships records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"previousOwnerships\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve previous ownership records. In this case,<strong> \"franchiseeName\"</strong> which is ID of a franchisee has been used to retrieve the details of previous ownerships record. In order to determine the parameter names/ schema, a query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></li></ol></p><img src=\"images/PrevOwnershipRetrieve_Param.png\"><img src=\"images/PrevOwnershipRetrieve_Body.png\">",
+                "operationId": "FIM_Retrieve_PrevOwnership",
+                "responses": {
+                    "200": {
+                        "$ref": "#/components/responses/FimRetrievePrevOwnershipResp"
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/FimRetrievePrevOwnershipArray"
                 }
             }
         },
@@ -10870,7 +11090,7 @@
                     "Refresh Token"
                 ],
                 "summary": "Refresh Token Authentication",
-                "description": "<p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://auth.franconnect.net/userauth/oauth/token</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://auth.franconnectuat.net/userauth/oauth/token</td> </tr></table><br>Perform the following steps to generate a new access token using a refresh token:<ol> <li style=\"margin-left: 1px;\">Using the Postman GUI, select POST as the API method and enter https://auth.franconnectuat.net/userauth/oauth/token as the request url</p> </li> <li style=\"margin-left: 1px;\">Enter the following items as <strong>x-www-form-urlencoded</strong> parameters in body: <ul> <li> <p>&ldquo;grant_type&rdquo; as the key and its value as &ldquo;refresh_token&rdquo;.</p> </li> <li style=\"margin-left: 1px;\"> <p>&ldquo;refresh_token&rdquo; as the key and its value will be the complete refresh token value that you have received from authentication.</p> </li> </ul> <p><img src=\"images/Refresh_Token-2.png\"></p> </li> <li style=\"margin-left: 1px;\">Click on Authorization tab and choose Basic Auth for the type field. Enter the Client ID provided to you by FranConnect in the username field, for e.g. FRANC0NN3CT_API. Enter the Client Secret provided to you by FranConnect in the password field, for e.g. DDEEMVOE2L0O1P9E. <p>Contact <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a> to get your Client ID and Client Secret.</p> <p><img src=\"images/Refresh_Token-3.png\"></p> </li> <li style=\"margin-left: 1px;\">Include the following item in the header of the request: <ul> <li style=\"margin-left: 1px;\"> <p>&ldquo;X-TenantID&rdquo; as the key and its value based on your FranConnect system's URL. If the login URL for your FranConnect system is https://developers.franconnectdemo.net/fc, then the X-TenantID will be developers.franconnectdemo.net. </li> </ul> <p><img src=\"images/Refresh_Token-4.png\"></p> </li> <li style=\"margin-left: 1px;\">Click Send to get a new access token along with a new refresh token.</li></ol></p>",
+                "description": "<p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://auth.franconnect.net/userauth/oauth/token</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://auth.franconnectuat.net/userauth/oauth/token</td> </tr></table><br>Perform the following steps to generate a new access token using a refresh token:<ol> <li style=\"margin-left: 1px;\">Using the Postman GUI, select POST as the API method and enter https://auth.franconnectuat.net/userauth/oauth/token as the request url.<p><img src=\"images/Refresh_Token_2.PNG\"></p> </li> <li style=\"margin-left: 1px;\">Enter the following items as query parameters: <ul> <li> <p>&ldquo;grant_type&rdquo; as the key and its value as &ldquo;refresh_token&rdquo;.</p> </li> <li style=\"margin-left: 1px;\"> <p>&ldquo;refresh_token&rdquo; as the key and its value will be the complete refresh token value that you have received from authentication.</p> </li> </ul> <p><img src=\"images/Refresh_Token_3.PNG\"></p> </li> <li style=\"margin-left: 1px;\">Click on Authorization tab and choose Basic Auth for the type field. Enter the Client ID provided to you by FranConnect in the username field, for e.g. FRANC0NN3CT_API. Enter the Client Secret provided to you by FranConnect in the password field, for e.g. DDEEMVOE2L0O1P9E. <p>Contact <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a> to get your Client ID and Client Secret.</p> <p><img src=\"images/Refresh_Token_4.PNG\"></p> </li> <li style=\"margin-left: 1px;\">Include the following item in the header of the request: <ul> <li style=\"margin-left: 1px;\"> <p>&ldquo;X-TenantID&rdquo; as the key and its value based on your FranConnect system's URL. If the login URL for your FranConnect system is https://developers.franconnectdemo.net/fc, then the X-TenantID will be developers.franconnectdemo.net. </li> </ul> <p><img src=\"images/Refresh_Token_5.PNG\"></p> </li> <li style=\"margin-left: 1px;\">Click Send to get a new access token along with a new refresh token.</li></ol></p>",
                 "operationId": "Refresh_Token_Auth"
             }
         }
@@ -11150,6 +11370,82 @@
                     }
                 },
                 "description": "Lead Deletion object",
+                "required": true
+            },
+            "FSCreateLeadwithDocArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<firstName>Harshit</firstName>\n<lastName>Pal</lastName>\n<city>Delhi</city>\n<country>India</country>\n<stateID>Delhi</stateID>\n<mobile>98765432</mobile>\n<emailID>test@gmail.com</emailID>\n<_salesDocument1990166773>Sales Document-1</_salesDocument1990166773>\n<_infoDocument2107005972>Info Document-1</_infoDocument2107005972>\n<_ownerDocument1581933397>Owner Document-1</_ownerDocument1581933397>\n<leadOwnerID>942886113</leadOwnerID>\n<marketingCodeId>Marketing Code</marketingCodeId>\n<leadSource2ID>Friends</leadSource2ID>\n<leadSource3ID>Friends</leadSource3ID>\n</fsLead>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/FSCreateLead"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Lead Creation object",
+                "required": true
+            },
+            "FimCreateFrancshiseewithDocArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<status>No</status>\n<franchiseeName>HP-FC-01</franchiseeName>\n<centerName>Berger Street</centerName>\n<areaID>Southwest Region</areaID>\n<openingDate>04/16/2025</openingDate>\n<storeTypeId>Default</storeTypeId>\n<address>123, Street 10</address>\n<city>Noida</city>\n<country>India</country>\n<state>Uttar Pradesh</state>\n<storePhone>8765431</storePhone>\n<storeEmail>test@gmail.com</storeEmail>\n<emailID>test@gmail.com</emailID>\n<_newestField2133623532>Fort</_newestField2133623532>\n<_locationDocument700697512>Location Doc 1</_locationDocument700697512>\n<_storeDocument390800936>Store Document 1</_storeDocument390800936>\n<_auditDocument748916752>Audit Document 1</_auditDocument748916752>\n<lifecycleStage>Active</lifecycleStage>\n<entityDetail>Individual</entityDetail>\n<entityType>New</entityType>\n<ownerType>New</ownerType>\n<firstName>Himanshu</firstName>\n<lastName>Paliwal</lastName>\n</fimFranchisee>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/FSCreateLead"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Lead Creation object",
+                "required": true
+            },
+            "FSUpdateLeadwithDocArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>1421945231</referenceId>\n<_salesDocument1990166773>Sales Document-22</_salesDocument1990166773>\n</fsLead>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/FSCreateLead"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Lead Creation object",
+                "required": true
+            },
+            "FimUpdateFranchiseewithDocArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<referenceId>1256248607</referenceId>\n<_locationDocument700697512>Location Document 2</_locationDocument700697512>\n<_storeDocument390800936>Store Document 2</_storeDocument390800936>\n</fimFranchisee>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/FSCreateLead"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Lead Creation object",
                 "required": true
             },
             "AdminSubModuleArray": {
@@ -11464,6 +11760,44 @@
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<referenceId>849339702</referenceId>\n</filter>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimRetrieveTransferArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<franchiseeName>Dhampur</franchiseeName>>\n</filter>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimRetrievePrevOwnershipArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<franchiseeName>Dhampur</franchiseeName>>\n</filter>\n</fcRequest>",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -12478,6 +12812,39 @@
                 },
                 "description": "Successful"
             },
+            "FSCreateLeadwithDocResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2030934091</responseId>\n<responseData>\n<fsLead>\n<status>Success</status>\n<referenceId>1440427898</referenceId>\n</fsLead>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "FSUpdateLeadwithDocResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>473101746</responseId>\n<responseData>\n<fsLead>\n<status>Success</status>\n<referenceId>1421945231</referenceId>\n</fsLead>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimCreateFranchiseewithDocResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>333333651</responseId>\n<responseData>\n<fimFranchisee>\n<status>Success</status>\n<referenceId>1256248607</referenceId>\n</fimFranchisee>\n</responseData>\n</fcResponse>
+                        "
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimUpdateFranchiseewithDocResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1092600569</responseId>\n<responseData>\n<fimFranchisee>\n<status>Success</status>\n<referenceId>1256248607</referenceId>\n</fimFranchisee>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
             "FimCreateFranchiseeResp": {
                 "content": {
                     "application/xml": {
@@ -12533,6 +12900,32 @@
                                 "summary": "Example: Entity Details Tab Response",
                                 "value": "<!--This response showcases example of a unit related to an entity that is associated with multiple Area/Regions -->\n<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>605564084</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>2144414430</referenceId>\n<franchiseeName>10001</franchiseeName>\n<fimEntity>\n<referenceId>1566270597</referenceId>\n<fimTtEntityName>Maester Alaska, LLC</fimTtEntityName>\n<clientEntityID>LLC-001</clientEntityID>\n<fimEntityDetail0/>\n<entityDetails_address>\n<referenceId>1119328174</referenceId>\n<address/>\n<city/>\n<country/>\n<state/>\n<zipcode/>\n<phoneNumbers/>\n<extn/>\n<faxNumbers/>\n<mobileNumbers/>\n<emailIds/>\n</entityDetails_address>\n<fimCbCountryOfFormation/>Australia<fimCbStateOfFormation/>\n<fimDdDateOfFormation/>\n<fimTtTaxpayer/>\n<fimCbEntityType/>\n<fimCbOtherEntityType/>\n<fimEntityAreaMapping>\n<referenceId>492</referenceId>\n<areaID>EST</areaID>\n</fimEntityAreaMapping>\n<fimEntityAreaMapping>\n<referenceId>493</referenceId>\n<areaID>CST</areaID>\n</fimEntityAreaMapping>\n<fimEntityAreaMapping>\n<referenceId>494</referenceId>\n<areaID>EMEA Updated</areaID>\n</fimEntityAreaMapping>\n<fimEntityLocationMapping>\n<referenceId>1566270597</referenceId>\n<storeOwnedPercentage/>\n<typeOfOwnership/>\n</fimEntityLocationMapping>\n</fimEntity>\n</fimCenterInfo>\n</responseData>\n</fcResponse>\n"
                             }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimRetrieveTransferResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveFranchiseetransferResp": {
+                                "summary": "Retrieve Franchise Transfer Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>941287014</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>511408652</referenceId>\n<franchiseeName>Dhampur</franchiseeName>\n<fimTransfer>\n<referenceId>651129188</referenceId>\n<newCenterNo>Yes</newCenterNo>\n<centerNo>New transfer location sep27</centerNo>\n<transferType>Transferred License</transferType>\n<currentStatus>Transfer Complete</currentStatus>\n<currentStatusOther></currentStatusOther>\n<asOf>09/26/2025</asOf>\n<transferCompletionDate>09/27/2025</transferCompletionDate>\n<employee> Tim David</employee>\n<seller>Andrew  Rosenfeld (I);Ken Pual (I);Automation Entity (E);NavEntity 1 (E)</seller>\n<shareholder></shareholder>\n<sellerSigner>Rose Dave</sellerSigner>\n<buyerSigner>Adam Smith</buyerSigner>\n<sellerSignerTitle>Seller head</sellerSignerTitle>\n<buyerSignerTitle>Test</buyerSignerTitle>\n<ownershipEndDate>09/27/2025</ownershipEndDate>\n<financialPrequalification>Yes</financialPrequalification>\n<financialPreQualificationApproval>09/27/2025</financialPreQualificationApproval>\n<expirationDate>09/27/2025</expirationDate>\n<fddReceipt>No</fddReceipt>\n<fddDate>09/27/2025</fddDate>\n<buySellAgreement>Yes</buySellAgreement>\n<corporateDocuments>Yes</corporateDocuments>\n<transferFeePd>Yes</transferFeePd>\n<transferFeeNumerical>4,334.00</transferFeeNumerical>\n<financialDemand>Yes</financialDemand>\n<ptacPaymentDue>4,343.00</ptacPaymentDue>\n<sendLegalDocsTo>AD</sendLegalDocsTo>\n<sendLegalOtherDocsTo></sendLegalOtherDocsTo>\n<sendDocsTo>Buyer</sendDocsTo>\n<sendOtherDocsTo></sendOtherDocsTo>\n<otherName>Linda Smith</otherName>\n<faEffectiveDate>09/04/2025</faEffectiveDate>\n<faExpiration>09/20/2025</faExpiration>\n<closingDate>09/12/2025</closingDate>\n<consentAgreement>Yes</consentAgreement>\n<transferAgreement>Yes</transferAgreement>\n<assignedArea>Yes</assignedArea>\n<guaranty>Yes</guaranty>\n<stateAddendum>No</stateAddendum>\n<softwareLicense>No</softwareLicense>\n<promissoryNote>Yes</promissoryNote>\n<certOfInsurance>Yes</certOfInsurance>\n<royaltyReportingStartDate>2025-09-27</royaltyReportingStartDate>\n<streetAddress>B-12</streetAddress>\n<city>Delhi</city>\n<country>India</country>\n<zipcode>43565</zipcode>\n<state>Delhi</state>\n<phone>34567543</phone>\n<phoneExtension>+91</phoneExtension>\n<fax>3223</fax>\n<mobile>9876543210</mobile>\n<email>test@gmail.com</email>\n</fimTransfer>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
+                            },
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimRetrievePrevOwnershipResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "centerInfo": {
+                                "summary": "Example: Custom Profile Retrieve Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?><fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1914294545</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>511408652</referenceId>\n<franchiseeName>Dhampur</franchiseeName>\n<previousOwnership>\n<ownerTitle></ownerTitle>\n<firstName>Ayush</firstName>\n<lastName>kumar</lastName>\n<jobTitle></jobTitle>\n<homeAddress></homeAddress>\n<homeCity>Mayur Vihar</homeCity>\n<homeZipCode></homeZipCode>\n<homeCountry>India</homeCountry>\n<homeState>Delhi</homeState>\n<otherAddress></otherAddress>\n<otherCity></otherCity>\n<otherZipCode></otherZipCode>\n<otherCountry></otherCountry>\n<otherState></otherState>\n<phone>98765432</phone>\n<phoneExtension></phoneExtension>\n<fax></fax>\n<mobile>987654321</mobile>\n<email>test@gmail.com</email>\n<taxpayerID></taxpayerID>\n<entityComments></entityComments>\n<spouseFirstName></spouseFirstName>\n<spouseLastName></spouseLastName>\n<spousePhone></spousePhone>\n<spousePhoneExtension></spousePhoneExtension>\n<spouseMobile></spouseMobile>\n<storeOwnershipPercentage>100.0</storeOwnershipPercentage>\n<typeOfOwnership>Owner/Operator</typeOfOwnership>\n<ownershipStartDate>09/10/2025</ownershipStartDate>\n<ownershipEndDate>09/26/2025</ownershipEndDate>\n<ownerType>Individual</ownerType>\n</previousOwnership>\n<locationdetails898033055>\n<referenceId></referenceId>\n</locationdetails898033055>\n<customtabular1068818482>\n<referenceId></referenceId>\n</customtabular1068818482>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
+                            },
                         }
                     }
                 },
@@ -18365,7 +18758,7 @@
                     }
                 },
                 "description": "Successful"
-            },
+            }
         }
     }
 }
