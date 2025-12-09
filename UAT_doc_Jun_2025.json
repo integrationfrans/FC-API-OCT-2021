@@ -111,6 +111,10 @@
             "description": "These API endpoints helps to define field names for reference dates, which are used to schedule store-related tasks and milestones."
         },
         {
+            "name": "Multi-Input Tab",
+            "description": "The FranConnect API now supports full CRUD operations for multi-input tabs within FranConnect Info Manager modules. This includes both system-defined and custom tabs, as well as data stored in regular and tabular sections. Developers can create, retrieve, update, and delete records across these multi-input structures, enabling more complete and flexible data management within the FranConnect platform."
+        },   
+        {
             "name": "Ownership",
             "description": "<p>Leverage Ownership APIs to create ownerships between companies (or people) with franchises in the system.</p>"
         },
@@ -285,6 +289,7 @@
                 "Reference Dates",
                 "Transfer",
                 "Previous Ownership",
+                "Multi-Input Tab",
                 "Ownership",
                 "Company Ownership",
                 "People Ownership",
@@ -1709,6 +1714,126 @@
                 }
             }
         },
+        "/create?module=fim&subModule=marketingCampaignTab1917160461": {
+            "post": {
+              "tags": [
+                "Multi-Input Tab"
+              ],
+              "summary": "Create",
+              "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding data in a custom-built multi-input tab titled, \"Marketing Campaign Tab\", within the Info Manager module. A multi-input tab can contain both Regular and Tabular type sections, and this operation enables creating data across these sections in the specified Info Manager entity.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\">:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?module=fim&subModule=marketingCampaignTab1917160461&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding data in a multi-input tab using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of the authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"marketingCampaignTab1917160461\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values required to create data in the multi-input tab. This xmlString supports both Regular fields as simple key-value pairs and Tabular fields as list-type entries. To determine the correct parameter names or schema, a Query operation must be performed using the corresponding module and sub-module with the operation type as Create. Details on how the Query operation is to be performed are mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li></ol><p class=\"western\">When creating data in a multi-input tab, ensure that:<br>1. The appropriate franchisee reference ID is provided as parent reference ID.</p><p class=\"western\">Upon successful creation, the API returns a response containing the <strong>referenceId</strong>, which represents the unique ID of the newly created record. This referenceId can be used for subsequent Retrieve, Update, and Delete operations.</p>",
+              "operationId": "FIM_Create_MultiInputTab",
+              "responses": {
+                "200": {
+                  "$ref": "#/components/responses/FimCreateMultiInputTabResp"
+                },
+                "201": {
+                  "description": "Created"
+                },
+                "401": {
+                  "description": "Unauthorized"
+                },
+                "403": {
+                  "description": "Forbidden"
+                },
+                "404": {
+                  "description": "Not Found"
+                }
+              },
+              "requestBody": {
+                "$ref": "#/components/requestBodies/FimCreateMultiInputTabReq"
+              }
+            }
+        },          
+        "/retrieve?module=fim&subModule=marketingCampaignTab1917160461": {
+            "post": {
+              "tags": [
+                "Multi-Input Tab"
+              ],
+              "summary": "Retrieve",
+              "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for fetching data from a custom-built multi-input tab titled, \"Marketing Campaign Tab\", within the Info Manager module for the given franchisee. For the Retrieve operation, you can also use pagination to chain through the records using the limit and offset parameters appended in the URL. Click <a href=\"#Pagination\">here</a> for more details.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\">:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=fim&subModule=marketingCampaignTab1917160461&filterXML=filteredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Retrieve operation for fetching data from the \"Marketing Campaign Tab\" multi-input tab using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"marketingCampaignTab1917160461\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that contains the attribute names and their values in the request that is to be used to retrieve data from the multi-input tab. This filterXML should include the appropriate parent reference, such as the franchisee reference ID, in order to retrieve the corresponding marketing campaign records. To determine the parameter names or schema, a Query operation is to be performed with the corresponding module and sub-module names and the operation as Retrieve. Details on how the Query operation is to be performed are mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li></ol><p class=\"western\">For multi-input tabs, the Retrieve operation supports returning data from both Regular sections as simple key-value pairs and Tabular sections as list-type entries. Pagination parameters (limit and offset) can be appended to the URL to fetch larger datasets in smaller chunks.</p>",
+              "operationId": "FIM_Retrieve_MultiInputTab",
+              "responses": {
+                "200": {
+                  "$ref": "#/components/responses/FimRetrieveMultiInputTabResp"
+                },
+                "201": {
+                  "description": "Created"
+                },
+                "401": {
+                  "description": "Unauthorized"
+                },
+                "403": {
+                  "description": "Forbidden"
+                },
+                "404": {
+                  "description": "Not Found"
+                }
+              },
+              "requestBody": {
+                "$ref": "#/components/requestBodies/FimRetrieveMultiInputTabArray"
+              }
+            }
+        },
+        "/update?module=fim&subModule=marketingCampaignTab1917160461": {
+            "post": {
+              "tags": [
+                "Multi-Input Tab"
+              ],
+              "summary": "Update",
+              "description": "<p class=\"western\">This section contains an example of the Update operation performed for modifying data in a custom-built multi-input tab titled, \"Marketing Campaign Tab\", within the Info Manager module. In a similar manner, the Update operation can be performed to update other multi-input tabs and Info Manager entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\">:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=fim&subModule=marketingCampaignTab1917160461&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform an Update operation for modifying data in the \"Marketing Campaign Tab\" multi-input tab using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above. The following items must be used in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Update operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"marketingCampaignTab1917160461\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values in the request that is to be used to update data in the multi-input tab. For updating a particular Regular section, the corresponding <strong>referenceId</strong> of that section must be passed in the xmlString. For updating a specific Tabular record within a Regular section, the xmlString must include both the <strong>referenceId</strong> of the parent Regular section and the <strong>referenceId</strong> of the Tabular record to be updated. In order to determine the parameter names or schema, a Query operation is to be performed with the corresponding module and sub-module names and the operation as Update. Details on how the Query operation is to be performed are mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li></ol><p><strong>Note:</strong> For multi-input tabs, Regular sections and Tabular records are updated based on their respective reference IDs. A Regular section is updated by passing its own referenceId. A Tabular record is updated by passing the referenceId of its parent Regular section together with the referenceId of the specific Tabular record that needs to be modified.</p>",
+              "operationId": "FIM_Update_MultiInputTab",
+              "responses": {
+                "200": {
+                  "$ref": "#/components/responses/FimUpdateMultiInputTabResp"
+                },
+                "201": {
+                  "description": "Created"
+                },
+                "401": {
+                  "description": "Unauthorized"
+                },
+                "403": {
+                  "description": "Forbidden"
+                },
+                "404": {
+                  "description": "Not Found"
+                }
+              },
+              "requestBody": {
+                "$ref": "#/components/requestBodies/FimUpdateMultiInputTabArray"
+              }
+            }
+        },          
+        "/delete?module=fim&subModule=marketingCampaignTab1917160461": {
+            "post": {
+              "tags": [
+                "Multi-Input Tab"
+              ],
+              "summary": "Delete",
+              "description": "<p class=\"western\">This section contains an example of the Delete operation to delete data from a custom-built multi-input tab titled, \"Marketing Campaign Tab\", through the Info Manager module. In a similar manner, the Delete operation can be performed to delete data from other multi-input tabs and Info Manager entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\">:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=fim&subModule=marketingCampaignTab1917160461&xmlString=requiredxmlString&responseType=XML</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Delete operation for deleting data from the \"Marketing Campaign Tab\" multi-input tab using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Delete operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"marketingCampaignTab1917160461\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that would contain the attribute names and their values in the request that is to be used to delete data from the multi-input tab. For deleting a particular Regular section, the corresponding <strong>referenceId</strong> of that Regular section must be provided in the xmlString as Submodule reference ID. For deleting a specific Tabular record within a Regular section, the xmlString must include both the <strong>referenceId</strong> of the parent Regular section and the <strong>referenceId</strong> of the specific Tabular record to be deleted. In order to determine the parameter names or schema, a Query operation is to be performed with the corresponding module and sub-module names and the operation as Delete. Details on how the Query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li></ol></p>",
+              "operationId": "FIM_Delete_MultiInputTab",
+              "responses": {
+                "200": {
+                  "$ref": "#/components/responses/FimDeleteMultiInputTabResp"
+                },
+                "201": {
+                  "description": "Created"
+                },
+                "401": {
+                  "description": "Unauthorized"
+                },
+                "403": {
+                  "description": "Forbidden"
+                },
+                "404": {
+                  "description": "Not Found"
+                }
+              },
+              "requestBody": {
+                "$ref": "#/components/requestBodies/FimDeleteMultiInputTabArray"
+              }
+            }
+        },          
         "/manage-unit/v1/units/{franchiseId}": {
             "get": {
                 "tags": [
@@ -11756,6 +11881,30 @@
                 "description": "Admin User Deletion object",
                 "required": true
             },
+            "FimCreateMultiInputTabReq": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createcustomProfile": {
+                                "summary": "Create data under Multi Input Tab",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimMarketingCampaignTab1917160461>\n<parentReferenceId>330435901</parentReferenceId>\n<_campaignName1523888024>Autumn Local Awareness 2025</_campaignName1523888024>\n<_campaignType888342569>Brand Awareness Campaign</_campaignType888342569>\n<_budget359030711>6900</_budget359030711>\n<_startDate763394383>2025-09-10</_startDate763394383>\n<_endDate919221706>2025-10-30</_endDate919221706>\n<campaignactivities1929451730>\n<_activityName2097507974>Autumn Email Awareness Series</_activityName2097507974>\n<_channel1999089506>Email Marketing</_channel1999089506>\n<_cost841857403>3100</_cost841857403>\n<_vendor1860780083>MetroPrint Creative</_vendor1860780083>\n</campaignactivities1929451730>\n<campaignactivities1929451730>\n<_activityName2097507974>Seasonal Social Reach Ads</_activityName2097507974>\n<_channel1999089506>Social Media Ads</_channel1999089506>\n<_cost841857403>3800</_cost841857403>\n<_vendor1860780083>AdSprout Marketing</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fcRequest>"
+                            },
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
             "FimRetrieveFranchiseeArray": {
                 "content": {
                     "application/xml": {
@@ -11851,6 +12000,25 @@
                 "description": "Admin User Deletion object",
                 "required": true
             },
+            "FimRetrieveMultiInputTabArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<filter>\n<_vendor1860780083>BluDigital</_vendor1860780083>\n</campaignactivities1929451730>\n</filter>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
             "FimUpdateFranchiseeArray": {
                 "content": {
                     "application/xml": {
@@ -11909,6 +12077,27 @@
                 "description": "Admin User Deletion object",
                 "required": true
             },
+            "FimUpdateMultiInputTabArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimMarketingCampaignTab1917160461>\n<referenceId>2017672087</referenceId>\n<_campaignName1523888024>Summer Engagement Blast 2025</_campaignName1523888024>\n
+                            <campaignactivities1929451730>\n<referenceId>216759343</referenceId>\n<_activityName2097507974>Winter 2025 Social Engagement Ads</_activityName2097507974>\n<_cost841857403>6000</_cost841857403>\n
+                            <_vendor1860780083>AdSprout Marketing</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
             "FimDeleteFranchiseeArray": {
                 "content": {
                     "application/xml": {
@@ -11951,6 +12140,25 @@
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimReferenceDate>\n<referenceId>21</referenceId>\n</fimReferenceDate>\n</fcRequest>",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/AdminSubModule"
+                            },
+                            "xml": {
+                                "name": "fcRequest",
+                                "wrapped": true
+                            }
+                        }
+                    }
+                },
+                "description": "Admin User Deletion object",
+                "required": true
+            },
+            "FimDeleteMultiInputTabArray": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimMarketingCampaignTab1917160461>\n<referenceId>2017672087</referenceId>\n<campaignactivities1929451730>\n<referenceId>216759343</referenceId>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fcRequest>",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -12888,6 +13096,19 @@
                 },
                 "description": "Successful"
             },
+            "FimCreateMultiInputTabResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createFranchiseeResp": {
+                                "summary": "Create Response for Multi Input Tab",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>534583505</responseId>\n<responseData>\n<fimMarketingCampaignTab1917160461>\n<status>Success</status>\n<referenceId>1491649462</referenceId>\n</fimMarketingCampaignTab1917160461>\n</responseData>\n</fcResponse>"
+                            },
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
             "FimRetrieveFranchiseeResp": {
                 "content": {
                     "application/xml": {
@@ -12957,6 +13178,19 @@
                 },
                 "description": "Successful"
             },
+            "FimRetrieveMultiInputTabResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "centerInfo": {
+                                "summary": "Example: All data Retrieve Response for Multi Input Tab",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>235621998</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>330435901</referenceId>\n<franchiseeName>FC-HP-01</franchiseeName>\n<fimMarketingCampaignTab1917160461>\n<referenceId>158207771</referenceId>\n<_campaignName1523888024>FC - Holiday Promotions Push 2025</_campaignName1523888024>\n<_campaignType888342569>Seasonal Promotion Campaign</_campaignType888342569>\n<_budget359030711>5200.00</_budget359030711>\n<_startDate763394383>2025-11-15</_startDate763394383>\n<_endDate919221706>2025-12-31</_endDate919221706>\n<campaignactivities1929451730>\n<referenceId>1697394012</referenceId>\n<_activityName2097507974>Holiday Offer Email Blas</_activityName2097507974>\n<_channel1999089506>Email Marketing</_channel1999089506>\n<_cost841857403>5200.00</_cost841857403>\n<_vendor1860780083>BluDigital</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n<fimMarketingCampaignTab1917160461>\n<referenceId>1393145911</referenceId>\n<_campaignName1523888024>Weekend Footfall Booster 2025</_campaignName1523888024>\n<_campaignType888342569>Local Store Marketing Campaign</_campaignType888342569>\n<_budget359030711>7000.00</_budget359030711>\n<_startDate763394383>2025-03-01</_startDate763394383>\n<_endDate919221706>2025-04-15</_endDate919221706>\n<campaignactivities1929451730>\n<referenceId>957118098</referenceId>\n<_activityName2097507974>Weekend Offer Email Blast</_activityName2097507974>\n<_channel1999089506>Email Marketing</_channel1999089506>\n<_cost841857403>3200.00</_cost841857403>\n<_vendor1860780083>BluDigital</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
+                            },
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
             "FimUpdateFranchiseeResp": {
                 "content": {
                     "application/xml": {
@@ -12977,6 +13211,14 @@
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1235893037</responseId>\n<responseData>\n<fimReferenceDate>\n<status>Success</status>\n<referenceId>21</referenceId>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimUpdateMultiInputTabResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1718699198</responseId>\n<responseData>\n<fimMarketingCampaignTab1917160461>\n<status>Success</status>\n<referenceId>2017672087</referenceId>\n</fimMarketingCampaignTab1917160461>\n</responseData>\n</fcResponse>"
                     }
                 },
                 "description": "Successful"
@@ -13002,6 +13244,14 @@
                 "content": {
                     "application/xml": {
                         "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>781160907</responseId>\n<responseData>\n<fimReferenceDate>\n<status>Success</status>\n<referenceId>21</referenceId>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
+                    }
+                },
+                "description": "Successful"
+            },
+            "FimDeleteMultiInputTabResp": {
+                "content": {
+                    "application/xml": {
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1451855527</responseId>\n<responseData>\n<fimMarketingCampaignTab1917160461>\n<status>Success</status>\n<referenceId>2017672087</referenceId>\n</fimMarketingCampaignTab1917160461>\n</responseData>\n</fcResponse>"
                     }
                 },
                 "description": "Successful"
@@ -18762,4 +19012,3 @@
         }
     }
 }
-
