@@ -76,15 +76,15 @@
         },
         {
             "name": "Sales - Retrieve and Upload Documents",
-            "description": "These API endpoints allow you to retrieve and upload documents linked to the Sales tab, whether it's a system-defined or custom tab. You can use them to fetch documents related to a specific lead or to create and update documents associated with that lead. This helps streamline document management within your sales workflows."
+            "description": "These API endpoints allow you to retrieve and upload documents linked to the Sales tab, whether it's a system-defined or custom tab. You can use them to fetch documents related to a specific lead or to upload and update documents associated with that lead. This helps streamline document management within your sales workflows."
         },
         {
             "name": "Info Manager",
-            "description": "<p>Using the FranConnect API, you can manage the \"in-development\" and the operational locations in the Info Manager module. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the location’s main page (in Center Info) or in any of the tabs (such as Real Estate, Mystery Review).</p><p>Note that the following sections explain and provide examples on how to perform these operations on the “Primary Info” tab for locations. Similarly, you can perform these  operations for other tabs as well for locations that are either in-development or have been opened since.</p>"
+            "description": "<p>Using the FranConnect API, you can manage the \"in-development\" and the operational locations in the Info Manager module. Using Create, Retrieve, Update, and Delete API operations, you can manage information that can either be in the location's main page (in Center Info) or in any of the tabs (such as Real Estate, Mystery Review).</p><p>You can use these endpoints to manage information across both regular and tabular sections, including single-input and multi-input configurations.</p><p>Note that the following sections explain and provide examples on how to perform these operations on the \"Primary Info\" tab for locations. Similarly, you can perform these operations for other tabs as well for locations that are either in-development or have been opened since.</p>"
         },
         {
             "name": "IM - Retrieve and Upload Documents",
-            "description": "<p>These API endpoints allow you to retrieve and upload documents linked to the different Info Manager tab(s), whether it's a system-defined or custom tab. You can use them to fetch documents related to a specific info manager entity or to create and update documents associated with it. This helps streamline document management within your Info Manager workflows.</p><p>The following tabs are supported with document API:</p><ul><li>Agreement</li><li>Center Info</li><li>Contract Signing</li><li>Default and Termination</li><li>Employees</li><li>Entity Details</li><li>Financial</li><li>Insurance</li><li>Legal Violation</li><li>Lenders</li><li>Mystery Review</li><li>Real Estate</li><li>Renewal</li><li>Territory</li><li>Training</li><li>Transfer</li><li>Promissory Notes</li><li>Customer Complaint</li><li>All Custom Tabs</li></ul>"
+            "description": "<p>These API endpoints allow you to retrieve and upload documents linked to the different Info Manager tab(s), whether it's a system-defined or custom tab. You can use them to fetch documents related to a specific info manager entity or to upload and update documents associated with it. This helps streamline document management within your Info Manager workflows.</p><p>The document upload operation is supported in all system and custom tabs.</p>"
         },
         {
             "name": "Transfer",
@@ -1406,47 +1406,17 @@
                 "operationId": "Sales_Retrieve_Lead_Documents",
             }
         },
-        "/createMultiPart?module=fs&subModule=lead": {
+        "/documents/upload?module=fim&subModule=lead": {
             "post": {
                 "tags": [
                     "Sales - Retrieve and Upload Documents"
                 ],
-                "summary": "Create Data with Documents",
-                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a sales lead through the Sales module. Similarly, the Create operation can be performed to add the different Sales tab entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/createMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding a sales lead with primary info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fs”.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString contains the attribute names and their corresponding values used in the request to add a lead. If you need to upload a document, you must include values for the relevant document fields within the xmlString (refer to the example for guidance). To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the create operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would create a new sales lead. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that lead and can be used for the Update and Retrieve operations.</p><p><strong>Note:</strong></p><ol><li><p>In order to create data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the sub-module for which this data is to be created. The best way to uniquely specify a lead is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API: </strong> Primary Info; Candidate Portal; Co-Applicants; Compliance; Documents; Personal Profile; Qualification Details; Real Estate; All Custom Tabs.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/SalesLead_CreateDoc_Header.png\"><img src=\"images/SalesLead_CreateDoc_Body.png\">",
-                "operationId": "Fs_Create_LeadwithDoc",
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/FSCreateLeadwithDocResp"
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/FSCreateLeadwithDocArray"
-                }
-            }
-        },
-        "/updateMultiPart?module=fs&subModule=lead": {
-            "post": {
-                "tags": [
-                    "Sales - Retrieve and Upload Documents"
-                ],
-                "summary": "Update Documents",
-                "description": "<p class=\"western\">This section contains an example of the Update operation performed for updating information or documents associated with an existing sales lead through the Sales module. Similarly, the Update operation can be performed to update the different Sales sub-modules.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/updateMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform the update operation for on an existing sales lead with primary info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fs”.</p></li><li><p>The sub-module for which the update operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “lead”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString should include only the fields you want to update, along with the lead’s reference ID. To update a document, include the document name in the string to specify which document should be replaced. To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to update. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the update operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would update the existing sales lead. </p><p><strong>Note:</strong></p><ol><li><p>In order to update data in any tab/sub-module other than “Primary Info”, it is mandatory to specify the sub-module for which this data is to be updated. The best way to uniquely specify a lead is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to update data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API: </strong> Primary Info; Candidate Portal; Co-Applicants; Compliance; Documents; Personal Profile; Qualification Details; Real Estate; All Custom Tabs.</p></li><li><p>If a document already exists in the target field, the uploaded document will overwrite the existing one.</p></li><li><p>Document upload is only allowed if data exists for the respective tab.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/SalesLead_UpdateDoc_Header.png\"><img src=\"images/SalesLead_UpdateDoc_Body.png\">",
+                "summary": "Upload Documents",
+                "description": "<p class=\"western\">This section contains an example of the Upload and Update operation performed for uploading documents associated with a sales lead through the Sales module. A single endpoint handles both Upload and Update operations through a two-step process — Step 1 sends the file metadata to FranConnect and receives a pre-signed S3 URL in response, and Step 2 uses that URL to upload the actual file binary directly to S3. Similarly, this two-step process can be performed to manage documents under any Sales sub-module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\">:</td><td>POST</td></tr><tr><td><strong>API Endpoint — Step 1</strong></td><td>:</td><td><context-path>rest/dataservices/documents/upload?module=fs&responseType=xml&subModule={subModule}</td></tr><tr><td><strong>API Endpoint — Step 2</strong></td><td>:</td><td>&lt;uploadURL returned in Step 1 response&gt;</td></tr></table><p class=\"western\"><strong>Step 1 — Get Pre-Signed URL (POST /upload)</strong></p><p class=\"western\">To initiate the document upload, you must make a POST request to the Step 1 endpoint. The request URL comprises the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value as <strong>\"application/xml\"</strong>.</p></li></ol><p class=\"western\">The following items must be passed as <strong>query parameters</strong> in the request URL:</p><ol><li><p>The module for which the operation is being performed. In this case, the module to be used is \"fs\".</p></li><li><p>The sub-module for which the operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"lead\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>raw request body (application/xml):</strong></p><ol><li><p class=\"western\">The <strong>referenceId</strong> of the target tab record is mandatory. To retrieve the referenceId, first perform a Retrieve operation on the respective sub-module. Note that data must already be present in the tab for the referenceId to be available. Details on how to perform a Retrieve operation are mentioned <u><a href=\"#tag/Sales---Retrieve-and-Upload-Documents\">here.</a></u></p></li><li><p class=\"western\">Each document field requires the following tags to be passed in the request body, where <strong>\"fs\"</strong> is the module prefix and <strong>fieldId</strong> is the numeric ID of the document field from the FranConnect admin panel:</p><ol><li><p><code>fsDocuments_{fieldId}fsDocumentAttachment</code> — The filename of the file to be uploaded (e.g. <code>fsDocuments_857673195fsDocumentAttachment</code>).</p></li><li><p><code>fsDocuments_{fieldId}_md5hash</code> — The Base64-encoded MD5 hash of the file (e.g. <code>fsDocuments_857673195_md5hash</code>).</p></li><li><p><code>fsDocuments_{fieldId}documentTitle</code> — The display title of the file. This field is only applicable when the document field has been configured with a document name field in the form generator (e.g. <code>fsDocuments_857673195documentTitle</code>).</p></li></ol></li><li><p class=\"western\">The Base64-encoded MD5 hash of the file must be computed prior to making the request. On Mac/Linux, use: <code>md5 -q &lt;file&gt; | xxd -r -p | base64</code>. On Windows PowerShell, use the <code>$filePath = \"[Path to file]\"; $md5 = [System.Security.Cryptography.MD5]::Create(); $stream = [System.IO.File]::OpenRead($filePath); $hash = $md5.ComputeHash($stream); $stream.Close(); $base64Hash = [Convert]::ToBase64String($hash); $base64Hash</code> class to compute and encode the hash. Do <strong>not</strong> use the plain hex output of md5/md5sum directly — the API requires the Base64-encoded form.</p></li></ol><p class=\"western\">A successful Step 1 response returns a time-limited pre-signed S3 URL in the <strong>uploadURL</strong> field. Save the entire uploadURL value — it must be used as-is in Step 2 and expires in <strong>1 hour</strong>.</p><p class=\"western\"><strong>Step 2 — Upload File to S3 (PUT pre-signed URL)</strong></p><p class=\"western\">Once the pre-signed URL is obtained from Step 1, you must make a PUT request directly to that URL to upload the actual file. The pre-signed URL already contains all required S3 authentication parameters — no Authorization header is needed for this step. The following item must be included in the header of the request:</p><ol><li><p>Content-MD5 as the key and its value as the <strong>same Base64-encoded MD5 hash</strong> used in Step 1. S3 uses this value to validate the integrity of the uploaded file.</p></li></ol><p class=\"western\">The request body must contain the <strong>raw binary content</strong> of the file.</p><p class=\"western\">A successful upload returns an <strong>HTTP 200</strong> response with an empty body. If you receive an HTTP 400 InvalidDigest error, the Content-MD5 header does not match the uploaded file — regenerate the MD5 hash and retry both steps.</p><p><strong>Note:</strong></p><ol><li><p>In order to perform this operation on any tab/sub-module other than \"Primary Info\", it is mandatory to specify the sub-module for which this operation is to be performed. The best way to uniquely specify a lead is through its <u><a href=\"#operation/FS_Retrieve_Lead\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p>Document Upload and Update is supported across <strong>all tabs</strong> under the Sales module.</p></li><li><p>To retrieve the referenceId of a tab, data must already be present in that tab. Perform a Retrieve operation on the respective sub-module to obtain the referenceId before making this request.</p></li><li><p>If a document already exists in the target field, the uploaded document will overwrite the existing one.</p></li><li><p>To upload more than one document to a record in a single Step 1 request, include multiple document field triplets in the request body, each referencing a different document field ID. The API returns one pre-signed URL per document field — Step 2 must be completed separately for each URL returned.</p></li><li><p>The pre-signed URL returned in Step 1 is valid for <strong>1 hour (3600 seconds)</strong>. The PUT to S3 must be completed within this window. If the URL expires, Step 1 must be performed again to obtain a fresh pre-signed URL.</p></li></ol><img src=\"images/SalesLead_UpdateDoc_Param.png\"><img src=\"images/SalesLead_UpdateDoc_Header.png\"><img src=\"images/SalesLead_UpdateDoc_Body.png\">",
                 "operationId": "Fs_Update_LeadwithDoc",
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/FSUpdateLeadwithDocResp"
+                        "$ref": "#/components/responses/FSCreateUpdateDocResp"
                     },
                     "201": {
                         "description": "Created"
@@ -1462,7 +1432,7 @@
                     }
                 },
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/FSUpdateLeadwithDocArray"
+                    "$ref": "#/components/requestBodies/FSCreateUpdateDocArray"
                 }
             }
         },
@@ -1594,47 +1564,17 @@
                 "operationId": "Fim_Retrieve_Documents",
             }
         },
-        "/createMultiPart?module=fim&subModule=franchisee": {
-            "post": {
-                "tags": [
-                    "IM - Retrieve and Upload Documents"
-                ],
-                "summary": "Create Data with Documents",
-                "description": "<p class=\"western\">This section contains an example of the Create operation performed for adding a franchisee center info through the Info Manager module. Similarly, the Create operation can be performed to add the different Info Manager tab entities.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/createMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform a Create operation for adding franchisee center info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is “fim”.</p></li><li><p>The sub-module for which the Create operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString contains the attribute names and their corresponding values used in the request to add a franchisee. If you need to upload a document, you must include values for the relevant document fields within the xmlString (refer to the example and photo for guidance). To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to Create. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the create operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would create a new franchisee with center info tab filled. The response received from the API contains <strong>“referenceId”</strong> which represents the unique reference ID for that franchisee and can be used for the Update and Retrieve operations.</p><p><strong>Note:</strong></p><ol><li><p>In order to create data in any tab/sub-module other than “Center Info”, it is mandatory to specify the sub-module for which this data is to be created. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to create data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API under Info manager: </strong>  Agreement; Center Info; Contract Signing; Default and Termination; Employees; Entity Details; Financial; Insurance; Legal Violation; Lenders; Mystery Review; Real Estate; Renewal; Territory; Training; Transfer; Promissory Notes; Customer Complaint; All Custom Tabs.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/IMFranchisee_CreateDoc_Header.png\"><img src=\"images/IMFranchisee_CreateDoc_Body.png\">",
-                "operationId": "Fim_Create_FranchiseewithDoc",
-                "responses": {
-                    "200": {
-                        "$ref": "#/components/responses/FimCreateFranchiseewithDocResp"
-                    },
-                    "201": {
-                        "description": "Created"
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "requestBody": {
-                    "$ref": "#/components/requestBodies/FimCreateFrancshiseewithDocArray"
-                }
-            }
-        },
-        "/updateMultiPart?module=fim&subModule=franchisee": {
+        "/documents/upload?module=fim&subModule=financial": {
             "post": {
                 "tags": [
                     "IM - Retrieve and Upload Documents"
                 ],
                 "summary": "Update Documents",
-                "description": "<p class=\"western\">This section contains an example of the Update operation performed for updating information or documents associated with an existing franchisee center info through the Info Manager module. Similarly, the Update operation can be performed to update the different Info Manager sub-modules.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/updateMultiPart</td></tr><tr><td></td></tr></table><p class=\"western\">To perform the update operation on an existing franchisee with center info and documents using the FranConnect API, you must make a POST request on the request URL. The request URL comprises the context path followed by the API endpoint mentioned above.The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>form-data body: </strong></p><ol><li><p>The module for which the update operation is being performed. In this case, the module to be used is “fim”.</p></li><li><p>The sub-module for which the update operation is being performed. A list of all sub-modules can be retrieved from the “subModule” endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is “franchisee”.</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">The xmlString should include only the fields you want to update, along with the franchisee’s reference ID. To update a document, include the document name in the string to specify which document should be replaced. To determine the correct parameter names and schema structure, perform a query operation using the appropriate module and sub-module with the operation type set to update. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p></li><li><p class=\"western\">For each document-type field included in your xmlString, make sure to upload the corresponding document using the appropriate document field reference ID. This reference ID can be obtained through the fields retrieve query used during the update operation.</p></li></ol><p class=\"western\">Performing the above mentioned steps would update the existing franchisee center info. </p><p><strong>Note:</strong></p><ol><li><p>In order to update data in any tab/sub-module other than “Center Info”, it is mandatory to specify the sub-module for which this data is to be updated. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used to update data for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p><strong>The following tabs are currently supported with document API: </strong> Agreement; Center Info; Contract Signing; Default and Termination; Employees; Entity Details; Financial; Insurance; Legal Violation; Lenders; Mystery Review; Real Estate; Renewal; Territory; Training; Transfer; Promissory Notes; Customer Complaint; All Custom Tabs.</p></li><li><p>If a document already exists in the target field, the uploaded document will overwrite the existing one.</p></li><li><p>Document upload is only allowed if data exists for the respective tab.</p></li><li><p><strong>There is a limit of 10mb per document that can be uploaded using API.</strong></p></li></ol><img src=\"images/IMFranchisee_UpdateDoc_Header.png\"><img src=\"images/IMFranchisee_UpdateDoc_Body.png\">",
-                "operationId": "Fim_Update_FranchiseewithDoc",
+                "description": "<p class=\"western\">This section contains an example of the Upload and Update operation performed for uploading documents associated with a franchisee through the Info Manager module. A single endpoint handles both Upload and Update operations through a two-step process — Step 1 sends the file metadata to FranConnect and receives a pre-signed S3 URL in response, and Step 2 uses that URL to upload the actual file binary directly to S3. Similarly, this two-step process can be performed to manage documents under any Info Manager sub-module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\">:</td><td>POST</td></tr><tr><td><strong>API Endpoint — Step 1</strong></td><td>:</td><td><context-path>rest/dataservices/documents/upload?module=fim&responseType=xml&subModule={subModule}</td></tr><tr><td><strong>API Endpoint — Step 2</strong></td><td>:</td><td>&lt;uploadURL returned in Step 1 response&gt;</td></tr></table><p class=\"western\"><strong>Step 1 — Get Pre-Signed URL (POST /upload)</strong></p><p class=\"western\">To initiate the document upload, you must make a POST request to the Step 1 endpoint. The request URL comprises the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value as <strong>\"application/xml\"</strong>.</p></li></ol><p class=\"western\">The following items must be passed as <strong>query parameters</strong> in the request URL:</p><ol><li><p>The module for which the operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"franchisee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li></ol><p class=\"western\">The following items must be sent through the <strong>raw request body (application/xml):</strong></p><ol><li><p class=\"western\">The <strong>referenceId</strong> of the target tab record is mandatory. To retrieve the referenceId, first perform a Retrieve operation on the respective sub-module. Note that data must already be present in the tab for the referenceId to be available. Details on how to perform a Retrieve operation are mentioned <u><a href=\"#tag/IM---Retrieve-and-Upload-Documents\">here.</a></u></p></li><li><p class=\"western\">Each document field requires the following tags to be passed in the request body, where <strong>\"fim\"</strong> is the module prefix and <strong>fieldId</strong> is the numeric ID of the document field from the FranConnect admin panel:</p><ol><li><p><code>fimDocuments_{fieldId}fimDocumentAttachment</code> — The filename of the file to be uploaded (e.g. <code>fimDocuments_1060339158fimDocumentAttachment</code>).</p></li><li><p><code>fimDocuments_{fieldId}_md5hash</code> — The Base64-encoded MD5 hash of the file (e.g. <code>fimDocuments_1060339158_md5hash</code>).</p></li><li><p><code>fimDocuments_{fieldId}documentTitle</code> — The display title of the file. This field is only applicable when the document field has been configured with a document name field in the form generator (e.g. <code>fimDocuments_1060339158documentTitle</code>).</p></li></ol></li><li><p class=\"western\">The Base64-encoded MD5 hash of the file must be computed prior to making the request. On Mac/Linux, use: <code>md5 -q &lt;file&gt; | xxd -r -p | base64</code>. On Windows PowerShell, use the <code>$filePath = \"[Path to file]\"; $md5 = [System.Security.Cryptography.MD5]::Create(); $stream = [System.IO.File]::OpenRead($filePath); $hash = $md5.ComputeHash($stream); $stream.Close(); $base64Hash = [Convert]::ToBase64String($hash); $base64Hash</code> class to compute and encode the hash. Do <strong>not</strong> use the plain hex output of md5/md5sum directly — the API requires the Base64-encoded form.</p></li></ol><p class=\"western\">A successful Step 1 response returns a time-limited pre-signed S3 URL in the <strong>uploadURL</strong> field. Save the entire uploadURL value — it must be used as-is in Step 2 and expires in <strong>1 hour</strong>.</p><p class=\"western\"><strong>Step 2 — Upload File to S3 (PUT pre-signed URL)</strong></p><p class=\"western\">Once the pre-signed URL is obtained from Step 1, you must make a PUT request directly to that URL to upload the actual file. The pre-signed URL already contains all required S3 authentication parameters — no Authorization header is needed for this step. The following item must be included in the header of the request:</p><ol><li><p>Content-MD5 as the key and its value as the <strong>same Base64-encoded MD5 hash</strong> used in Step 1. S3 uses this value to validate the integrity of the uploaded file.</p></li></ol><p class=\"western\">The request body must contain the <strong>raw binary content</strong> of the file.</p><p class=\"western\">A successful upload returns an <strong>HTTP 200</strong> response with an empty body. If you receive an HTTP 400 InvalidDigest error, the Content-MD5 header does not match the uploaded file — regenerate the MD5 hash and retry both steps.</p><p><strong>Note:</strong></p><ol><li><p>In order to perform this operation on any tab/sub-module other than \"Center Info\", it is mandatory to specify the sub-module for which this operation is to be performed. The best way to uniquely specify a franchisee is through its <u><a href=\"#operation/FIM_Retrieve_Loc\">Reference ID</a></u>. You can also perform a Query operation to retrieve the schema that would be used for that module-subModule combination. Click <u><a href=\"#tag/List-of-Field-Names\">here</a></u> for more details.</p></li><li><p>Document Upload and Update is supported across <strong>all tabs</strong> under the Info Manager module.</p></li><li><p>To retrieve the referenceId of a tab, data must already be present in that tab. Perform a Retrieve operation on the respective sub-module to obtain the referenceId before making this request.</p></li><li><p>If a document already exists in the target field, the uploaded document will overwrite the existing one.</p></li><li><p>To upload more than one document to a record in a single Step 1 request, include multiple document field triplets in the request body, each referencing a different document field ID. The API returns one pre-signed URL per document field — Step 2 must be completed separately for each URL returned.</p></li><li><p>The pre-signed URL returned in Step 1 is valid for <strong>1 hour (3600 seconds)</strong>. The PUT to S3 must be completed within this window. If the URL expires, Step 1 must be performed again to obtain a fresh pre-signed URL.</p></li></ol><img src=\"images/IMFranchisee_UploadDoc_Param.png\"><img src=\"images/IMFranchisee_UploadDoc_Header.png\"><img src=\"images/IMFranchisee_UploadDoc_Body.png\">",
+                "operationId": "Fim_CreateUpdate_Doc",
                 "responses": {
                     "200": {
-                        "$ref": "#/components/responses/FimUpdateFranchiseewithDocResp"
+                        "$ref": "#/components/responses/FimCreateUpdateDocResp"
                     },
                     "201": {
                         "description": "Created"
@@ -1650,7 +1590,7 @@
                     }
                 },
                 "requestBody": {
-                    "$ref": "#/components/requestBodies/FimUpdateFranchiseewithDocArray"
+                    "$ref": "#/components/requestBodies/FimCreateUpdateDocArray"
                 }
             }
         },
@@ -11497,80 +11437,42 @@
                 "description": "Lead Deletion object",
                 "required": true
             },
-            "FSCreateLeadwithDocArray": {
+            "FSCreateUpdateDocArray": {
                 "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<firstName>Harshit</firstName>\n<lastName>Pal</lastName>\n<city>Delhi</city>\n<country>India</country>\n<stateID>Delhi</stateID>\n<mobile>98765432</mobile>\n<emailID>test@gmail.com</emailID>\n<_salesDocument1990166773>Sales Document-1</_salesDocument1990166773>\n<_infoDocument2107005972>Info Document-1</_infoDocument2107005972>\n<_ownerDocument1581933397>Owner Document-1</_ownerDocument1581933397>\n<leadOwnerID>942886113</leadOwnerID>\n<marketingCodeId>Marketing Code</marketingCodeId>\n<leadSource2ID>Friends</leadSource2ID>\n<leadSource3ID>Friends</leadSource3ID>\n</fsLead>\n</fcRequest>",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/FSCreateLead"
-                            },
-                            "xml": {
-                                "name": "fcRequest",
-                                "wrapped": true
-                            }
-                        }
+                  "application/xml": {
+                    "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>1421945231</referenceId>\n<fsDocuments_1361811791fsDocumentAttachment>Sales-HP-Record.pdf</fsDocuments_1361811791fsDocumentAttachment>\n<fsDocuments_1361811791fsDocumentTitle>HP record</fsDocuments_1361811791fsDocumentTitle>\n<fsDocuments_1361811791_md5hash>1yY3geLEe5CnnBa9EG6+bQ==</fsDocuments_1361811791_md5hash>\n</fsLead>\n</fcRequest>",
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FSCreateLead"
+                      },
+                      "xml": {
+                        "name": "fcRequest",
+                        "wrapped": true
+                      }
                     }
+                  }
                 },
-                "description": "Lead Creation object",
+                "description": "Document Upload and Update object",
                 "required": true
             },
-            "FimCreateFrancshiseewithDocArray": {
+            "FimCreateUpdateDocArray": {
                 "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<status>No</status>\n<franchiseeName>HP-FC-01</franchiseeName>\n<centerName>Berger Street</centerName>\n<areaID>Southwest Region</areaID>\n<openingDate>04/16/2025</openingDate>\n<storeTypeId>Default</storeTypeId>\n<address>123, Street 10</address>\n<city>Noida</city>\n<country>India</country>\n<state>Uttar Pradesh</state>\n<storePhone>8765431</storePhone>\n<storeEmail>test@gmail.com</storeEmail>\n<emailID>test@gmail.com</emailID>\n<_newestField2133623532>Fort</_newestField2133623532>\n<_locationDocument700697512>Location Doc 1</_locationDocument700697512>\n<_storeDocument390800936>Store Document 1</_storeDocument390800936>\n<_auditDocument748916752>Audit Document 1</_auditDocument748916752>\n<lifecycleStage>Active</lifecycleStage>\n<entityDetail>Individual</entityDetail>\n<entityType>New</entityType>\n<ownerType>New</ownerType>\n<firstName>Himanshu</firstName>\n<lastName>Paliwal</lastName>\n</fimFranchisee>\n</fcRequest>",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/FSCreateLead"
-                            },
-                            "xml": {
-                                "name": "fcRequest",
-                                "wrapped": true
-                            }
-                        }
+                  "application/xml": {
+                    "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCenterInfo>\n<referenceId>1418298909</referenceId>\n<fimDocuments_1361811791fimDocumentAttachment>Gift-Certificate.pdf</fimDocuments_1361811791fimDocumentAttachment>\n<fimDocuments_1361811791fimDocumentTitle>Certificate HP</fimDocuments_1361811791fimDocumentTitle>\n<fimDocuments_1361811791_md5hash>1yY3geLEe5CnnBa9EG6+bQ==</fimDocuments_1361811791_md5hash>\n</fimCenterInfo>\n</fcRequest>",
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FSCreateLead"
+                      },
+                      "xml": {
+                        "name": "fcRequest",
+                        "wrapped": true
+                      }
                     }
+                  }
                 },
-                "description": "Lead Creation object",
-                "required": true
-            },
-            "FSUpdateLeadwithDocArray": {
-                "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fsLead>\n<referenceId>1421945231</referenceId>\n<_salesDocument1990166773>Sales Document-22</_salesDocument1990166773>\n</fsLead>\n</fcRequest>",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/FSCreateLead"
-                            },
-                            "xml": {
-                                "name": "fcRequest",
-                                "wrapped": true
-                            }
-                        }
-                    }
-                },
-                "description": "Lead Creation object",
-                "required": true
-            },
-            "FimUpdateFranchiseewithDocArray": {
-                "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimFranchisee>\n<referenceId>1256248607</referenceId>\n<_locationDocument700697512>Location Document 2</_locationDocument700697512>\n<_storeDocument390800936>Store Document 2</_storeDocument390800936>\n</fimFranchisee>\n</fcRequest>",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/components/schemas/FSCreateLead"
-                            },
-                            "xml": {
-                                "name": "fcRequest",
-                                "wrapped": true
-                            }
-                        }
-                    }
-                },
-                "description": "Lead Creation object",
+                "description": "Document Upload and Update object",
                 "required": true
             },
             "AdminSubModuleArray": {
@@ -13056,38 +12958,41 @@
                 },
                 "description": "Successful"
             },
-            "FSCreateLeadwithDocResp": {
+            "FSCreateUpdateDocResp": {
+                "description": "OK",
                 "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2030934091</responseId>\n<responseData>\n<fsLead>\n<status>Success</status>\n<referenceId>1440427898</referenceId>\n</fsLead>\n</responseData>\n</fcResponse>"
+                  "application/xml": {
+                    "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2030934091</responseId>\n<responseData>\n<fsLead>\n<referenceId>1421945231</referenceId>\n<fsDocuments_1361811791fsDocumentAttachment>Sales-HP-Recprd.pdf</fsDocuments_1361811791fsDocumentAttachment>\n<fsDocuments_1361811791_url><![CDATA[https://qamaster.s3.amazonaws.com/...?response-content-disposition=attachment%3B%20filename%3D%22Sales-HP-Record.pdf%22&X-Amz-Security-Token=<security-token>&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=<date>&X-Amz-SignedHeaders=content-md5%3Bhost&X-Amz-Expires=3600&X-Amz-Credential=<credential>&X-Amz-Signature=<signature>]]></fsDocuments_1361811791_url>\n</fsLead>\n</responseData>\n</fcResponse>",
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/FSCreateLead"
+                    },
+                    "xml": {
+                      "name": "fcResponse",
+                      "wrapped": true
                     }
-                },
-                "description": "Successful"
+                  }
+                }
+              }
             },
-            "FSUpdateLeadwithDocResp": {
+            "FimCreateUpdateDocResp": {
+                "description": "OK",
                 "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>473101746</responseId>\n<responseData>\n<fsLead>\n<status>Success</status>\n<referenceId>1421945231</referenceId>\n</fsLead>\n</responseData>\n</fcResponse>"
+                  "application/xml": {
+                    "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1977570268</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>1418298909</referenceId>\n<fimDocuments_1361811791fimDocumentAttachment>Gift-Certificate-Template.pdf</fimDocuments_1361811791fimDocumentAttachment>\n<fimDocuments_1361811791_url><![CDATA[https://qamaster.s3.amazonaws.com/...?response-content-disposition=attachment%3B%20filename%3D%22Gift-Certificate-Template.pdf%22&X-Amz-Security-Token=<security-token>&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=<date>&X-Amz-SignedHeaders=content-md5%3Bhost&X-Amz-Expires=3600&X-Amz-Credential=<credential>&X-Amz-Signature=<signature>]]></fimDocuments_1361811791_url>\n</fimCenterInfo>\n</responseData>\n</fcResponse>",
+                    "schema": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/FSCreateLead"
+                      },
+                      "xml": {
+                        "name": "fcResponse",
+                        "wrapped": true
+                      }
                     }
-                },
-                "description": "Successful"
-            },
-            "FimCreateFranchiseewithDocResp": {
-                "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>333333651</responseId>\n<responseData>\n<fimFranchisee>\n<status>Success</status>\n<referenceId>1256248607</referenceId>\n</fimFranchisee>\n</responseData>\n</fcResponse>
-                        "
-                    }
-                },
-                "description": "Successful"
-            },
-            "FimUpdateFranchiseewithDocResp": {
-                "content": {
-                    "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1092600569</responseId>\n<responseData>\n<fimFranchisee>\n<status>Success</status>\n<referenceId>1256248607</referenceId>\n</fimFranchisee>\n</responseData>\n</fcResponse>"
-                    }
-                },
-                "description": "Successful"
+                  }
+                }
             },
             "FimCreateFranchiseeResp": {
                 "content": {
