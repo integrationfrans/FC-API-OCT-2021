@@ -115,6 +115,30 @@
             "description": "The FranConnect API now supports full CRUD operations for multi-input tabs within FranConnect Info Manager modules. This includes both system-defined and custom tabs, as well as data stored in regular and tabular sections. Developers can create, retrieve, update, and delete records across these multi-input structures, enabling more complete and flexible data management within the FranConnect platform."
         },   
         {
+            "name": "People",
+            "description": "These API endpoints support operations associated with the People module, including management of owners, employees, and additional contacts records for both franchise and entity types."
+        },
+        {
+            "name": "Franchise Owner",
+            "description": "These API endpoints support Create, Retrieve, Update, and Delete operations for Franchise Owners records within the People module."
+        },
+        {
+            "name": "Entity Owner",
+            "description": "These API endpoints support Create, Retrieve, Update, and Delete operations for Entity Owners records within the People module."
+        },
+        {
+            "name": "Franchise Employee",
+            "description": "These API endpoints support Create, Retrieve, Update, and Delete operations for Franchise Employees records within the People module."
+        },
+        {
+            "name": "Entity Employee",
+            "description": "These API endpoints support Create, Retrieve, Update, and Delete operations for Entity Employees within the People module."
+        },
+        {
+            "name": "Additional Contact",
+            "description": "These API endpoints support Create, Retrieve, Update, and Delete operations for Additional Contacts within the People module."
+        },
+        {
             "name": "Ownership",
             "description": "<p>Leverage Ownership APIs to create ownerships between companies (or people) with franchises in the system.</p>"
         },
@@ -207,7 +231,7 @@
             "description": "These API endpoints support operations related to editing of segments. Following these endpoints, you will be able to edit the general information of a segment like its name, categoryId, customSegmentId, description etc. and alter the list of associated units, owners and or segments."
         },
         {
-            "name": "People",
+            "name": "People (Segments)",
             "description": "These API endpoints support operations associated with People."
         },
         {
@@ -290,6 +314,12 @@
                 "Transfer",
                 "Previous Ownership",
                 "Multi-Input Tab",
+                "People",
+                "Franchise Owner",
+                "Entity Owner",
+                "Franchise Employee",
+                "Entity Employee",
+                "Additional Contact",
                 "Ownership",
                 "Company Ownership",
                 "People Ownership",
@@ -323,7 +353,7 @@
                 "Custom Segment Fields",
                 "Segment",
                 "Edit Segments",
-                "People",
+                "People (Segments)",
                 "Audits",
                 "Visits",
                 "Events and Webhooks",
@@ -1774,6 +1804,326 @@
               }
             }
         },          
+        "/create?module=people&subModule=owner": {
+            "post": {
+                "tags": ["Franchise Owner"],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation for adding a Franchise Owner through the People module. You can use this operation to add a new owner to an existing franchisee record.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?module=people&subModule=owner&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=create&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Create operation for adding a Franchise Owner using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Create operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values for the owner record. To add a Franchise Owner, set <strong>&lt;parentReferenceType&gt;</strong> to <code>Franchisee</code> and <strong>&lt;parentReferenceId&gt;</strong> to the <strong>Franchisee Number</strong> of the franchisee the owner belongs to — this identifies the parent record under which the owner is created. You can retrieve the Franchisee Number from the <u><a href=\"#tag/Franchisee-Number\">Franchisee Number</a></u> endpoint. The remaining fields (such as <strong>&lt;firstName&gt;</strong>, <strong>&lt;lastName&gt;</strong>, <strong>&lt;email&gt;</strong>, <strong>&lt;storeOwnedPercentage&gt;</strong>, and <strong>&lt;ownershipStartDate&gt;</strong>) carry the owner's own details.</p></li></ol><p class=\"western\">Performing the above mentioned steps creates a new Franchise Owner record. The response contains <strong>\"referenceId\"</strong> inside the <strong>&lt;fimOwner&gt;</strong> element — this is the owner's person record ID.</p><p><strong>Note:</strong> Two distinct identifiers are involved in this operation. The <strong>&lt;parentReferenceId&gt;</strong> you send in the request is the <strong>Franchisee Number</strong> — it identifies the parent franchisee, not the owner. The <strong>referenceId</strong> returned in the response is the owner's <strong>person record ID</strong>; it can be used to filter a Retrieve, but the Update and Delete operations require the <strong>owner mapping ID</strong> (the outer <strong>&lt;owners&gt;&lt;referenceId&gt;</strong> returned by the Retrieve operation), not the Franchisee Number and not the create-returned person record ID.</p><p><strong>Note:</strong> If <strong>&lt;entityDetail&gt;</strong>, <strong>&lt;ownerType&gt;</strong>, or <strong>&lt;email_includeInCampaignList&gt;</strong> are omitted, the record is still created but the response returns a Warning and default values are applied. Provide these fields explicitly to avoid the Warning.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Single Location:</strong> Set <code>&lt;parentReferenceId&gt;</code> to a single <code>FRANCHISEE_NO</code> and <code>&lt;ownerType&gt;</code> to <code>New</code>. The response returns one <code>&lt;referenceId&gt;</code> — the owner's person record ID.</li><li><strong>Multiple Locations (new owner):</strong> Pass comma-separated <code>FRANCHISEE_NO</code> values in <code>&lt;parentReferenceId&gt;</code> with <code>&lt;ownerType&gt;New&lt;/ownerType&gt;</code>. The system creates one mapping record per location and returns a separate <code>&lt;fimOwner&gt;</code> block per location in the response. <code>muidValue</code> is not required upfront — it is system-generated and retrievable after creation.</li><li><strong>Associate existing owner to a new location:</strong> Set <code>&lt;ownerType&gt;</code> to <code>Existing</code> and provide the owner's <code>&lt;muidValue&gt;</code> (obtained from a prior Retrieve). This links an already-existing owner person record to the new location without creating a duplicate. Returns one new mapping <code>&lt;referenceId&gt;</code> for the newly linked location.</li></ol></p>",
+                "operationId": "People_Create_FranchiseOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleCreateFranchiseOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleCreateFranchiseOwnerArray" }
+            }
+        },
+        "/retrieve?module=people&subModule=owner": {
+            "post": {
+                "tags": ["Franchise Owner"],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation for fetching Franchise Owner records through the People module. You can retrieve all owners linked to a specific franchisee, or retrieve a specific owner using its own unique ID.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=people&subModule=owner&filterXML=filteredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=retrieve&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Retrieve operation for fetching Franchise Owner records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that contains the filter criteria for the Retrieve operation. To retrieve all owners of a franchisee, provide the <strong>&lt;referenceId&gt;</strong> inside a <strong>&lt;filter&gt;</strong> block — this is the <strong>Franchisee Number</strong> of the parent franchisee. To retrieve a specific owner, additionally nest the owner's own ID inside <strong>&lt;owners&gt;&lt;fimOwners&gt;&lt;referenceId&gt;</strong>.</p></li></ol><p class=\"western\">The response returns the owner records matching the filter, nested under the parent franchisee.</p><p><strong>Note:</strong> The response contains three identifiers that should not be confused with one another. The <strong>&lt;referenceId&gt;</strong> inside <strong>&lt;filter&gt;</strong> (and the top-level one in the response) is the <strong>Franchisee Number</strong> of the parent record. The outer <strong>&lt;owners&gt;&lt;referenceId&gt;</strong> is the <strong>owner mapping ID</strong> that links the owner to this franchisee — this is the value used for the Update and Delete operations. The inner <strong>&lt;fimOwners&gt;&lt;referenceId&gt;</strong> is the <strong>owner's person record ID</strong>. Always use the owner mapping ID for Update and Delete.</p><p><strong>ID Reference Table — Understanding the Three Identifiers in the Response:</strong><center><table width=\"100%\" class=\"endpoint-table\"><tr style=\"background:#2E75B6;color:#fff;\"><td><strong>ID</strong></td><td><strong>Location in Response</strong></td><td><strong>What It Is</strong></td><td><strong>Used For</strong></td></tr><tr><td><code>fimCenterInfo &gt; referenceId</code></td><td>Top level</td><td>FRANCHISEE_NO — parent location</td><td>parentReferenceId on CREATE</td></tr><tr style=\"background:#EBF3FB;\"><td><code>owners &gt; referenceId</code></td><td>Middle level</td><td>Owner mapping ID (OWNERS.OWNER_NO)</td><td><strong>UPDATE and DELETE</strong></td></tr><tr><td><code>fimOwner &gt; referenceId</code></td><td>Inner level</td><td>Owner person record ID (FRANCHISE_OWNER_ID)</td><td>Retrieve filter only</td></tr><tr style=\"background:#EBF3FB;\"><td><code>muidValue</code></td><td>Inside fimOwner</td><td>Cross-location identifier (PID-XXXXX)</td><td>ownerType=Existing on CREATE</td></tr></table></center></p>",
+                "operationId": "People_Retrieve_FranchiseOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleRetrieveFranchiseOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleRetrieveFranchiseOwnerArray" }
+            }
+        },
+        "/update?module=people&subModule=owner": {
+            "post": {
+                "tags": ["Franchise Owner"],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation for modifying an existing Franchise Owner record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=people&subModule=owner&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=update&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform an Update operation for a Franchise Owner using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Update operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the fields to be updated. Set <strong>&lt;referenceId&gt;</strong> to the <strong>owner mapping ID</strong> — the outer <strong>&lt;owners&gt;&lt;referenceId&gt;</strong> value returned by the Retrieve operation. Include <strong>&lt;parentReferenceType&gt;</strong> as <code>Franchisee</code> so the request is routed to the correct record. Only include the fields you want to change; fields that are omitted retain their existing values.</p></li></ol><p class=\"western\">Performing the above mentioned steps updates the specified Franchise Owner record. The response confirms the operation status and echoes back the owner's <strong>referenceId</strong>.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the <strong>owner mapping ID</strong> (the outer <strong>&lt;owners&gt;&lt;referenceId&gt;</strong> from the Retrieve response). Do not use the Franchisee Number or the inner <strong>&lt;fimOwners&gt;</strong> person record ID for this operation.</p><p><strong>Note:</strong> <code>&lt;firstName&gt;</code> and <code>&lt;lastName&gt;</code> are mandatory fields for the Update operation per the system schema. Always include them even if you are not changing their values. Omitting <code>&lt;parentReferenceType&gt;</code> returns a Warning 216 but the update still succeeds — include it for a clean Success response.</p>",
+                "operationId": "People_Update_FranchiseOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleUpdateFranchiseOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleUpdateFranchiseOwnerArray" }
+            }
+        },
+        "/delete?module=people&subModule=owner": {
+            "post": {
+                "tags": ["Franchise Owner"],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation for removing a Franchise Owner record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=people&subModule=owner&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=delete&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Delete operation for a Franchise Owner using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Delete operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that identifies the owner to be deleted. Set <strong>&lt;referenceId&gt;</strong> to the <strong>owner mapping ID</strong> — the outer <strong>&lt;owners&gt;&lt;referenceId&gt;</strong> value returned by the Retrieve operation — and set <strong>&lt;parentReferenceType&gt;</strong> to <code>Franchisee</code>.</p></li></ol><p class=\"western\">Performing the above mentioned steps deletes the specified Franchise Owner record. The response confirms the operation status.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the <strong>owner mapping ID</strong>, not the Franchisee Number and not the inner <strong>&lt;fimOwners&gt;</strong> person record ID. If you do not have this value, use the Retrieve operation first to look it up.</p><p><strong>Note:</strong> An owner who has an active franchisee user login cannot be deleted — the response returns \"Record cannot be deleted\". Deactivate the associated user login before attempting the delete.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Remove owner from a single location:</strong> Provide the owner mapping ID (<code>owners &gt; referenceId</code> from Retrieve) and <code>&lt;parentReferenceType&gt;Franchisee&lt;/parentReferenceType&gt;</code>. This removes the owner from that location only — the owner's person record is not deleted.</li><li><strong>Remove owner from one of multiple locations (disassociate):</strong> When an owner is linked to multiple locations, each location has its own unique mapping ID. Run a Retrieve first to identify which mapping ID belongs to which location, then delete using the specific mapping ID for the location you want to remove. The owner remains linked to all other locations.</li></ol></p>",
+                "operationId": "People_Delete_FranchiseOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleDeleteFranchiseOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleDeleteFranchiseOwnerArray" }
+            }
+        },
+        "/create?module=people&subModule=owner (Entity Owner)": {
+            "post": {
+                "tags": ["Entity Owner"],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation for adding an Entity Owner through the People module. You can use this operation to add a new owner to an existing entity record.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?module=people&subModule=owner&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=create&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Create operation for adding an Entity Owner using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Create operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values for the owner record. To add an Entity Owner, set <strong>&lt;parentReferenceType&gt;</strong> to <code>Entity</code> and <strong>&lt;parentReferenceId&gt;</strong> to the <strong>Entity ID</strong> of the entity the owner belongs to — this identifies the parent record under which the owner is created. The <strong>&lt;parentReferenceType&gt;</strong> value is sent inside the request body (xmlString), not as a URL parameter; it is the only field that distinguishes this operation from the Franchise Owner Create operation, which otherwise uses the same endpoint. The remaining fields (such as <strong>&lt;firstName&gt;</strong>, <strong>&lt;lastName&gt;</strong>, <strong>&lt;email&gt;</strong>, <strong>&lt;storeOwnedPercentage&gt;</strong>, and <strong>&lt;ownershipStartDate&gt;</strong>) carry the owner's own details.</p></li></ol><p class=\"western\">Performing the above mentioned steps creates a new Entity Owner record. The response returns a <strong>&lt;referenceId&gt;</strong> inside the <strong>&lt;fimOwner&gt;</strong> element — this is the owner's person record ID (<strong>fimId</strong>), which can be used directly for Update and Delete operations without needing a separate Retrieve.</p><p><strong>Note:</strong> Two distinct identifiers are involved in this operation. The <strong>&lt;parentReferenceId&gt;</strong> you send in the request is the <strong>Entity ID</strong> — it identifies the parent entity, not the owner. The <strong>referenceId</strong> returned in the response is the owner's <strong>person record ID</strong> (<strong>fimId</strong>) and can be used directly for the Update and Delete operations. The owner mapping ID (<strong>mappingOwnerId</strong>) returned by the Retrieve operation is an internal reference only and must not be used for Update or Delete.</p><p><strong>Note:</strong> If <strong>&lt;entityDetail&gt;</strong>, <strong>&lt;ownerType&gt;</strong>, or <strong>&lt;email_includeInCampaignList&gt;</strong> are omitted, the record is still created but the response returns a Warning and default values are applied. Provide these fields explicitly to avoid the Warning.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Single Entity (New Owner):</strong> Set <code>&lt;parentReferenceId&gt;</code> to a single Entity ID and <code>&lt;ownerType&gt;</code> to <code>New</code>. Ownership-specific fields (<code>isManager</code>, <code>typeOfOwnership</code>, <code>storeOwnedPercentage</code>, <code>ownershipStartDate</code>) must be passed inside a nested <code>&lt;owners&gt;</code> block. The response returns one <code>&lt;referenceId&gt;</code> — the owner's person record ID (<code>fimId</code>) — usable directly for Update and Delete.</li><li><strong>Multiple Entities (New Owner — single call):</strong> Pass comma-separated Entity IDs in <code>&lt;parentReferenceId&gt;</code>. The system creates one owner record per entity and returns one <code>&lt;fimOwner&gt;</code> block per entity in the response, each with its own <code>&lt;referenceId&gt;</code> (<code>fimId</code>).</li></ol></p><p><strong>Note:</strong> The <code>&lt;owners&gt;</code> nested block is required to pass ownership-specific fields. Unlike Franchise Owner, Entity Owner does not expose a <code>muidValue</code> — the <code>ownerType=Existing</code> flow is not supported for Entity Owner. To link an existing owner to a new entity, use the multi-entity comma-separated <code>&lt;parentReferenceId&gt;</code> approach with <code>ownerType=New</code>.</p>",
+                "operationId": "People_Create_EntityOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleCreateEntityOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleCreateEntityOwnerArray" }
+            }
+        },
+        "/retrieve?module=people&subModule=owner (Entity Owner)": {
+            "post": {
+                "tags": ["Entity Owner"],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation for fetching Entity Owner records through the People module. You can retrieve all owners linked to a specific entity, retrieve a specific owner, or perform a reverse lookup of all entities a given owner is linked to.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=people&subModule=owner&filterXML=filteredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=retrieve&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Retrieve operation for fetching Entity Owner records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that contains the filter criteria for the Retrieve operation. To target Entity Owners, set <strong>&lt;parentReferenceType&gt;</strong> to <code>Entity</code> inside the <strong>&lt;filter&gt;</strong> block — this value is sent in the request body, not as a URL parameter, and is what distinguishes this operation from the Franchise Owner Retrieve. To retrieve all owners of an entity, also provide the entity's <strong>&lt;referenceId&gt;</strong> (the <strong>Entity ID</strong>) inside the filter. To retrieve a specific owner, additionally provide the owner's ID nested inside <strong>&lt;owners&gt;&lt;fimOwners&gt;&lt;referenceId&gt;</strong> (this is the owner's <strong>fimId</strong>; multiple IDs can be passed comma-separated). Field-level filters such as <strong>&lt;firstName&gt;</strong> or <strong>&lt;lastName&gt;</strong> are also placed inside <strong>&lt;owners&gt;&lt;fimOwners&gt;</strong> and matched using a LIKE comparison. To perform a reverse lookup of all entities a given owner is linked to, omit the root <strong>&lt;referenceId&gt;</strong> and provide only <strong>&lt;parentReferenceType&gt;Entity&lt;/parentReferenceType&gt;</strong> with the owner's <strong>&lt;owners&gt;&lt;fimOwners&gt;&lt;referenceId&gt;</strong>.</p></li></ol><p class=\"western\">The response returns the owner records matching the filter, nested under the parent <strong>&lt;fimEntity&gt;</strong> element.</p><p><strong>Note:</strong> The <strong>&lt;parentReferenceType&gt;</strong> filter cannot be used on its own — sending it without at least one additional data filter (such as the Entity <strong>&lt;referenceId&gt;</strong> or an <strong>&lt;owners&gt;&lt;fimOwners&gt;</strong> field) returns a 400 error. Note also that for an Entity Owner the owner ID is provided nested inside <strong>&lt;owners&gt;&lt;fimOwners&gt;&lt;referenceId&gt;</strong>, the same structure used by the Franchise Owner Retrieve.</p><p><strong>Note:</strong> In the response, <strong>&lt;fimOwner&gt;&lt;fimId&gt;</strong> is the owner's <strong>person record ID</strong> — this is the value used for the Update and Delete operations. The <strong>&lt;fimOwner&gt;&lt;referenceId&gt;</strong> (also returned as <strong>mappingOwnerId</strong>) is an internal reference only and must not be used for Update or Delete. The top-level <strong>&lt;referenceId&gt;</strong> is the <strong>Entity ID</strong> of the parent record.</p><p><strong>ID Reference Table — Understanding the Identifiers in the Response:</strong><center><table width=\"100%\" class=\"endpoint-table\"><tr style=\"background:#2E75B6;color:#fff;\"><td><strong>ID</strong></td><td><strong>Location in Response</strong></td><td><strong>What It Is</strong></td><td><strong>Used For</strong></td></tr><tr><td><code>fimEntity &gt; referenceId</code></td><td>Top level</td><td>Entity ID — parent entity</td><td>parentReferenceId on CREATE, referenceId filter on RETRIEVE</td></tr><tr style=\"background:#EBF3FB;\"><td><code>fimOwner &gt; fimId</code></td><td>Direct child of fimEntity</td><td>Owner person record ID — unique per entity</td><td><strong>UPDATE and DELETE</strong> — also returned directly in CREATE response</td></tr><tr><td><code>fimOwner &gt; referenceId</code></td><td>Direct child of fimEntity</td><td>Mapping ID (mappingOwnerId) — same value across entities for same owner</td><td>Internal reference only — do NOT use for UPDATE/DELETE</td></tr><tr style=\"background:#EBF3FB;\"><td><code>fimOwner &gt; fimEntityId</code></td><td>Direct child of fimEntity</td><td>Confirms parent Entity ID</td><td>Informational only</td></tr></table></center></p><p><strong>Note:</strong> Entity Owner does not expose a <code>muidValue</code> in the retrieve response — unlike Franchise Owner. To retrieve an owner across multiple entities, pass comma-separated Entity IDs in the <code>&lt;referenceId&gt;</code> filter — the response returns one <code>&lt;fimEntity&gt;</code> block per entity.</p>",
+                "operationId": "People_Retrieve_EntityOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleRetrieveEntityOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleRetrieveEntityOwnerArray" }
+            }
+        },
+        "/update?module=people&subModule=owner (Entity Owner)": {
+            "post": {
+                "tags": ["Entity Owner"],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation for modifying an existing Entity Owner record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=people&subModule=owner&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=update&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform an Update operation for an Entity Owner using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Update operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the fields to be updated. To perform an Update operation, the <strong>&lt;referenceId&gt;</strong> must be the owner's person record ID (<strong>fimId</strong>) — the value returned in the <strong>&lt;referenceId&gt;</strong> field of the Create response, or found under <strong>&lt;fimOwner&gt;&lt;fimId&gt;</strong> in the Retrieve response. This is different from Franchise Owner, which uses the mapping ID for updates. Include <strong>&lt;parentReferenceType&gt;</strong> as <code>Entity</code> (sent in the body, not as a URL parameter) so the request is routed to the correct record. Only include the fields you want to change; fields that are omitted retain their existing values.</p></li></ol><p class=\"western\">Performing the above mentioned steps updates the specified Entity Owner record. The response confirms the operation status and echoes back the owner's <strong>referenceId</strong> (<strong>fimId</strong>).</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the owner's <strong>person record ID</strong> (<strong>fimId</strong>) — the value returned by the Create operation, or found under <strong>&lt;fimOwner&gt;&lt;fimId&gt;</strong> in the Retrieve response. Do not use the Entity ID or the owner mapping ID (<strong>mappingOwnerId</strong>) for this operation.</p><p><strong>Note:</strong> <code>&lt;firstName&gt;</code> and <code>&lt;lastName&gt;</code> are mandatory fields for the Update operation per the system schema. Always include them even if you are not changing their values. The <code>&lt;fimId&gt;</code> is unique per entity — when updating an owner linked to multiple entities, use the specific <code>fimId</code> from the Retrieve response for the entity you want to update.</p>",
+                "operationId": "People_Update_EntityOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleUpdateEntityOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleUpdateEntityOwnerArray" }
+            }
+        },
+        "/delete?module=people&subModule=owner (Entity Owner)": {
+            "post": {
+                "tags": ["Entity Owner"],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation for removing an Entity Owner record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=people&subModule=owner&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=owner&operation=delete&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Delete operation for an Entity Owner using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Delete operation is being performed. In this case, the subModule to be used is \"owner\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that identifies the owner to be deleted. To perform a Delete operation, the <strong>&lt;referenceId&gt;</strong> must be the owner's person record ID (<strong>fimId</strong>) — the value returned in the <strong>&lt;referenceId&gt;</strong> field of the Create response, or found under <strong>&lt;fimOwner&gt;&lt;fimId&gt;</strong> in the Retrieve response.</p></li></ol><p class=\"western\">Performing the above mentioned steps deletes the specified Entity Owner record. The response confirms the operation status.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the owner's person record ID (<strong>fimId</strong>), not the Entity ID and not the owner mapping ID (<code>mappingOwnerId</code>).</p><p><strong>Use Cases Supported:</strong>\n<ol>\n  <li><strong>Remove owner from a single entity:</strong> Provide the owner's <code>fimId</code> and <code>&lt;parentReferenceType&gt;Entity&lt;/parentReferenceType&gt;</code>. This removes the owner from that entity only.</li>\n  <li><strong>Disassociate owner from one of multiple entities:</strong> When an owner is linked to multiple entities, each entity has its own unique <code>fimId</code> for that owner. Run a Retrieve first with comma-separated Entity IDs to identify which <code>fimId</code> belongs to which entity, then delete using the specific <code>fimId</code> for the entity to remove. The owner remains linked to all other entities.</li>\n</ol>\n</p>\n<p><strong>Note:</strong> An owner with an active user login cannot be deleted — the response returns an error. Deactivate or delete the associated user account before attempting the delete operation.</p>",
+                "operationId": "People_Delete_EntityOwner",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleDeleteEntityOwnerResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleDeleteEntityOwnerArray" }
+            }
+        },
+        "/create?module=people&subModule=employee": {
+            "post": {
+                "tags": ["Franchise Employee"],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation for adding a Franchise Employee through the People module. You can use this operation to add a new employee to an existing franchisee record.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?module=people&subModule=employee&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=create&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Create operation for adding a Franchise Employee using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Create operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values for the employee record. To add a Franchise Employee, set <strong>&lt;parentReferenceType&gt;</strong> to <code>Franchisee</code> and <strong>&lt;parentReferenceId&gt;</strong> to the <strong>Franchisee Number</strong> of the franchisee the employee belongs to — this identifies the parent record under which the employee is created. You can retrieve the Franchisee Number from the <u><a href=\"#tag/Franchisee-Number\">Franchisee Number</a></u> endpoint. The fields <strong>&lt;firstName&gt;</strong>, <strong>&lt;lastName&gt;</strong>, <strong>&lt;employeeType&gt;</strong>, <strong>&lt;jobTitle&gt;</strong>, and <strong>&lt;phone1&gt;</strong> are required; the remaining fields (such as <strong>&lt;email&gt;</strong>, <strong>&lt;phone2&gt;</strong>, <strong>&lt;mobile&gt;</strong>, <strong>&lt;address&gt;</strong>, and <strong>&lt;state&gt;</strong>) are optional.</p></li></ol><p class=\"western\">Performing the above mentioned steps creates a new Franchise Employee record. The response contains <strong>\"referenceId\"</strong> inside the <strong>&lt;fimEmployee&gt;</strong> element — this is the employee's <strong>mapping ID (EMPLOYEE_NO)</strong>, which can be used directly for Update and Delete operations without needing a separate Retrieve.</p><p><strong>Note:</strong> Two distinct identifiers are involved in this operation. The <strong>&lt;parentReferenceId&gt;</strong> you send in the request is the <strong>Franchisee Number</strong> — it identifies the parent franchisee, not the employee. The <strong>referenceId</strong> returned in the response is the employee's <strong>mapping ID (EMPLOYEE_NO)</strong> — this value can be used directly for Update and Delete operations. The Retrieve response also returns this same value under <strong>&lt;fimEmployeesMapping&gt;&lt;referenceId&gt;</strong>. The <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong> in the Retrieve response is the employee's <strong>person record ID (EMPLOYEE_ID)</strong> — use this only as a Retrieve filter.</p><p><strong>Note:</strong> <strong>&lt;phone1&gt;</strong> is mandatory — omitting it returns an error. If <strong>&lt;email_includeInCampaignList&gt;</strong> is omitted, the record is still created but the response returns a Warning and a default value is applied. State and country are integer IDs.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Single Location (New Employee):</strong> Set <code>&lt;parentReferenceId&gt;</code> to a single <code>FRANCHISEE_NO</code> and <code>&lt;employeeType&gt;</code> to <code>New</code>. The response returns one <code>&lt;referenceId&gt;</code> — the employee mapping ID (EMPLOYEE_NO). Run a Retrieve after creation to obtain the <code>muidValue</code> (cross-location identifier) if you plan to associate the employee with additional locations later.</li><li><strong>Associate Existing Employee to a New Location:</strong> When an employee already exists in the system and needs to be linked to an additional franchisee location, set <code>&lt;employeeType&gt;</code> to <code>Existing</code>, provide the employee's <code>&lt;muidValue&gt;</code> (obtained from a prior Retrieve), and include an empty self-closing <code>&lt;fimEmployeesMapping/&gt;</code> tag. This must be done one location at a time — comma-separated <code>&lt;parentReferenceId&gt;</code> is not supported with <code>employeeType=Existing</code>. Each call returns a new mapping <code>&lt;referenceId&gt;</code> for the newly linked location.</li></ol></p><p><strong>Note:</strong> Unlike Franchise Owner (which supports comma-separated <code>&lt;parentReferenceId&gt;</code> to link multiple locations in a single CREATE call), Franchise Employee does not support multi-location creation in a single call. To associate an employee with multiple locations, first create the employee under one location, retrieve the <code>muidValue</code>, then call CREATE with <code>employeeType=Existing</code> once per additional location.</p>",
+                "operationId": "People_Create_FranchiseEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleCreateFranchiseEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleCreateFranchiseEmployeeArray" }
+            }
+        },
+        "/retrieve?module=people&subModule=employee": {
+            "post": {
+                "tags": ["Franchise Employee"],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation for fetching Franchise Employee records through the People module. You can retrieve all employees linked to a specific franchisee, or retrieve a specific employee using its own employee ID.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=people&subModule=employee&filterXML=filteredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=retrieve&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Retrieve operation for fetching Franchise Employee records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that contains the filter criteria for the Retrieve operation. To retrieve all employees of a franchisee, provide the <strong>&lt;referenceId&gt;</strong> inside a <strong>&lt;filter&gt;</strong> block — this is the <strong>Franchisee Number</strong> of the parent franchisee. To retrieve a specific employee, additionally nest the employee's ID inside <strong>&lt;fimEmployees&gt;&lt;referenceId&gt;</strong> (the <strong>EMPLOYEE_ID</strong>; multiple IDs can be passed comma-separated). Field-level filters such as <strong>&lt;lastName&gt;</strong> placed inside <strong>&lt;fimEmployees&gt;</strong> are matched using a LIKE comparison.</p></li></ol><p class=\"western\">The response returns the employee records matching the filter, nested under the parent franchisee.</p><p><strong>Note:</strong> The response contains three identifiers that should not be confused with one another. The top-level <strong>&lt;referenceId&gt;</strong> is the <strong>Franchisee Number</strong> of the parent record. The <strong>&lt;fimEmployees&gt;&lt;referenceId&gt;</strong> is the employee's <strong>person record ID (EMPLOYEE_ID)</strong> — use this value as a filter to look up a specific employee. The <strong>&lt;fimEmployeesMapping&gt;&lt;referenceId&gt;</strong> is the <strong>employee mapping ID (EMPLOYEE_NO)</strong> — this is the value required for the Update and Delete operations.</p><p><strong>ID Reference Table — Understanding the Three Identifiers in the Response:</strong><center><table width=\"100%\" class=\"endpoint-table\"><tr style=\"background:#2E75B6;color:#fff;\"><td><strong>ID</strong></td><td><strong>Location in Response</strong></td><td><strong>What It Is</strong></td><td><strong>Used For</strong></td></tr><tr><td><code>fimCenterInfo &gt; referenceId</code></td><td>Top level</td><td>FRANCHISEE_NO — parent location</td><td>parentReferenceId on CREATE</td></tr><tr style=\"background:#EBF3FB;\"><td><code>fimEmployeesMapping &gt; referenceId</code></td><td>Inside fimEmployee</td><td>Employee mapping ID (EMPLOYEE_NO)</td><td><strong>UPDATE and DELETE</strong></td></tr><tr><td><code>fimEmployee &gt; referenceId</code></td><td>Direct child of fimCenterInfo</td><td>Employee person record ID (EMPLOYEE_ID)</td><td>Retrieve filter only</td></tr><tr style=\"background:#EBF3FB;\"><td><code>muidValue</code></td><td>Inside fimEmployee</td><td>Cross-location identifier (PID-XXXXX)</td><td>employeeType=Existing on CREATE</td></tr></table></center></p>",
+                "operationId": "People_Retrieve_FranchiseEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleRetrieveFranchiseEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleRetrieveFranchiseEmployeeArray" }
+            }
+        },
+        "/update?module=people&subModule=employee": {
+            "post": {
+                "tags": ["Franchise Employee"],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation for modifying an existing Franchise Employee record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=people&subModule=employee&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=update&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform an Update operation for a Franchise Employee using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Update operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the fields to be updated. Set <strong>&lt;referenceId&gt;</strong> to the <strong>employee mapping ID (EMPLOYEE_NO)</strong> — the <strong>&lt;fimEmployeesMapping&gt;&lt;referenceId&gt;</strong> value returned by the Retrieve operation. Include <strong>&lt;parentReferenceType&gt;</strong> as <code>Franchisee</code> so the request is routed to the correct record. Only include the fields you want to change; fields that are omitted retain their existing values.</p></li></ol><p class=\"western\">Performing the above mentioned steps updates the specified Franchise Employee record. The response confirms the operation status and echoes back the employee mapping <strong>referenceId</strong>.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the <strong>employee mapping ID (EMPLOYEE_NO)</strong> from <strong>&lt;fimEmployeesMapping&gt;</strong> in the Retrieve response. Do not use the Franchisee Number or the <strong>&lt;fimEmployees&gt;</strong> person record ID (EMPLOYEE_ID) for this operation.</p><p><strong>Note:</strong> <code>&lt;firstName&gt;</code>, <code>&lt;lastName&gt;</code>, and <code>&lt;jobTitle&gt;</code> are mandatory fields for the Update operation per the system schema. Always include them even if you are not changing their values. Omitting <code>&lt;parentReferenceType&gt;</code> returns a Warning 216 but the update still succeeds — include it for a clean Success response.</p>",
+                "operationId": "People_Update_FranchiseEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleUpdateFranchiseEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleUpdateFranchiseEmployeeArray" }
+            }
+        },
+        "/delete?module=people&subModule=employee": {
+            "post": {
+                "tags": ["Franchise Employee"],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation for removing a Franchise Employee record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=people&subModule=employee&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=delete&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Delete operation for a Franchise Employee using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Delete operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that identifies the employee to be deleted. Set <strong>&lt;referenceId&gt;</strong> to the <strong>employee mapping ID (EMPLOYEE_NO)</strong> — the <strong>&lt;fimEmployeesMapping&gt;&lt;referenceId&gt;</strong> value returned by the Retrieve operation — and set <strong>&lt;parentReferenceType&gt;</strong> to <code>Franchisee</code>.</p></li></ol><p class=\"western\">Performing the above mentioned steps deletes the specified Franchise Employee record. This removes the franchisee–employee mapping and, if it is the employee's last association, the employee main record. The response confirms the operation status.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the <strong>employee mapping ID (EMPLOYEE_NO)</strong>, not the Franchisee Number and not the <strong>&lt;fimEmployees&gt;</strong> person record ID (EMPLOYEE_ID). Deletion is permanent — always confirm the referenceId using the Retrieve operation first.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Remove employee from a single location:</strong> Provide the employee mapping ID (<code>fimEmployeesMapping &gt; referenceId</code> from Retrieve) and <code>&lt;parentReferenceType&gt;Franchisee&lt;/parentReferenceType&gt;</code>. This removes the employee from that location only. If this is the employee's only location, the employee's main person record is also removed.</li><li><strong>Disassociate employee from one of multiple locations:</strong> When an employee is linked to multiple locations, each location has its own unique mapping ID. Run a Retrieve first to identify which mapping ID belongs to which location, then delete using the specific mapping ID for the location to remove. The employee remains linked to all other locations.</li></ol></p><p><strong>Note:</strong> An employee with an active user login cannot be deleted — the response returns error 400 \"This employee cannot be deleted as an active user for this Employee exists\". Deactivate or delete the associated user account before attempting the delete operation.</p>",
+                "operationId": "People_Delete_FranchiseEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleDeleteFranchiseEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleDeleteFranchiseEmployeeArray" }
+            }
+        },
+        "/create?module=people&subModule=employee (Entity Employee)": {
+            "post": {
+                "tags": ["Entity Employee"],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation for adding an Entity Employee through the People module. You can use this operation to add a new employee to an existing entity record.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?module=people&subModule=employee&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=create&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Create operation for adding an Entity Employee using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Create operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values for the employee record. To add an Entity Employee, set <strong>&lt;parentReferenceType&gt;</strong> to <code>Entity</code> and <strong>&lt;parentReferenceId&gt;</strong> to the <strong>Entity ID</strong> of the entity the employee belongs to — this identifies the parent record under which the employee is created. The <strong>&lt;parentReferenceType&gt;</strong> value is sent inside the request body (xmlString), not as a URL parameter; it is the only field that distinguishes this operation from the Franchise Employee Create operation, which otherwise uses the same endpoint. The fields <strong>&lt;firstName&gt;</strong>, <strong>&lt;lastName&gt;</strong>, <strong>&lt;employeeType&gt;</strong>, <strong>&lt;jobTitle&gt;</strong>, and <strong>&lt;phone1&gt;</strong> are required; all other employee fields (address, phone2, mobile, fax, and so on) are supported identically to the Franchise Employee create.</p></li></ol><p class=\"western\">Performing the above mentioned steps creates a new Entity Employee record. The response contains a single <strong>&lt;fimEmployee&gt;</strong> element whose <strong>\"referenceId\"</strong> is the <strong>employee mapping ID (EMPLOYEE_NO)</strong>.</p><p><strong>Note:</strong> The <strong>&lt;parentReferenceId&gt;</strong> you send is the <strong>Entity ID</strong> — it identifies the parent entity, not the employee. Unlike the Franchise Employee create (which returns the internal EMPLOYEE_ID), the Entity Employee create returns the <strong>employee mapping ID (EMPLOYEE_NO)</strong>; this is the value used directly for the Update and Delete operations.</p><p><strong>Note:</strong> <strong>&lt;phone1&gt;</strong> is mandatory — omitting it returns an error. If <strong>&lt;email_includeInCampaignList&gt;</strong> is omitted, the record is still created but the response returns a Warning and a default value is applied. State and country are integer IDs.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Single Entity (New Employee):</strong> Set <code>&lt;parentReferenceId&gt;</code> to a single Entity ID and <code>&lt;employeeType&gt;</code> to <code>New</code>. The response returns one <code>&lt;referenceId&gt;</code> — the employee mapping ID (EMPLOYEE_NO) — which can be used directly for Update and Delete operations.</li><li><strong>Multiple Entities (New Employee — single call):</strong> Pass comma-separated Entity IDs in <code>&lt;parentReferenceId&gt;</code> with <code>&lt;employeeType&gt;New&lt;/employeeType&gt;</code>. The system creates one mapping record per entity and returns the mapping IDs as a comma-separated value in a single <code>&lt;referenceId&gt;</code> tag in the response. This is different from Franchise Employee, which does not support comma-separated creation.</li></ol></p><p><strong>Note:</strong> Unlike Franchise Employee, Entity Employee supports comma-separated <code>&lt;parentReferenceId&gt;</code> to create an employee across multiple entities in a single call. No <code>muidValue</code> is required — Entity Employee does not use or expose a MUID. The <code>&lt;fimEmployeesMapping/&gt;</code> tag is also not required for Entity Employee multi-entity association.</p>",
+                "operationId": "People_Create_EntityEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleCreateEntityEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleCreateEntityEmployeeArray" }
+            }
+        },
+        "/retrieve?module=people&subModule=employee (Entity Employee)": {
+            "post": {
+                "tags": ["Entity Employee"],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation for fetching Entity Employee records through the People module. You can retrieve all employees across all entities, all employees of a specific entity, or a specific employee by its mapping ID.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=people&subModule=employee&filterXML=filteredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=retrieve&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Retrieve operation for fetching Entity Employee records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that contains the filter criteria for the Retrieve operation. To target Entity Employees, set <strong>&lt;parentReferenceType&gt;</strong> to <code>Entity</code> inside the <strong>&lt;filter&gt;</strong> block — this value is sent in the request body, not as a URL parameter, and is what distinguishes this operation from the Franchise Employee Retrieve. Provide <strong>&lt;parentReferenceType&gt;Entity&lt;/parentReferenceType&gt;</strong> alone to fetch employees across all entities, add the entity's <strong>&lt;referenceId&gt;</strong> (the <strong>Entity ID</strong>) to fetch all employees of a specific entity, or additionally provide the employee's mapping ID inside <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong> (the <strong>EMPLOYEE_NO</strong>; multiple IDs can be passed comma-separated) to fetch a specific employee. Field-level filters inside <strong>&lt;fimEmployee&gt;</strong> are matched using a LIKE comparison, and entity-level geo filters (<strong>&lt;city&gt;</strong>, <strong>&lt;state&gt;</strong>, <strong>&lt;country&gt;</strong>, <strong>&lt;region&gt;</strong>) filter by the entity's address.</p></li></ol><p class=\"western\">The response returns the employee records matching the filter, nested under the parent entity.</p><p><strong>Note:</strong> For an Entity Employee the employee mapping ID is provided directly inside <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong>, which is flatter than the Franchise Employee structure (where it is nested under <strong>&lt;fimEmployees&gt;</strong>). The <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong> returned in the response is the <strong>employee mapping ID (EMPLOYEE_NO)</strong>, not the internal EMPLOYEE_ID — always use this value from the response for a specific-employee lookup as well as for the Update and Delete operations. The top-level <strong>&lt;referenceId&gt;</strong> is the <strong>Entity ID</strong> of the parent record.</p><p><strong>ID Reference Table — Understanding the Identifiers in the Response:</strong><center><table width=\"100%\" class=\"endpoint-table\"><tr style=\"background:#2E75B6;color:#fff;\"><td><strong>ID</strong></td><td><strong>Location in Response</strong></td><td><strong>What It Is</strong></td><td><strong>Used For</strong></td></tr><tr><td><code>fimEntity &gt; referenceId</code></td><td>Top level</td><td>Entity ID — parent entity</td><td>parentReferenceId on CREATE, referenceId filter on RETRIEVE</td></tr><tr style=\"background:#EBF3FB;\"><td><code>fimEmployee &gt; referenceId</code></td><td>Direct child of fimEntity</td><td>Employee mapping ID (EMPLOYEE_NO)</td><td><strong>UPDATE and DELETE</strong></td></tr><tr><td><code>fimEmployee &gt; employeeId</code></td><td>Direct child of fimEntity</td><td>Employee person record ID (EMPLOYEE_ID)</td><td>Internal reference only — do not use for UPDATE/DELETE</td></tr></table></center></p><p><strong>Note:</strong> Entity Employee does not expose a <code>muidValue</code> in the retrieve response — unlike Franchise Employee. The response structure is also flatter: there is no <code>&lt;fimEmployeesMapping&gt;</code> wrapper. When retrieving a multi-entity employee, pass comma-separated Entity IDs in <code>&lt;referenceId&gt;</code> to return one <code>&lt;fimEntity&gt;</code> block per entity in a single call.</p>",
+                "operationId": "People_Retrieve_EntityEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleRetrieveEntityEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleRetrieveEntityEmployeeArray" }
+            }
+        },
+        "/update?module=people&subModule=employee (Entity Employee)": {
+            "post": {
+                "tags": ["Entity Employee"],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation for modifying an existing Entity Employee record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=people&subModule=employee&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=update&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform an Update operation for an Entity Employee using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Update operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the fields to be updated. Set <strong>&lt;referenceId&gt;</strong> to the <strong>employee mapping ID (EMPLOYEE_NO)</strong> — the value returned by the Create operation or by the <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong> of the Retrieve response. Include <strong>&lt;parentReferenceType&gt;</strong> as <code>Entity</code> (sent in the body, not as a URL parameter) so the request is routed to the correct record. Only include the fields you want to change; fields that are omitted retain their existing values.</p></li></ol><p class=\"western\">Performing the above mentioned steps updates the specified Entity Employee record. The response confirms the operation status and echoes back the employee mapping <strong>referenceId</strong>.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the <strong>employee mapping ID (EMPLOYEE_NO)</strong>, not the Entity ID and not the internal EMPLOYEE_ID. Use the value returned by the Create operation or the <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong> from the Retrieve response.</p><p><strong>Note:</strong> <code>&lt;firstName&gt;</code>, <code>&lt;lastName&gt;</code>, and <code>&lt;jobTitle&gt;</code> are mandatory fields for the Update operation per the system schema. Always include them even if you are not changing their values. Omitting <code>&lt;parentReferenceType&gt;</code> returns a Warning 216 but the update still succeeds — include it for a clean Success response.</p>",
+                "operationId": "People_Update_EntityEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleUpdateEntityEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleUpdateEntityEmployeeArray" }
+            }
+        },
+        "/delete?module=people&subModule=employee (Entity Employee)": {
+            "post": {
+                "tags": ["Entity Employee"],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation for removing an Entity Employee record through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=people&subModule=employee&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=employee&operation=delete&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Delete operation for an Entity Employee using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Delete operation is being performed. In this case, the subModule to be used is \"employee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that identifies the employee to be deleted. Set <strong>&lt;referenceId&gt;</strong> to the <strong>employee mapping ID (EMPLOYEE_NO)</strong> — the <strong>&lt;fimEmployee&gt;&lt;referenceId&gt;</strong> value from the Retrieve response — and set <strong>&lt;parentReferenceType&gt;</strong> to <code>Entity</code> (sent in the body, not as a URL parameter).</p></li></ol><p class=\"western\">Performing the above mentioned steps deletes the specified Entity Employee record. The response confirms the operation status.</p><p><strong>Note:</strong> The <strong>&lt;referenceId&gt;</strong> used here is the <strong>employee mapping ID (EMPLOYEE_NO)</strong>, not the Entity ID and not the internal EMPLOYEE_ID. Always retrieve the record first to obtain the correct EMPLOYEE_NO value — using the internal EMPLOYEE_ID directly will target the wrong record. Deletion is permanent.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Remove employee from a single entity:</strong> Provide the employee mapping ID (<code>fimEmployee &gt; referenceId</code> from Retrieve) and <code>&lt;parentReferenceType&gt;Entity&lt;/parentReferenceType&gt;</code>. This removes the employee from that entity only. If this is the employee's only entity, the employee's main person record is also removed.</li><li><strong>Disassociate employee from one of multiple entities:</strong> When an employee is linked to multiple entities, each entity has its own unique mapping ID. Run a Retrieve first with comma-separated Entity IDs to identify which mapping ID belongs to which entity, then delete using the specific mapping ID for the entity to remove. The employee remains linked to all other entities.</li></ol></p><p><strong>Note:</strong> An employee with an active user login cannot be deleted — the response returns error 400 \"This employee cannot be deleted as an active user for this Employee exists\". Deactivate or delete the associated user account before attempting the delete operation.</p>",
+                "operationId": "People_Delete_EntityEmployee",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleDeleteEntityEmployeeResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleDeleteEntityEmployeeArray" }
+            }
+        },
+        "/create?module=people&subModule=additionalContact": {
+            "post": {
+                "tags": ["Additional Contact"],
+                "summary": "Create",
+                "description": "<p class=\"western\">This section contains an example of the Create operation for adding an Additional Contact through the People module. You can use this operation to create a new Additional Contact, or associate an existing Owner as an Additional Contact under an Entity.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"15%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/create?module=people&subModule=additionalContact&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=additionalContact&operation=create&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Create operation for adding an Additional Contact using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Create operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Create operation is being performed. In this case, the subModule to be used is \"additionalContact\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the attribute names and their values for the Additional Contact record. The <strong>&lt;muID&gt;</strong> field identifies the parent record and must be set to the <strong>Entity ID</strong> of the entity the contact belongs to — it does not accept a Franchisee Number. To associate an existing Owner instead of creating a new contact, set <strong>&lt;additionalContactType&gt;</strong> to <code>ExistingOwner</code> and provide the owner's person record ID in <strong>&lt;additionalContactReferenceId&gt;</strong> — see the second example.</p></li></ol><p class=\"western\">Performing the above mentioned steps creates a new Additional Contact record. The response contains <strong>\"referenceId\"</strong> inside the <strong>&lt;peopleAdditionalContact&gt;</strong> element — this is the unique ID of the Additional Contact and must be saved for the Update, Retrieve, and Delete operations.</p><p><strong>Note:</strong> When associating an existing Owner, set <strong>&lt;additionalContactType&gt;</strong> to <code>ExistingOwner</code> and provide the <strong>&lt;additionalContactReferenceId&gt;</strong> — the <strong>referenceId</strong> returned from that owner's own Create or Retrieve response. The <strong>&lt;muID&gt;</strong> remains the <strong>Entity ID</strong> of the parent record.</p><p><strong>Use Cases Supported:</strong><ol><li><strong>Create a new Additional Contact:</strong> Omit <code>&lt;additionalContactType&gt;</code> or set it to <code>NewAdditionalContact</code>. Provide <code>&lt;muID&gt;</code> (Entity ID), <code>&lt;firstName&gt;</code>, and <code>&lt;lastName&gt;</code>. The response returns a <code>&lt;referenceId&gt;</code> — the unique ID of the new Additional Contact record, required for Update, Retrieve, and Delete operations.</li><li><strong>Link an existing Owner as an Additional Contact:</strong> Set <code>&lt;additionalContactType&gt;</code> to <code>ExistingOwner</code> and provide the owner's person record ID in <code>&lt;additionalContactReferenceId&gt;</code>. The <code>&lt;muID&gt;</code> must be the Entity ID of the parent record.</li></ol></p><p><strong>Note:</strong> <code>&lt;muID&gt;</code> is always mandatory and must be an <strong>Entity ID</strong> — it does not accept a Franchisee Number. The <code>&lt;muID&gt;</code> field accepts comma-separated Entity IDs to link the contact to multiple entities in a single call.</p>",
+                "operationId": "People_Create_AdditionalContact",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleCreateAdditionalContactResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleCreateAdditionalContactArray" }
+            }
+        },
+        "/retrieve?module=people&subModule=additionalContact": {
+            "post": {
+                "tags": ["Additional Contact"],
+                "summary": "Retrieve",
+                "description": "<p class=\"western\">This section contains an example of the Retrieve operation for fetching Additional Contact records through the People module. You can retrieve all Additional Contacts linked to a specific Entity, or retrieve a specific Additional Contact independently using its own unique ID.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/retrieve?module=people&subModule=additionalContact&filterXML=filteredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=additionalContact&operation=retrieve&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Retrieve operation for fetching Additional Contact records using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. In this case, the subModule to be used is \"additionalContact\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that contains the filter criteria for the Retrieve operation. To retrieve all Additional Contacts linked to an Entity, provide the <strong>&lt;entityID&gt;</strong> inside a <strong>&lt;filter&gt;</strong> block — this is the Entity ID of the parent record. To retrieve a specific Additional Contact independently, provide its own <strong>&lt;referenceId&gt;</strong> inside the <strong>&lt;filter&gt;</strong> block — this is the value returned in the Create response.</p></li></ol><p class=\"western\">The response includes the Additional Contact records matching the filter. Each record contains a <strong>\"referenceId\"</strong> which is the unique ID of that Additional Contact and can be used for the Update and Delete operations.</p><p><strong>Note:</strong> The <strong>&lt;entityID&gt;</strong> inside <strong>&lt;filter&gt;</strong> refers to the parent Entity ID. The <strong>&lt;referenceId&gt;</strong> inside <strong>&lt;filter&gt;</strong> refers to the Additional Contact's own unique ID, and the <strong>&lt;referenceId&gt;</strong> inside each returned <strong>&lt;peopleAdditionalContact&gt;</strong> element is that same unique ID. These are two distinct identifiers and should not be confused with each other.</p><p><strong>ID Reference Table — Understanding the Identifiers:</strong><center><table width=\"100%\" class=\"endpoint-table\"><tr style=\"background:#2E75B6;color:#fff;\"><td><strong>ID</strong></td><td><strong>Location</strong></td><td><strong>What It Is</strong></td><td><strong>Used For</strong></td></tr><tr><td><code>entityID</code> (filter)</td><td>Inside &lt;filter&gt;</td><td>Entity ID — parent entity</td><td>Retrieve all contacts of an entity</td></tr><tr style=\"background:#EBF3FB;\"><td><code>peopleAdditionalContact &gt; referenceId</code></td><td>In each response record</td><td>Additional Contact's unique ID</td><td><strong>UPDATE and DELETE</strong></td></tr><tr><td><code>peopleAdditionalContact &gt; entityID</code></td><td>In each response record</td><td>Parent Entity ID</td><td>Confirms which entity the contact belongs to</td></tr></table></center></p>",
+                "operationId": "People_Retrieve_AdditionalContact",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleRetrieveAdditionalContactResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleRetrieveAdditionalContactArray" }
+            }
+        },
+        "/update?module=people&subModule=additionalContact": {
+            "post": {
+                "tags": ["Additional Contact"],
+                "summary": "Update",
+                "description": "<p class=\"western\">This section contains an example of the Update operation for updating an existing Additional Contact through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/update?module=people&subModule=additionalContact&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=additionalContact&operation=update&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform an Update operation for an Additional Contact using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Update operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Update operation is being performed. In this case, the subModule to be used is \"additionalContact\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the <strong>&lt;referenceId&gt;</strong> of the Additional Contact to be updated, along with the fields you want to change. The <strong>&lt;referenceId&gt;</strong> here is the Additional Contact's own unique ID — the value returned in the <strong>\"referenceId\"</strong> field of the Create or Retrieve response, inside the <strong>&lt;peopleAdditionalContact&gt;</strong> element. Include only the fields you want to update alongside the <strong>&lt;referenceId&gt;</strong>.</p></li></ol><p class=\"western\">Performing the above mentioned steps updates the specified Additional Contact record. The response confirms the update and returns the same <strong>\"referenceId\"</strong>.</p><p><strong>Note:</strong> The email address field for an Additional Contact is <strong>&lt;emailID&gt;</strong>, not <strong>&lt;email&gt;</strong>. Using <strong>&lt;email&gt;</strong> will not update the email address. To look up the <strong>&lt;referenceId&gt;</strong> of an Additional Contact, perform a Retrieve operation as described <u><a href=\"#operation/People_Retrieve_AdditionalContact\">here</a></u>.</p><p><strong>Note:</strong> <code>&lt;firstName&gt;</code> and <code>&lt;lastName&gt;</code> are mandatory fields for the Update operation per the system schema. Always include them even if you are not changing their values.</p>",
+                "operationId": "People_Update_AdditionalContact",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleUpdateAdditionalContactResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleUpdateAdditionalContactArray" }
+            }
+        },
+        "/delete?module=people&subModule=additionalContact": {
+            "post": {
+                "tags": ["Additional Contact"],
+                "summary": "Delete",
+                "description": "<p class=\"western\">This section contains an example of the Delete operation for removing an Additional Contact through the People module.</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Operation Name</strong></td><td width=\"1%\" >:</td><td>POST</td></tr><tr><td><strong>API Endpoint</strong></td><td>:</td><td><context-path>/rest/dataservices/delete?module=people&subModule=additionalContact&xmlString=requiredxmlString&responseType=XML</td></tr></table><p class=\"western\"><strong>Before performing this operation, run the query operation</strong> to obtain the exact field names and schema (the xmlString/filterXML structure) required to build the request. The query endpoint for this operation is:</p><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"20%\"><strong>Query Endpoint</strong></td><td width=\"1%\" >:</td><td valign=\"top\"><context-path>/rest/dataservices/query?module=people&subModule=additionalContact&operation=delete&roleTypeForQuery=1</td></tr></table><p class=\"western\">The \"Authorization\" (Bearer access_token) and \"Content-Type\" headers must be passed in the header of this request, the same as all other endpoints. Details on how the query operation is to be performed is mentioned <u><a href=\"#tag/List-of-Field-Names\">here.</a></u></p><p class=\"western\">To perform a Delete operation for removing an Additional Contact using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Delete operation is being performed. In this case, the module to be used is \"people\".</p></li><li><p>The sub-module for which the Delete operation is being performed. In this case, the subModule to be used is \"additionalContact\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">xmlString that contains the <strong>&lt;referenceId&gt;</strong> of the Additional Contact to be deleted. This is the Additional Contact's own unique ID — the value returned in the <strong>\"referenceId\"</strong> field of the Create or Retrieve response, inside the <strong>&lt;peopleAdditionalContact&gt;</strong> element. Do not use the Franchisee Number or Entity ID here.</p></li></ol><p class=\"western\">Performing the above mentioned steps removes the specified Additional Contact record. Once deleted, the Additional Contact can no longer be retrieved or updated.</p><p><strong>Note:</strong> To look up the <strong>&lt;referenceId&gt;</strong> of an Additional Contact before deleting it, perform a Retrieve operation using the parent Franchisee Number or Entity ID as described <u><a href=\"#operation/People_Retrieve_AdditionalContact\">here</a></u>. If the record has dependencies that prevent deletion, an error response is returned instead.</p>",
+                "operationId": "People_Delete_AdditionalContact",
+                "responses": {
+                    "200": { "$ref": "#/components/responses/PeopleDeleteAdditionalContactResp" },
+                    "201": { "description": "Created" },
+                    "401": { "description": "Unauthorized" },
+                    "403": { "description": "Forbidden" },
+                    "404": { "description": "Not Found" }
+                },
+                "requestBody": { "$ref": "#/components/requestBodies/PeopleDeleteAdditionalContactArray" }
+            }
+        },
         "/manage-unit/v1/units/{franchiseId}": {
             "get": {
                 "tags": [
@@ -9248,7 +9598,7 @@
         "/manage-teams/v1/people/users": {
             "post": {
                 "tags": [
-                    "People"
+                    "People (Segments)"
                 ],
                 "summary": "Retrieve People",
                 "description": "<p class=\"western\">Make a POST request to the specified endpoint to retrieve a list of users (People) from your system. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"25%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>Production API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnect.net/manage-teams/v1/people/users</td> </tr> <tr> <td><strong>UAT API Endpoint</strong></td> <td>:</td> <td valign=\"top\">https://skyapi.franconnectuat.net/manage-teams/v1/people/users</td> </tr></table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u>&nbsp;for details on identifying the &ldquo;X-TenantId&rdquo;.</p> </li></ol><p class=\"western\">Filter attributes have to be passed as value into the <b>fieldId</b> key. The following list shows the filter attributes and their corresponding clauses along with how a clause is worded in the UI (given inside parentheses). <ul> <li><b>user_first_name</b>: acceptable clauses: \"IEQUAL\" (is), \"INOT_EQUAL\" (is not), \"ILIKE\" (contains), \"NOT_ILIKE\" (does not contain)</li> <li><b>user_last_name</b>: acceptable clauses: \"IEQUAL\" (is), \"INOT_EQUAL\" (is not), \"ILIKE\" (contains), \"NOT_ILIKE\" (does not contain)</li> <li><b>user_level</b>: acceptable clauses: \"IN\" (in), \"NOT_IN\" (not in)</li> </ul></p><p class=\"western\">&nbsp;</p><img src=\"images/Retrieve_People.png\">",
@@ -12663,7 +13013,487 @@
                 },
                 "description": "Lead Creation object",
                 "required": true
-            }
+            },
+            "PeopleCreateFranchiseOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createOwnerSingleLocation": {
+                                "summary": "Use Case 1 — Create new owner under a single location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <parentReferenceId>15779051</parentReferenceId>\n    <firstName>John</firstName>\n    <lastName>Doe</lastName>\n    <email>john.doe@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n    <phone>5551234567</phone>\n    <jobTitle>CEO</jobTitle>\n    <entityDetail>Individual</entityDetail>\n    <ownerType>New</ownerType>\n    <storeOwnedPercentage>50</storeOwnedPercentage>\n    <ownershipStartDate>2024-01-15</ownershipStartDate>\n    <isManager>Y</isManager>\n    <ownerTitle>Primary Owner</ownerTitle>\n  </fimOwner>\n</fcRequest>"
+                            },
+                            "createOwnerMultipleLocations": {
+                                "summary": "Use Case 2 — Create new owner across multiple locations (single call)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <parentReferenceId>15779051,15779052</parentReferenceId>\n    <firstName>John</firstName>\n    <lastName>Doe</lastName>\n    <email>john.doe@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n    <phone>5551234567</phone>\n    <jobTitle>CEO</jobTitle>\n    <entityDetail>Individual</entityDetail>\n    <ownerType>New</ownerType>\n    <storeOwnedPercentage>50</storeOwnedPercentage>\n    <ownershipStartDate>2024-01-15</ownershipStartDate>\n    <isManager>Y</isManager>\n  </fimOwner>\n</fcRequest>"
+                            },
+                            "associateExistingOwnerNewLocation": {
+                                "summary": "Use Case 3 — Associate existing owner to a new location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <parentReferenceId>15779053</parentReferenceId>\n    <firstName>John</firstName>\n    <lastName>Doe</lastName>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n    <jobTitle>CEO</jobTitle>\n    <entityDetail>Individual</entityDetail>\n    <ownerType>Existing</ownerType>\n    <muidValue>PID-XXXXXXXXXXXXXXX</muidValue>\n  </fimOwner>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Owner creation request body",
+                "required": true
+            },
+            "PeopleRetrieveFranchiseOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveAllOwnersOfFranchisee": {
+                                "summary": "Use Case 1 — Retrieve all owners of a specific franchisee",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <referenceId>15779051</referenceId>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveOwnerByName": {
+                                "summary": "Use Case 2 — Retrieve a specific owner by name",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <referenceId>15779051</referenceId>\n    <owners>\n      <fimOwners>\n        <firstName>John</firstName>\n        <lastName>Doe</lastName>\n      </fimOwners>\n    </owners>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveOwnerByPersonRecordId": {
+                                "summary": "Use Case 3 — Retrieve a specific owner by person record ID",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <referenceId>15779051</referenceId>\n    <owners>\n      <fimOwners>\n        <referenceId>5348277</referenceId>\n      </fimOwners>\n    </owners>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveOwnerAcrossAllActiveLocations": {
+                                "summary": "Use Case 4 — Retrieve owners across all active franchisees",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <franchiseeStatus>Active</franchiseeStatus>\n  </filter>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Owner retrieve filter body",
+                "required": true
+            },
+            "PeopleUpdateFranchiseOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateFranchiseeOwner": {
+                                "summary": "Update Franchise Owner — change job title and ownership percentage",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <!-- owner mapping ID from owners > referenceId in Retrieve response -->\n    <referenceId>1949752379</referenceId>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <firstName>John</firstName>\n    <lastName>Doe</lastName>\n    <jobTitle>Senior CEO</jobTitle>\n    <email>updated.owner@example.com</email>\n    <storeOwnedPercentage>75</storeOwnedPercentage>\n  </fimOwner>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Owner update request body",
+                "required": true
+            },
+            "PeopleDeleteFranchiseOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteOwnerSingleLocation": {
+                                "summary": "Use Case 1 — Remove owner from a location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <!-- owner mapping ID from owners > referenceId in Retrieve response -->\n    <referenceId>1949752379</referenceId>\n    <parentReferenceType>Franchisee</parentReferenceType>\n  </fimOwner>\n</fcRequest>"
+                            },
+                            "disassociateOwnerFromOneOfMultipleLocations": {
+                                "summary": "Use Case 2 — Disassociate owner from one of multiple locations",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Step 1: Run Retrieve to identify the mapping ID for the target location -->\n<!-- Step 2: Use the mapping ID of the specific location to remove -->\n<fcRequest>\n  <fimOwner>\n    <!-- mapping ID for Location 2 only — owner stays linked to Location 1 -->\n    <referenceId>198993934</referenceId>\n    <parentReferenceType>Franchisee</parentReferenceType>\n  </fimOwner>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Owner delete request body",
+                "required": true
+            },
+            "PeopleCreateEntityOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createEntityOwnerSingleEntity": {
+                                "summary": "Use Case 1 — Create new owner under a single entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <parentReferenceType>Entity</parentReferenceType>\n    <parentReferenceId>253678099</parentReferenceId>\n    <firstName>Victor</firstName>\n    <lastName>Hayes</lastName>\n    <ownerType>New</ownerType>\n    <entityDetail>Individual</entityDetail>\n    <jobTitle>Director</jobTitle>\n    <phone>5551234567</phone>\n    <email>victor.hayes@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n    <owners>\n      <isManager>Y</isManager>\n      <typeOfOwnership>Owner/Operator</typeOfOwnership>\n      <storeOwnedPercentage>50</storeOwnedPercentage>\n      <ownershipStartDate>2026-01-01</ownershipStartDate>\n    </owners>\n  </fimOwner>\n</fcRequest>"
+                            },
+                            "createEntityOwnerMultipleEntities": {
+                                "summary": "Use Case 2 — Create new owner across multiple entities (single call)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <parentReferenceType>Entity</parentReferenceType>\n    <parentReferenceId>253678099,413396478</parentReferenceId>\n    <firstName>Sandra</firstName>\n    <lastName>Wright</lastName>\n    <ownerType>New</ownerType>\n    <entityDetail>Individual</entityDetail>\n    <jobTitle>Managing Director</jobTitle>\n    <phone>5559998888</phone>\n    <email>sandra.wright@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n    <owners>\n      <isManager>Y</isManager>\n      <typeOfOwnership>Owner/Operator</typeOfOwnership>\n      <storeOwnedPercentage>50</storeOwnedPercentage>\n      <ownershipStartDate>2026-01-01</ownershipStartDate>\n    </owners>\n  </fimOwner>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Owner creation request body",
+                "required": true
+            },
+            "PeopleRetrieveEntityOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveAllOwnersOfEntity": {
+                                "summary": "Use Case 1 — Retrieve all owners of a specific entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>253678099</referenceId>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveOwnerByName": {
+                                "summary": "Use Case 2 — Retrieve a specific owner by name",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>253678099</referenceId>\n    <owners>\n      <fimOwners>\n        <firstName>Victor</firstName>\n        <lastName>Hayes</lastName>\n      </fimOwners>\n    </owners>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveOwnerAcrossMultipleEntities": {
+                                "summary": "Use Case 3 — Retrieve owner across multiple entities (comma-separated Entity IDs)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Returns one fimEntity block per entity -->\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>253678099,413396478</referenceId>\n    <owners>\n      <fimOwners>\n        <firstName>Victor</firstName>\n        <lastName>Hayes</lastName>\n      </fimOwners>\n    </owners>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveOwnerByFimId": {
+                                "summary": "Use Case 4 — Retrieve a specific owner by person record ID (fimId)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>253678099</referenceId>\n    <owners>\n      <fimOwners>\n        <referenceId>309669872</referenceId>\n      </fimOwners>\n    </owners>\n  </filter>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Owner retrieve filter body",
+                "required": true
+            },
+            "PeopleUpdateEntityOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateEntityOwner": {
+                                "summary": "Update Entity Owner — change job title",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <!-- referenceId = fimId from Create response or fimOwner > fimId from Retrieve -->\n    <!-- NOT the mappingOwnerId -->\n    <referenceId>309669872</referenceId>\n    <parentReferenceType>Entity</parentReferenceType>\n    <firstName>Victor</firstName>\n    <lastName>Hayes</lastName>\n    <jobTitle>Senior Director</jobTitle>\n  </fimOwner>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Owner update request body",
+                "required": true
+            },
+            "PeopleDeleteEntityOwnerArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteEntityOwnerSingleEntity": {
+                                "summary": "Use Case 1 — Remove owner from a single entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimOwner>\n    <!-- referenceId = fimId from Create response or fimOwner > fimId from Retrieve -->\n    <!-- NOT the mappingOwnerId -->\n    <referenceId>309669872</referenceId>\n    <parentReferenceType>Entity</parentReferenceType>\n  </fimOwner>\n</fcRequest>"
+                            },
+                            "disassociateEntityOwnerFromOneEntity": {
+                                "summary": "Use Case 2 — Disassociate owner from one of multiple entities",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Step 1: Run Retrieve with comma-separated Entity IDs to identify fimId per entity -->\n<!-- Step 2: Use the fimId specific to the entity you want to remove the owner from -->\n<fcRequest>\n  <fimOwner>\n    <!-- fimId for entity 413396478 only — owner stays linked to entity 253678099 -->\n    <referenceId>1915919526</referenceId>\n    <parentReferenceType>Entity</parentReferenceType>\n  </fimOwner>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Owner delete request body",
+                "required": true
+            },
+            "PeopleCreateFranchiseEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createEmployeeSingleLocation": {
+                                "summary": "Use Case 1 — Create new employee under a single location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <parentReferenceId>164449663</parentReferenceId>\n    <firstName>Chris</firstName>\n    <lastName>Palmer</lastName>\n    <employeeType>New</employeeType>\n    <jobTitle>Store Supervisor</jobTitle>\n    <phone1>5551112222</phone1>\n    <email>chris.palmer@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n  </fimEmployee>\n</fcRequest>"
+                            },
+                            "associateExistingEmployeeNewLocation": {
+                                "summary": "Use Case 2 — Associate existing employee to a new location (one location at a time)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Step 1: Retrieve the employee first to obtain muidValue -->\n<!-- Step 2: Call CREATE with employeeType=Existing for each new location -->\n<fcRequest>\n  <fimEmployee>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <parentReferenceId>164449664</parentReferenceId>\n    <firstName>Chris</firstName>\n    <lastName>Palmer</lastName>\n    <employeeType>Existing</employeeType>\n    <jobTitle>Store Supervisor</jobTitle>\n    <muidValue>PID-XXXXXXXXXXXXXXX</muidValue>\n    <fimEmployeesMapping/>\n  </fimEmployee>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Employee creation request body",
+                "required": true
+            },
+            "PeopleCreateEntityEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createEntityEmployeeSingleEntity": {
+                                "summary": "Use Case 1 — Create new employee under a single entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <parentReferenceType>Entity</parentReferenceType>\n    <parentReferenceId>437682492</parentReferenceId>\n    <firstName>Sophie</firstName>\n    <lastName>Grant</lastName>\n    <employeeType>New</employeeType>\n    <jobTitle>Regional Coordinator</jobTitle>\n    <phone1>5558889999</phone1>\n    <email>sophie.grant@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n  </fimEmployee>\n</fcRequest>"
+                            },
+                            "createEntityEmployeeMultipleEntities": {
+                                "summary": "Use Case 2 — Create new employee across multiple entities (single call)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <parentReferenceType>Entity</parentReferenceType>\n    <parentReferenceId>437682492,1454930947</parentReferenceId>\n    <firstName>Sophie</firstName>\n    <lastName>Grant</lastName>\n    <employeeType>New</employeeType>\n    <jobTitle>Regional Coordinator</jobTitle>\n    <phone1>5558889999</phone1>\n    <email>sophie.grant@example.com</email>\n    <email_includeInCampaignList>Y</email_includeInCampaignList>\n  </fimEmployee>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Employee creation request body",
+                "required": true
+            },
+            "PeopleRetrieveFranchiseEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveAllEmployeesOfFranchisee": {
+                                "summary": "Use Case 1 — Retrieve all employees of a specific franchisee",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <referenceId>164449663</referenceId>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveEmployeeByName": {
+                                "summary": "Use Case 2 — Retrieve a specific employee by name",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <referenceId>164449663</referenceId>\n    <fimEmployees>\n      <firstName>Chris</firstName>\n      <lastName>Palmer</lastName>\n    </fimEmployees>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveEmployeeByPersonRecordId": {
+                                "summary": "Use Case 3 — Retrieve a specific employee by person record ID (EMPLOYEE_ID)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <referenceId>164449663</referenceId>\n    <fimEmployees>\n      <referenceId>1886231431</referenceId>\n    </fimEmployees>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveEmployeeAcrossAllLocations": {
+                                "summary": "Use Case 4 — Retrieve employee across all locations (for multi-location employee)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Omit referenceId to search across all franchisees -->\n<fcRequest>\n  <filter>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <fimEmployees>\n      <firstName>Laura</firstName>\n      <lastName>Simmons</lastName>\n    </fimEmployees>\n  </filter>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Employee retrieve filter body",
+                "required": true
+            },
+            "PeopleRetrieveEntityEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveAllEntityEmployees": {
+                                "summary": "Use Case 1 — Retrieve all employees across all entities",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveAllEmployeesOfEntity": {
+                                "summary": "Use Case 2 — Retrieve all employees of a specific entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>437682492</referenceId>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveEmployeeAcrossMultipleEntities": {
+                                "summary": "Use Case 3 — Retrieve employee across multiple entities (comma-separated Entity IDs)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Returns one fimEntity block per entity -->\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>437682492,1454930947</referenceId>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveSpecificEntityEmployee": {
+                                "summary": "Use Case 4 — Retrieve a specific employee by mapping ID (EMPLOYEE_NO)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>437682492</referenceId>\n    <fimEmployee>\n      <referenceId>438984390</referenceId>\n    </fimEmployee>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveEntityEmployeesByField": {
+                                "summary": "Use Case 5 — Retrieve employees filtered by name",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <parentReferenceType>Entity</parentReferenceType>\n    <referenceId>437682492</referenceId>\n    <fimEmployees>\n      <firstName>Sophie</firstName>\n      <lastName>Grant</lastName>\n    </fimEmployees>\n  </filter>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Employee retrieve filter body",
+                "required": true
+            },
+            "PeopleUpdateFranchiseEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateFranchiseEmployee": {
+                                "summary": "Update Franchise Employee — change job title",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <!-- employee mapping ID from fimEmployeesMapping > referenceId in Retrieve response -->\n    <referenceId>316891521</referenceId>\n    <parentReferenceType>Franchisee</parentReferenceType>\n    <firstName>Chris</firstName>\n    <lastName>Palmer</lastName>\n    <jobTitle>Senior Store Supervisor</jobTitle>\n  </fimEmployee>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Employee update request body",
+                "required": true
+            },
+            "PeopleUpdateEntityEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateEntityEmployee": {
+                                "summary": "Update Entity Employee — change job title",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <!-- employee mapping ID from fimEmployee > referenceId in Retrieve response -->\n    <referenceId>438984390</referenceId>\n    <parentReferenceType>Entity</parentReferenceType>\n    <firstName>Sophie</firstName>\n    <lastName>Grant</lastName>\n    <jobTitle>Senior Regional Coordinator</jobTitle>\n  </fimEmployee>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Employee update request body",
+                "required": true
+            },
+            "PeopleDeleteFranchiseEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteEmployeeSingleLocation": {
+                                "summary": "Use Case 1 — Remove employee from a location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <!-- employee mapping ID from fimEmployeesMapping > referenceId in Retrieve response -->\n    <referenceId>316891521</referenceId>\n    <parentReferenceType>Franchisee</parentReferenceType>\n  </fimEmployee>\n</fcRequest>"
+                            },
+                            "disassociateEmployeeFromOneOfMultipleLocations": {
+                                "summary": "Use Case 2 — Disassociate employee from one of multiple locations",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Step 1: Run Retrieve to identify the mapping ID for the target location -->\n<!-- Step 2: Use the mapping ID of the specific location to remove -->\n<!-- Step 3: Deactivate user account first if employee has an active login -->\n<fcRequest>\n  <fimEmployee>\n    <!-- mapping ID for RM-01 only — employee stays linked to AM-01 and BM-01 -->\n    <referenceId>461962026</referenceId>\n    <parentReferenceType>Franchisee</parentReferenceType>\n  </fimEmployee>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Franchise Employee delete request body",
+                "required": true
+            },
+            "PeopleDeleteEntityEmployeeArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteEntityEmployeeSingleEntity": {
+                                "summary": "Use Case 1 — Remove employee from a single entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <fimEmployee>\n    <!-- employee mapping ID from fimEmployee > referenceId in Retrieve response -->\n    <referenceId>438984390</referenceId>\n    <parentReferenceType>Entity</parentReferenceType>\n  </fimEmployee>\n</fcRequest>"
+                            },
+                            "disassociateEntityEmployeeFromOneEntity": {
+                                "summary": "Use Case 2 — Disassociate employee from one of multiple entities",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<!-- Step 1: Run Retrieve with comma-separated Entity IDs to identify mapping IDs per entity -->\n<!-- Step 2: Use the mapping ID of the specific entity to remove -->\n<!-- Step 3: Deactivate user account first if employee has an active login -->\n<fcRequest>\n  <fimEmployee>\n    <!-- mapping ID for Anchor Corp only — employee stays linked to Albany LLC -->\n    <referenceId>1964712859</referenceId>\n    <parentReferenceType>Entity</parentReferenceType>\n  </fimEmployee>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Entity Employee delete request body",
+                "required": true
+            },
+            "PeopleCreateAdditionalContactArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createNewAdditionalContact": {
+                                "summary": "Use Case 1 — Create a new Additional Contact",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <peopleAdditionalContact>\n    <!-- muID must be an Entity ID — not a Franchisee Number -->\n    <muID>437682492</muID>\n    <firstName>Emma</firstName>\n    <lastName>Collins</lastName>\n    <phone>5551112222</phone>\n    <mobile>5553334444</mobile>\n    <emailID>emma.collins@example.com</emailID>\n    <address>100 Contact Lane</address>\n    <city>Chicago</city>\n    <stateID>14</stateID>\n    <country>1</country>\n    <zip>60601</zip>\n  </peopleAdditionalContact>\n</fcRequest>"
+                            },
+                            "linkExistingOwner": {
+                                "summary": "Use Case 2 — Link an existing Owner as an Additional Contact",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <peopleAdditionalContact>\n    <!-- muID must be an Entity ID — not a Franchisee Number -->\n    <muID>437682492</muID>\n    <additionalContactType>ExistingOwner</additionalContactType>\n    <!-- additionalContactReferenceId = owner's person record ID (fimOwner > referenceId from Retrieve) -->\n    <additionalContactReferenceId>938073406</additionalContactReferenceId>\n  </peopleAdditionalContact>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Additional Contact creation request body",
+                "required": true
+            },
+            "PeopleRetrieveAdditionalContactArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveByEntityId": {
+                                "summary": "Use Case 1 — Retrieve all Additional Contacts of a specific entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <entityID>437682492</entityID>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveByName": {
+                                "summary": "Use Case 2 — Retrieve Additional Contact by name filter",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <entityID>437682492</entityID>\n    <firstName>Emma</firstName>\n    <lastName>Collins</lastName>\n  </filter>\n</fcRequest>"
+                            },
+                            "retrieveByContactReferenceId": {
+                                "summary": "Use Case 3 — Retrieve a specific Additional Contact by its own referenceId",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <filter>\n    <referenceId>1376849509</referenceId>\n  </filter>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Additional Contact retrieve filter body",
+                "required": true
+            },
+            "PeopleUpdateAdditionalContactArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateAdditionalContact": {
+                                "summary": "Update Additional Contact — change phone number",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <peopleAdditionalContact>\n    <!-- referenceId = Additional Contact unique ID from Create or Retrieve response -->\n    <referenceId>1376849509</referenceId>\n    <firstName>Emma</firstName>\n    <lastName>Collins</lastName>\n    <phone>5559998888</phone>\n    <!-- Note: use emailID not email to update email address -->\n    <emailID>emma.updated@example.com</emailID>\n  </peopleAdditionalContact>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Additional Contact update request body",
+                "required": true
+            },
+            "PeopleDeleteAdditionalContactArray": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteAdditionalContact": {
+                                "summary": "Delete Additional Contact",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n  <peopleAdditionalContact>\n    <referenceId>1504675724</referenceId>\n  </peopleAdditionalContact>\n</fcRequest>"
+                            }
+                        },
+                        "schema": {
+                            "type": "array",
+                            "items": { "$ref": "#/components/schemas/AdminSubModule" },
+                            "xml": { "name": "fcRequest", "wrapped": true }
+                        }
+                    }
+                },
+                "description": "People Additional Contact delete request body",
+                "required": true
+            },
         },
         "responses": {
             "ModuleResp": {
@@ -18949,7 +19779,284 @@
                     }
                 },
                 "description": "Successful"
+            },
+            "PeopleCreateFranchiseOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createFranchiseeOwnerResp": {
+                                "summary": "Response — Use Case 1 (single location)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>803558502</responseId>\n<responseData>\n<!-- referenceId = owner's person record ID (FRANCHISE_OWNER_ID) -->\n<fimOwner>\n<status>Success</status>\n<referenceId>5348277</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            },
+                            "createFranchiseeOwnerMultiLocationResp": {
+                                "summary": "Response — Use Case 2 (multiple locations) — one fimOwner block per location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1939933676</responseId>\n<responseData>\n<!-- mapping ID for location 15779051 -->\n<fimOwner>\n<status>Success</status>\n<referenceId>903695026</referenceId>\n</fimOwner>\n<!-- mapping ID for location 15779052 -->\n<fimOwner>\n<status>Success</status>\n<referenceId>198993934</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleRetrieveFranchiseOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveFranchiseeOwnerResp": {
+                                "summary": "Retrieve Franchise Owner Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1529601222</responseId>\n<responseData>\n<fimCenterInfo>\n<!-- FRANCHISEE_NO of the parent location -->\n<referenceId>15779051</referenceId>\n<franchiseeName>Location Name</franchiseeName>\n<owners>\n<!-- owner mapping ID — USE THIS for UPDATE and DELETE -->\n<referenceId>1949752379</referenceId>\n<isManager>Yes</isManager>\n<storeOwnedPercentage>50</storeOwnedPercentage>\n<fimOwner>\n<!-- owner person record ID (FRANCHISE_OWNER_ID) -->\n<referenceId>5348277</referenceId>\n<firstName>John</firstName>\n<lastName>Doe</lastName>\n<email>john.doe@example.com</email>\n<phone>5551234567</phone>\n<jobTitle>CEO</jobTitle>\n<!-- cross-location identifier — USE THIS for ownerType=Existing -->\n<muidValue>PID-XXXXXXXXXXXXXXX</muidValue>\n</fimOwner>\n</owners>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleUpdateFranchiseOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateFranchiseeOwnerResp": {
+                                "summary": "Update Franchise Owner Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1862437321</responseId>\n<responseData>\n<fimOwner>\n<status>Success</status>\n<referenceId>1949752379</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleDeleteFranchiseOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteFranchiseeOwnerResp": {
+                                "summary": "Delete Franchise Owner Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1627304851</responseId>\n<responseData>\n<fimOwner>\n<status>Success</status>\n<referenceId>1949752379</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleCreateEntityOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createEntityOwnerSingleResp": {
+                                "summary": "Response — Use Case 1 (single entity)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>33564101</responseId>\n<responseData>\n<!-- referenceId = fimId (owner person record ID) -->\n<!-- Use this value directly for UPDATE and DELETE -->\n<fimOwner>\n<status>Success</status>\n<referenceId>309669872</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            },
+                            "createEntityOwnerMultiResp": {
+                                "summary": "Response — Use Case 2 (multiple entities) — one fimOwner block per entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>829051198</responseId>\n<responseData>\n<!-- One fimOwner block per entity — referenceId is fimId for that entity -->\n<fimOwner>\n<status>Success</status>\n<!-- fimId for entity 253678099 -->\n<referenceId>453805306</referenceId>\n</fimOwner>\n<fimOwner>\n<status>Success</status>\n<!-- fimId for entity 413396478 -->\n<referenceId>1915919526</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleRetrieveEntityOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveEntityOwnerResp": {
+                                "summary": "Retrieve Entity Owner Response — multi-entity owner shows one fimEntity block per entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>444583890</responseId>\n<responseData>\n<fimEntity>\n<!-- Entity ID of the parent entity -->\n<referenceId>253678099</referenceId>\n<fimTtEntityName>Crestview Holdings</fimTtEntityName>\n<fimOwner>\n<!-- mappingOwnerId — same value across entities for same owner — do NOT use for UPDATE/DELETE -->\n<referenceId>1828243215</referenceId>\n<!-- fimId = owner person record ID — unique per entity — USE THIS for UPDATE and DELETE -->\n<fimId>309669872</fimId>\n<!-- confirms parent entity -->\n<fimEntityId>253678099</fimEntityId>\n<mappingOwnerId>1828243215</mappingOwnerId>\n<firstName>Victor</firstName>\n<lastName>Hayes</lastName>\n<jobTitle>Senior Director</jobTitle>\n<isManager>Y</isManager>\n<storeOwnedPercentage>50</storeOwnedPercentage>\n<typeOfOwnership>Owner/Operator</typeOfOwnership>\n<ownershipStartDate>2026-01-01</ownershipStartDate>\n<phone>5551234567</phone>\n<email>victor.hayes@example.com</email>\n</fimOwner>\n</fimEntity>\n<fimEntity>\n<referenceId>413396478</referenceId>\n<fimTtEntityName>People Entity-Owner 01</fimTtEntityName>\n<fimOwner>\n<!-- same mappingOwnerId as above — confirms same person across entities -->\n<referenceId>1828243215</referenceId>\n<!-- different fimId per entity — use this specific value for UPDATE/DELETE on this entity -->\n<fimId>1022261371</fimId>\n<fimEntityId>413396478</fimEntityId>\n<mappingOwnerId>1828243215</mappingOwnerId>\n<firstName>Victor</firstName>\n<lastName>Hayes</lastName>\n<jobTitle>Senior Director</jobTitle>\n<phone>5551234567</phone>\n<email>victor.hayes@example.com</email>\n</fimOwner>\n</fimEntity>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleUpdateEntityOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateEntityOwnerResp": {
+                                "summary": "Update Entity Owner Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1425017056</responseId>\n<responseData>\n<fimOwner>\n<status>Success</status>\n<referenceId>1965263269</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleDeleteEntityOwnerResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteEntityOwnerResp": {
+                                "summary": "Delete Entity Owner Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>869897043</responseId>\n<responseData>\n<fimOwner>\n<status>Success</status>\n<referenceId>1965263269</referenceId>\n</fimOwner>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleCreateFranchiseEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createFranchiseEmployeeResp": {
+                                "summary": "Response — Create Franchise Employee",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>390700492</responseId>\n<responseData>\n<!-- referenceId = employee mapping ID (EMPLOYEE_NO) -->\n<!-- Use this value for UPDATE and DELETE operations -->\n<!-- Run a Retrieve to obtain the muidValue for multi-location association -->\n<fimEmployee>\n<status>Success</status>\n<referenceId>316891521</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleCreateEntityEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createEntityEmployeeSingleResp": {
+                                "summary": "Response — Use Case 1 (single entity)",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>881392704</responseId>\n<responseData>\n<!-- referenceId = employee mapping ID (EMPLOYEE_NO) -->\n<!-- Use this value directly for UPDATE and DELETE -->\n<fimEmployee>\n<status>Success</status>\n<referenceId>438984390</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            },
+                            "createEntityEmployeeMultiResp": {
+                                "summary": "Response — Use Case 2 (multiple entities) — mapping IDs returned comma-separated",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1630884079</responseId>\n<responseData>\n<!-- referenceId = comma-separated mapping IDs (EMPLOYEE_NO per entity) -->\n<!-- First ID = Albany LLC, Second ID = Anchor Corp -->\n<fimEmployee>\n<status>Success</status>\n<referenceId>438984390,1964712859</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleRetrieveFranchiseEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveFranchiseEmployeeResp": {
+                                "summary": "Retrieve Franchise Employee Response — multi-location employee shows one fimCenterInfo per location",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>285188683</responseId>\n<responseData>\n<fimCenterInfo>\n<!-- FRANCHISEE_NO of the parent location -->\n<referenceId>1611662330</referenceId>\n<franchiseeName>AM-01 Ridgeview</franchiseeName>\n<fimEmployee>\n<!-- employee person record ID (EMPLOYEE_ID) — same across all locations -->\n<referenceId>1103467323</referenceId>\n<firstName>Laura</firstName>\n<lastName>Simmons</lastName>\n<jobTitle>Area Coordinator</jobTitle>\n<phone1>5553334444</phone1>\n<email>laura.simmons@example.com</email>\n<!-- cross-location identifier — USE THIS for employeeType=Existing -->\n<muidValue>PID-11034673230346</muidValue>\n<fimEmployeesMapping>\n<!-- employee mapping ID (EMPLOYEE_NO) — USE THIS for UPDATE and DELETE -->\n<referenceId>1816823574</referenceId>\n</fimEmployeesMapping>\n</fimEmployee>\n</fimCenterInfo>\n<fimCenterInfo>\n<referenceId>1138702930</referenceId>\n<franchiseeName>BM-01 Valley Center</franchiseeName>\n<fimEmployee>\n<!-- same EMPLOYEE_ID — same person -->\n<referenceId>1103467323</referenceId>\n<firstName>Laura</firstName>\n<lastName>Simmons</lastName>\n<jobTitle>Area Coordinator</jobTitle>\n<muidValue>PID-11034673230346</muidValue>\n<fimEmployeesMapping>\n<!-- different mapping ID per location -->\n<referenceId>1131073113</referenceId>\n</fimEmployeesMapping>\n</fimEmployee>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleRetrieveEntityEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveEntityEmployeeResp": {
+                                "summary": "Retrieve Entity Employee Response — multi-entity employee shows one fimEntity block per entity",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1425117157</responseId>\n<responseData>\n<fimEntity>\n<!-- Entity ID of the parent entity -->\n<referenceId>437682492</referenceId>\n<fimTtEntityName>Albany LLC</fimTtEntityName>\n<fimEmployee>\n<!-- employee mapping ID (EMPLOYEE_NO) — USE THIS for UPDATE and DELETE -->\n<referenceId>438984390</referenceId>\n<!-- employee person record ID (EMPLOYEE_ID) — internal reference only -->\n<employeeId>1021591227</employeeId>\n<firstName>Sophie</firstName>\n<lastName>Grant</lastName>\n<jobTitle>Regional Coordinator</jobTitle>\n<phone1>5558889999</phone1>\n<email>sophie.grant@example.com</email>\n</fimEmployee>\n</fimEntity>\n<fimEntity>\n<referenceId>1454930947</referenceId>\n<fimTtEntityName>Anchor Corp</fimTtEntityName>\n<fimEmployee>\n<!-- different mapping ID per entity — same employeeId confirms same person -->\n<referenceId>1964712859</referenceId>\n<employeeId>1021591227</employeeId>\n<firstName>Sophie</firstName>\n<lastName>Grant</lastName>\n<jobTitle>Regional Coordinator</jobTitle>\n<phone1>5558889999</phone1>\n<email>sophie.grant@example.com</email>\n</fimEmployee>\n</fimEntity>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleUpdateFranchiseEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateFranchiseEmployeeResp": {
+                                "summary": "Update Franchise Employee Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>284159422</responseId>\n<responseData>\n<fimEmployee>\n<status>Success</status>\n<referenceId>1214687730</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleUpdateEntityEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateEntityEmployeeResp": {
+                                "summary": "Update Entity Employee Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>268016713</responseId>\n<responseData>\n<fimEmployee>\n<status>Success</status>\n<referenceId>1985246011</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleDeleteFranchiseEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteFranchiseEmployeeResp": {
+                                "summary": "Delete Franchise Employee Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>286008637</responseId>\n<responseData>\n<fimEmployee>\n<status>Success</status>\n<referenceId>1214687730</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleDeleteEntityEmployeeResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteEntityEmployeeResp": {
+                                "summary": "Delete Entity Employee Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1743898415</responseId>\n<responseData>\n<fimEmployee>\n<status>Success</status>\n<referenceId>1985246011</referenceId>\n</fimEmployee>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleCreateAdditionalContactResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "createAdditionalContactResp": {
+                                "summary": "Create Additional Contact Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1241536971</responseId>\n<responseData>\n<peopleAdditionalContact>\n<status>Success</status>\n<referenceId>1316481981</referenceId>\n</peopleAdditionalContact>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleRetrieveAdditionalContactResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "retrieveAdditionalContactResp": {
+                                "summary": "Retrieve Additional Contacts Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1241536971</responseId>\n<responseData>\n<peopleAdditionalContact>\n<referenceId>1316481981</referenceId>\n<firstName>Chris</firstName>\n<lastName>Taylor</lastName>\n<phone>5553210987</phone>\n<mobile>5559876543</mobile>\n<address>100 Contact Lane</address>\n<city>Chicago</city>\n<zip>60601</zip>\n</peopleAdditionalContact>\n</responseData>\n</fcResponse>"
+                            },
+                            "retrieveAdditionalContactRespAnnotated": {
+                                "summary": "Retrieve Additional Contact Response — full structure with annotations",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2075404419</responseId>\n<responseData>\n<peopleAdditionalContact>\n<!-- Additional Contact unique ID — USE THIS for UPDATE and DELETE -->\n<referenceId>1376849509</referenceId>\n<firstName>Emma</firstName>\n<lastName>Collins</lastName>\n<address/>\n<address2/>\n<city/>\n<country/>\n<stateID/>\n<zip/>\n<phone>5551112222</phone>\n<phoneExt/>\n<homePhone/>\n<homePhoneExt/>\n<fax/>\n<mobile>5553334444</mobile>\n<!-- Note: email field is emailID, not email -->\n<emailID>emma.collins@example.com</emailID>\n<county/>\n<additionalContactType>AdditionalContact</additionalContactType>\n<!-- Parent Entity ID -->\n<entityID>437682492</entityID>\n</peopleAdditionalContact>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleUpdateAdditionalContactResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "updateAdditionalContactResp": {
+                                "summary": "Update Additional Contact Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1054005050</responseId>\n<responseData>\n<peopleAdditionalContact>\n<status>Success</status>\n<referenceId>1316481981</referenceId>\n</peopleAdditionalContact>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
+            },
+            "PeopleDeleteAdditionalContactResp": {
+                "content": {
+                    "application/xml": {
+                        "examples": {
+                            "deleteAdditionalContactResp": {
+                                "summary": "Delete Additional Contact Response",
+                                "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1848948583</responseId>\n<responseData>\n<peopleAdditionalContact>\n<status>Success</status>\n<referenceId>1504675724</referenceId>\n</peopleAdditionalContact>\n</responseData>\n</fcResponse>"
+                            }
+                        }
+                    }
+                },
+                "description": "Successful"
             }
+
         }
     }
 }
