@@ -41,10 +41,6 @@
             "description": "<p>The access token that is generated using the grants enlisted above, remains valid only for 12 hours. Along with an access token, you'll also be given a <strong>refresh token</strong>. You can use this refresh token to generate a new access token. The lifespan of a refresh token is 30 days and once you've used up a refresh token, it can not be used to generate any more access tokens.</p>"
         },
         {
-            "name": "User Accessibility in API Endpoints",
-            "description": "<p>By default, all API users have unrestricted access to perform both read and write operations. If your use case requires restricted access, such as creating an API user with read-only or write-only permissions, please contact FranConnect Support (<a class=\"nolink\" href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a>). Our team will assist you in configuring users with the appropriate access rights to meet your requirements.</p>"
-        },
-        {
             "name": "API Rate Limits",
             "description": "<p class=\"western\">To ensure optimal performance and fair usage, our API enforces rate limits at both the tenant and user levels. These limits are applied on an <b>hourly</b> basis as follows:</p><center> <table width=\"762\" cellspacing=\"0\" cellpadding=\"7\"> <colgroup> <col width=\"228\" /> <col width=\"505\" /> </colgroup> <tbody> <tr valign=\"top\"> <td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"228\"> <p class=\"western\"><span style=\"color: #ffffff;\"><strong>Level</strong></span></p> </td> <td style=\"background: #4472c4;\" bgcolor=\"#4472c4\" width=\"505\"> <p class=\"western\"><span style=\"color: #ffffff;\"><strong>Rate Limit (Requests Per Hour)</strong></span></p> </td> </tr> <tr valign=\"top\"> <td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"228\"> <p class=\"western\"><strong>Tenant Level</strong></p> </td> <td style=\"background: #d9e2f3;\" bgcolor=\"#d9e2f3\" width=\"505\"> <p class=\"western\">73,000</p> </td> </tr> <tr valign=\"top\"> <td width=\"228\"> <p class=\"western\"><strong>User Level</strong></p> </td> <td width=\"505\"> <p class=\"western\">73,000</p> </td> </tr> </tbody> </table></center><h2>Increasing Rate Limits</h2><p class=\"western\">If your application requires a higher request limit, you can submit a request for an increase by contacting our support team at <a href=\"mailto:helpdesk@franconnect.com\">helpdesk@franconnect.com</a>. Please include:</p><p> <ul> <li>Your tenant details</li> <li>The reason for the increase</li> <li>The desired rate limit</li> </ul> Our team will review your request and respond accordingly.</p>"
         },
@@ -281,7 +277,6 @@
                 "Authorization Code",
                 "Password Credentials",
                 "Client Credentials",
-                "User Accessibility in API Endpoints",
                 "API Rate Limits",
                 "Refresh Token",
                 "Franchisee Number",
