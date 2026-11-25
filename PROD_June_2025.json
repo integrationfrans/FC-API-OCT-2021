@@ -1234,7 +1234,7 @@
                                     "required": [
                                         "module",
                                         "subModule",
-                                        "filterXML",
+                                        "filterXML"
                                     ]
                                 }
                             }
@@ -1428,7 +1428,7 @@
                 ],
                 "summary": "Retrieve Documents",
                 "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the documents associated with a lead on Primary info tab. In a similar manner, the Retrieve operation can be performed to retrieve other documents under different sub-module. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td> <context-path>rest/dataservices/documents/download?module=fs&subModule=selectedsubmodule&filterXML=filteredXML&responseType=xml </td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the details of a lead's documents uploaded under the given sub-module using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p> </li></ol><p>The following items must be used as path parameters:</p><ol> <li> <p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fs\".</p> </li> <li> <p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"lead\".</p> </li> <li> <p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p> </li> <li> <p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve the document for the given lead under selected sub-module. In this case,<strong> \"referenceId\"</strong> has been used to retrieve the documents of an existing lead under primary info tab. The other applicable filter is using <strong> Lead ID </strong> to filter leads.</a></u> </p></li></ol><p class=\"western\"><strong>Note:</strong></p><p class=\"western\">The download links returned in the response remain valid for 1 hour. After this period expires, the endpoint must be invoked again to generate a new active download link.</p>",
-                "operationId": "Sales_Retrieve_Lead_Documents",
+                "operationId": "Sales_Retrieve_Lead_Documents"
             }
         },
         "/documents/upload?module=fim&subModule=lead": {
@@ -1586,7 +1586,7 @@
                 ],
                 "summary": "Retrieve Documents",
                 "description": "<p class=\"western\">This section contains an example of the Retrieve operation performed for retrieving the documents associated with a franchisee on Center Info tab. In a similar manner, the Retrieve operation can be performed to retrieve other documents under different sub-modules. </p><table width=\"100%\" class=\"endpoint-table\"> <tr> <td width=\"20%\"><strong>Operation Name</strong></td> <td width=\"1%\">:</td> <td>POST</td> </tr> <tr> <td><strong>API Endpoint</strong></td> <td>:</td> <td><context-path>rest/dataservices/documents/download?module=fim&subModule=selectedsubmodule&filterXML=filteredXML&responseType=xml</td> </tr> <tr> <td></td> </tr></table><p class=\"western\">To perform a Retrieve operation for retrieving the documents of a franchisee uploaded under the given sub-module using the FranConnect API, you must make a POST request on the request URL. The request URL comprises of the context path followed by the API endpoint mentioned above. The following items must be included in the header of the request:</p><ol><li><p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p></li><li><p>Content-Type as the key and its value in the format \"application/x-www-form-urlencoded\".</p></li></ol><p>The following items must be used as path parameters:</p><ol><li><p>The module for which the Retrieve operation is being performed. In this case, the module to be used is \"fim\".</p></li><li><p>The sub-module for which the Retrieve operation is being performed. A list of all sub-modules can be retrieved from the \"subModule\" endpoint mentioned <span style=\"color: #0563c1;\"><u><a href=\"#tag/List-of-Sub-Modules\">here</a></u></span>. In this case, the subModule to be used is \"franchisee\".</p></li><li><p>Response type as XML or JSON, depending on the type of response that is desired. If this parameter is not provided, the default response type is XML.</p></li><li><p class=\"western\">filterXML that would contain the attribute names and their values in the request that is to be used to retrieve the documents for the given franchisee under the selected sub-module. In this case, <strong>\"referenceId\"</strong> has been used to retrieve the documents of an existing franchisee under the Center Info tab. The other applicable filters are <strong>Franchisee Name, Franchise ID </strong> to filter franchisees.</p></li></ol><p class=\"western\"><strong>Note:</strong></p><p class=\"western\">The download links returned in the response remain valid for 1 hour. After this period expires, the endpoint must be invoked again to generate a new active download link.</p>",
-                "operationId": "Fim_Retrieve_Documents",
+                "operationId": "Fim_Retrieve_Documents"
             }
         },
         "/documents/upload?module=fim&subModule=financial": {
@@ -2187,7 +2187,7 @@
                             "examples": {
                                 "createAreaRegion": {
                                     "summary": "Create New Area/Region",
-                                    "value": "<?xmlversion='1.0'encoding='utf-8'?>\n<fcRequest>\n<regionalAreaInfo>\n<parentReferenceId>130544557</parentReferenceId>\n<licenseType>New License</licenseType>\n<agreementType>Area Franchisee</agreementType>\n<effectiveDate>2022-03-01</effectiveDate>\n<expirationDate>2023-03-01</expirationDate>\n<address>41C, Clinton Street</address>\n<city>Iowa City</city>\n<country>USA</country>\n<state>Iowa</state>\n<email>test@gmail.com</email>\n</regionalAreaInfo>\n</fcRequest>\n",
+                                    "value": "<?xmlversion='1.0'encoding='utf-8'?>\n<fcRequest>\n<regionalAreaInfo>\n<parentReferenceId>130544557</parentReferenceId>\n<licenseType>New License</licenseType>\n<agreementType>Area Franchisee</agreementType>\n<effectiveDate>2022-03-01</effectiveDate>\n<expirationDate>2023-03-01</expirationDate>\n<address>41C, Clinton Street</address>\n<city>Iowa City</city>\n<country>USA</country>\n<state>Iowa</state>\n<email>test@gmail.com</email>\n</regionalAreaInfo>\n</fcRequest>\n"
                                     
                                 },
                                 "createNewEntityInRegional": {
@@ -6302,14 +6302,14 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
                                             "validations": {
                                                 "textLengthMax": "255",
                                                 "isMandatory": false
-                                            },
+                                            }
                                         }
                                     ]
                                 },
@@ -6323,7 +6323,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "696609394510530068",
+                                                        "id": "696609394510530068"
                                                     }
                                                 ]
                                             },
@@ -6343,7 +6343,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
@@ -6363,7 +6363,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
@@ -6399,7 +6399,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
@@ -6419,7 +6419,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
@@ -6439,7 +6439,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
@@ -6475,7 +6475,7 @@
                                                 "apiKey": "category",
                                                 "fields": [
                                                     {
-                                                        "id": "695507570382608298",
+                                                        "id": "695507570382608298"
                                                     }
                                                 ]
                                             },
@@ -10189,8 +10189,7 @@
                 "Visits"
               ],
               "summary": "Retrieve Visit Summary with Questions and Responses",
-              "description": "<p class=\"western\">Make a GET request to the specified endpoint using visitId to retrieve the full details of a specific visit.</p><p>This endpoint is designed to return a complete representation of a visit's outcome, including:</p><ul><li>Visit data</li><li>Form structure (tabs, sections)</li><li>Actual question text used in the visit</li><li>Consultant's responses, scores, and comments</li><li>Owner's scores (if enabled)</li></ul><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td>:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://skyapi.franconnect.net/audit/v2/visits/{visitId}/summary</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td>https://skyapi.franconnectuat.net/audit/v2/visits/{visitId}/summary</td></tr>
-               </table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on identifying the &ldquo;X-TenantId&rdquo;.<p><img src=\"images/Retrieve_Visit_Summary_with_Questions_and_Responses.png\"></ol>",
+              "description": "<p class=\"western\">Make a GET request to the specified endpoint using visitId to retrieve the full details of a specific visit.</p><p>This endpoint is designed to return a complete representation of a visit's outcome, including:</p><ul><li>Visit data</li><li>Form structure (tabs, sections)</li><li>Actual question text used in the visit</li><li>Consultant's responses, scores, and comments</li><li>Owner's scores (if enabled)</li></ul><table width=\"100%\" class=\"endpoint-table\"><tr><td width=\"25%\"><strong>Operation Name</strong></td><td>:</td><td>GET</td></tr><tr><td><strong>Production API Endpoint</strong></td><td>:</td><td>https://skyapi.franconnect.net/audit/v2/visits/{visitId}/summary</td></tr><tr><td><strong>UAT API Endpoint</strong></td><td>:</td><td>https://skyapi.franconnectuat.net/audit/v2/visits/{visitId}/summary</td></tr>\n               </table>The following items must be included in the header of the request:<ol> <li> <p>\"Authorization\" as the key and its value in the format \"Bearer access_token\". This access_token is generated as a part of authentication. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on the steps to generate the access token.</p> </li> <li> <p>&ldquo;Content-Type&rdquo; as the key and its value in the format &ldquo;application/json&rdquo;.</p> </li> <li> <p>&ldquo;X-TenantId&rdquo; as the key and its value based on your FranConnect system&rsquo;s URL. Click <u><a href=\"#tag/Authentication\">here</a></u> for details on identifying the &ldquo;X-TenantId&rdquo;.<p><img src=\"images/Retrieve_Visit_Summary_with_Questions_and_Responses.png\"></ol>",
               "operationId": "Retrieve_Visit_Summary",
               "produces": [
                 "application/json"
@@ -12105,7 +12104,7 @@
                             "createcustomProfile": {
                                 "summary": "Create Custom Profile",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCustomProfile>\n<displayName>Real Estate Broker</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n</fcRequest>"
-                            },
+                            }
                         },
                         "schema": {
                             "type": "array",
@@ -12129,7 +12128,7 @@
                             "createcustomProfile": {
                                 "summary": "Create Reference Date",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimReferenceDate>\n<displayName>Store Opening Date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n</fcRequest>"
-                            },
+                            }
                         },
                         "schema": {
                             "type": "array",
@@ -12153,7 +12152,7 @@
                             "createcustomProfile": {
                                 "summary": "Create data under Multi Input Tab",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimMarketingCampaignTab1917160461>\n<parentReferenceId>330435901</parentReferenceId>\n<_campaignName1523888024>Autumn Local Awareness 2025</_campaignName1523888024>\n<_campaignType888342569>Brand Awareness Campaign</_campaignType888342569>\n<_budget359030711>6900</_budget359030711>\n<_startDate763394383>2025-09-10</_startDate763394383>\n<_endDate919221706>2025-10-30</_endDate919221706>\n<campaignactivities1929451730>\n<_activityName2097507974>Autumn Email Awareness Series</_activityName2097507974>\n<_channel1999089506>Email Marketing</_channel1999089506>\n<_cost841857403>3100</_cost841857403>\n<_vendor1860780083>MetroPrint Creative</_vendor1860780083>\n</campaignactivities1929451730>\n<campaignactivities1929451730>\n<_activityName2097507974>Seasonal Social Reach Ads</_activityName2097507974>\n<_channel1999089506>Social Media Ads</_channel1999089506>\n<_cost841857403>3800</_cost841857403>\n<_vendor1860780083>AdSprout Marketing</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fcRequest>"
-                            },
+                            }
                         },
                         "schema": {
                             "type": "array",
@@ -12306,8 +12305,7 @@
             "FimUpdatecustomProfileArray": {
                 "content": {
                     "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCustomProfile>\n<referenceId>1730103020</referenceId>\n<displayName>Franchisee Consultant</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n</fcRequest>
-                        ",
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimCustomProfile>\n<referenceId>1730103020</referenceId>\n<displayName>Franchisee Consultant</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n</fcRequest>\n                        ",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -12345,9 +12343,7 @@
             "FimUpdateMultiInputTabArray": {
                 "content": {
                     "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimMarketingCampaignTab1917160461>\n<referenceId>2017672087</referenceId>\n<_campaignName1523888024>Summer Engagement Blast 2025</_campaignName1523888024>\n
-                            <campaignactivities1929451730>\n<referenceId>216759343</referenceId>\n<_activityName2097507974>Winter 2025 Social Engagement Ads</_activityName2097507974>\n<_cost841857403>6000</_cost841857403>\n
-                            <_vendor1860780083>AdSprout Marketing</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fcRequest>",
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcRequest>\n<fimMarketingCampaignTab1917160461>\n<referenceId>2017672087</referenceId>\n<_campaignName1523888024>Summer Engagement Blast 2025</_campaignName1523888024>\n\n                            <campaignactivities1929451730>\n<referenceId>216759343</referenceId>\n<_activityName2097507974>Winter 2025 Social Engagement Ads</_activityName2097507974>\n<_cost841857403>6000</_cost841857403>\n\n                            <_vendor1860780083>AdSprout Marketing</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fcRequest>",
                         "schema": {
                             "type": "array",
                             "items": {
@@ -13488,7 +13484,7 @@
                 },
                 "description": "People Additional Contact delete request body",
                 "required": true
-            },
+            }
         },
         "responses": {
             "ModuleResp": {
@@ -13777,8 +13773,7 @@
             "retrieveleadwebformResp": {
                 "content": {
                     "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1961724181</responseId>\n<responseData>https://developers.franconnectdemo.net/fc/leadQualificationDetails.jsp?pqId=aomq--lq-q-oar,arbbbq-rz--lq-</responseData>\n</fcResponse>
-                        "
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1961724181</responseId>\n<responseData>https://developers.franconnectdemo.net/fc/leadQualificationDetails.jsp?pqId=aomq--lq-q-oar,arbbbq-rz--lq-</responseData>\n</fcResponse>\n                        "
                     }
                 },
                 "description": "Successful"
@@ -13843,7 +13838,7 @@
                             "createFranchiseeResp": {
                                 "summary": "Create Franchise Response",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>980752871</responseId>\n<responseData>\n<fimFranchisee>\n<status>Success</status>\n<referenceId>1665635279</referenceId>\n</fimFranchisee>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13856,7 +13851,7 @@
                             "createFranchiseeResp": {
                                 "summary": "Create Franchise Response",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>218197610</responseId>\n<responseData>\n<fimReferenceDate>\n<status>Success</status>\n<referenceId>1166157558</referenceId>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13869,7 +13864,7 @@
                             "createFranchiseeResp": {
                                 "summary": "Create Response for Multi Input Tab",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>534583505</responseId>\n<responseData>\n<fimMarketingCampaignTab1917160461>\n<status>Success</status>\n<referenceId>1491649462</referenceId>\n</fimMarketingCampaignTab1917160461>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13899,7 +13894,7 @@
                             "retrieveFranchiseetransferResp": {
                                 "summary": "Retrieve Franchise Transfer Response",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>941287014</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>511408652</referenceId>\n<franchiseeName>Dhampur</franchiseeName>\n<fimTransfer>\n<referenceId>651129188</referenceId>\n<newCenterNo>Yes</newCenterNo>\n<centerNo>New transfer location sep27</centerNo>\n<transferType>Transferred License</transferType>\n<currentStatus>Transfer Complete</currentStatus>\n<currentStatusOther></currentStatusOther>\n<asOf>09/26/2025</asOf>\n<transferCompletionDate>09/27/2025</transferCompletionDate>\n<employee> Tim David</employee>\n<seller>Andrew  Rosenfeld (I);Ken Pual (I);Automation Entity (E);NavEntity 1 (E)</seller>\n<shareholder></shareholder>\n<sellerSigner>Rose Dave</sellerSigner>\n<buyerSigner>Adam Smith</buyerSigner>\n<sellerSignerTitle>Seller head</sellerSignerTitle>\n<buyerSignerTitle>Test</buyerSignerTitle>\n<ownershipEndDate>09/27/2025</ownershipEndDate>\n<financialPrequalification>Yes</financialPrequalification>\n<financialPreQualificationApproval>09/27/2025</financialPreQualificationApproval>\n<expirationDate>09/27/2025</expirationDate>\n<fddReceipt>No</fddReceipt>\n<fddDate>09/27/2025</fddDate>\n<buySellAgreement>Yes</buySellAgreement>\n<corporateDocuments>Yes</corporateDocuments>\n<transferFeePd>Yes</transferFeePd>\n<transferFeeNumerical>4,334.00</transferFeeNumerical>\n<financialDemand>Yes</financialDemand>\n<ptacPaymentDue>4,343.00</ptacPaymentDue>\n<sendLegalDocsTo>AD</sendLegalDocsTo>\n<sendLegalOtherDocsTo></sendLegalOtherDocsTo>\n<sendDocsTo>Buyer</sendDocsTo>\n<sendOtherDocsTo></sendOtherDocsTo>\n<otherName>Linda Smith</otherName>\n<faEffectiveDate>09/04/2025</faEffectiveDate>\n<faExpiration>09/20/2025</faExpiration>\n<closingDate>09/12/2025</closingDate>\n<consentAgreement>Yes</consentAgreement>\n<transferAgreement>Yes</transferAgreement>\n<assignedArea>Yes</assignedArea>\n<guaranty>Yes</guaranty>\n<stateAddendum>No</stateAddendum>\n<softwareLicense>No</softwareLicense>\n<promissoryNote>Yes</promissoryNote>\n<certOfInsurance>Yes</certOfInsurance>\n<royaltyReportingStartDate>2025-09-27</royaltyReportingStartDate>\n<streetAddress>B-12</streetAddress>\n<city>Delhi</city>\n<country>India</country>\n<zipcode>43565</zipcode>\n<state>Delhi</state>\n<phone>34567543</phone>\n<phoneExtension>+91</phoneExtension>\n<fax>3223</fax>\n<mobile>9876543210</mobile>\n<email>test@gmail.com</email>\n</fimTransfer>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13912,7 +13907,7 @@
                             "centerInfo": {
                                 "summary": "Example: Custom Profile Retrieve Response",
                                 "value": "<?xml version='1.0' encoding='utf-8'?><fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1914294545</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>511408652</referenceId>\n<franchiseeName>Dhampur</franchiseeName>\n<previousOwnership>\n<ownerTitle></ownerTitle>\n<firstName>Ayush</firstName>\n<lastName>kumar</lastName>\n<jobTitle></jobTitle>\n<homeAddress></homeAddress>\n<homeCity>Mayur Vihar</homeCity>\n<homeZipCode></homeZipCode>\n<homeCountry>India</homeCountry>\n<homeState>Delhi</homeState>\n<otherAddress></otherAddress>\n<otherCity></otherCity>\n<otherZipCode></otherZipCode>\n<otherCountry></otherCountry>\n<otherState></otherState>\n<phone>98765432</phone>\n<phoneExtension></phoneExtension>\n<fax></fax>\n<mobile>987654321</mobile>\n<email>test@gmail.com</email>\n<taxpayerID></taxpayerID>\n<entityComments></entityComments>\n<spouseFirstName></spouseFirstName>\n<spouseLastName></spouseLastName>\n<spousePhone></spousePhone>\n<spousePhoneExtension></spousePhoneExtension>\n<spouseMobile></spouseMobile>\n<storeOwnershipPercentage>100.0</storeOwnershipPercentage>\n<typeOfOwnership>Owner/Operator</typeOfOwnership>\n<ownershipStartDate>09/10/2025</ownershipStartDate>\n<ownershipEndDate>09/26/2025</ownershipEndDate>\n<ownerType>Individual</ownerType>\n</previousOwnership>\n<locationdetails898033055>\n<referenceId></referenceId>\n</locationdetails898033055>\n<customtabular1068818482>\n<referenceId></referenceId>\n</customtabular1068818482>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13925,7 +13920,7 @@
                             "centerInfo": {
                                 "summary": "Example: Custom Profile Retrieve Response",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>2090523190</responseId>\n<responseData>\n<fimCustomProfile>\n<referenceId>12</referenceId>\n<displayName>Launch Manager</displayName>\n<isMandatory>N</isMandatory>\n</fimCustomProfile>\n<fimCustomProfile>\n<referenceId>1607063233</referenceId>\n<displayName>Launch Operations Head</displayName>\n<isMandatory>Y</isMandatory>\n</fimCustomProfile>\n<fimCustomProfile>\n<referenceId>1607063234</referenceId>\n<displayName>Launch Executive</displayName>\n<isMandatory>N</isMandatory>\n</fimCustomProfile>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13938,7 +13933,7 @@
                             "centerInfo": {
                                 "summary": "Example: Reference Date Retrieve Response",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>1047071773</responseId>\n<responseData>\n<fimReferenceDate>\n<referenceId>2</referenceId>\n<displayName>Projected Training start date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n<fimReferenceDate>\n<referenceId>5</referenceId>\n<displayName>Projected Soft Open Date</displayName>\n<milestoneApplicable>N</milestoneApplicable>\n</fimReferenceDate>\n<fimReferenceDate>\n<referenceId>6</referenceId>\n<displayName>Projected Sneak Peek</displayName>\n<milestoneApplicable>N</milestoneApplicable>\n</fimReferenceDate>\n<fimReferenceDate>\n<referenceId>11</referenceId>\n<displayName>Projected Grand Open Date</displayName>\n<milestoneApplicable>Y</milestoneApplicable>\n</fimReferenceDate>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -13951,7 +13946,7 @@
                             "centerInfo": {
                                 "summary": "Example: All data Retrieve Response for Multi Input Tab",
                                 "value": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Success</responseStatus>\n<responseId>235621998</responseId>\n<responseData>\n<fimCenterInfo>\n<referenceId>330435901</referenceId>\n<franchiseeName>FC-HP-01</franchiseeName>\n<fimMarketingCampaignTab1917160461>\n<referenceId>158207771</referenceId>\n<_campaignName1523888024>FC - Holiday Promotions Push 2025</_campaignName1523888024>\n<_campaignType888342569>Seasonal Promotion Campaign</_campaignType888342569>\n<_budget359030711>5200.00</_budget359030711>\n<_startDate763394383>2025-11-15</_startDate763394383>\n<_endDate919221706>2025-12-31</_endDate919221706>\n<campaignactivities1929451730>\n<referenceId>1697394012</referenceId>\n<_activityName2097507974>Holiday Offer Email Blas</_activityName2097507974>\n<_channel1999089506>Email Marketing</_channel1999089506>\n<_cost841857403>5200.00</_cost841857403>\n<_vendor1860780083>BluDigital</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n<fimMarketingCampaignTab1917160461>\n<referenceId>1393145911</referenceId>\n<_campaignName1523888024>Weekend Footfall Booster 2025</_campaignName1523888024>\n<_campaignType888342569>Local Store Marketing Campaign</_campaignType888342569>\n<_budget359030711>7000.00</_budget359030711>\n<_startDate763394383>2025-03-01</_startDate763394383>\n<_endDate919221706>2025-04-15</_endDate919221706>\n<campaignactivities1929451730>\n<referenceId>957118098</referenceId>\n<_activityName2097507974>Weekend Offer Email Blast</_activityName2097507974>\n<_channel1999089506>Email Marketing</_channel1999089506>\n<_cost841857403>3200.00</_cost841857403>\n<_vendor1860780083>BluDigital</_vendor1860780083>\n</campaignactivities1929451730>\n</fimMarketingCampaignTab1917160461>\n</fimCenterInfo>\n</responseData>\n</fcResponse>"
-                            },
+                            }
                         }
                     }
                 },
@@ -14000,8 +13995,7 @@
             "FimDeletecustomProfileResp": {
                 "content": {
                     "application/xml": {
-                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Error</responseStatus>\n<responseId>1800377591</responseId>\n<responseData>\n<fimCustomProfile>\n<status>Error</status>\n<error>\n<errorCode>400</errorCode>\n<errorDetails>This Profile cannot be deleted as some Franchise Opener Store(s) or Checklist(s) are associated with it.</errorDetails>\n</error>\n</fimCustomProfile>\n</responseData>\n</fcResponse>
-                        "
+                        "example": "<?xml version='1.0' encoding='utf-8'?>\n<fcResponse>\n<responseStatus>Error</responseStatus>\n<responseId>1800377591</responseId>\n<responseData>\n<fimCustomProfile>\n<status>Error</status>\n<error>\n<errorCode>400</errorCode>\n<errorDetails>This Profile cannot be deleted as some Franchise Opener Store(s) or Checklist(s) are associated with it.</errorDetails>\n</error>\n</fimCustomProfile>\n</responseData>\n</fcResponse>\n                        "
                     }
                 },
                 "description": "Successful"
@@ -14734,7 +14728,7 @@
                                             "calculationType": "(+)",
                                             "quantity": 0.00,
                                             "amount": 0.00
-                                        },
+                                        }
                                     ],
                                     "finAddnlItems": [],
                                     "actionLogs": [
